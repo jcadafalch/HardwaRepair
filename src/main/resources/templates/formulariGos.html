@@ -1,0 +1,45 @@
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Formulari Gos</title>
+        <meta charset="UTF-8"/>
+    </head>
+    <body>
+        <h1>Formulari Gos</h1>
+
+        <a th:href="@{/}">Inici</a>
+
+        <p>
+            <!-- Creem un formulari per introduir les dades que el ControladorInici 
+                 assignarà als atributs del gos passat com a paràmetre en el mètode 
+                 crearFormulariGos implementat en aquest ControladorInici. 
+                 Per associar le dades a l'objecte gos, fem servir l'element th:objecte de 
+                 Thymeleaf, al qual li assignem el paràmetre gos del mètode crearFormulariGos 
+                 o editar del controlador.-->
+        <form th:action="@{/guardarGos}" method="post" th:object="${gos}">
+            
+            <!-- Camp ocult on guardem l'id del gos per enviar-lo juntament amb les altres dades-->
+            <input type="hidden" name="idgos" th:field="*{idgos}"/>
+            
+            <p>
+                <label for="nom">Nom:</label> <!--Etiqueta on indiquem a l'usuari que ha d'introduir el nom del gos-->
+                <!--Thymeleaf associarà les dades afegides mitjançant aquest input, a l'atribut (*) nom de l'objecte
+                    gos assignat a th:objecte-->
+                <input type="text" name="nom" th:field="*{nom}"/>
+            </p>
+
+            <p>
+                <label for="edat">Edat:</label> <!--Etiqueta per l'edat del gos-->            
+                <input type="text" name="edat" th:field="*{edat}"/> <!--Associem les dades introduïdes amb l'atribut edat-->
+            </p>
+
+            <p>
+                <label for="sexe">Sexe:</label> <!--Etiqueta pel sexe del gos-->            
+                <input type="text" name="sexe" th:field="*{sexe}"/> <!--Associem les dades introduïdes amb l'atribut sexe-->
+            </p>
+
+            <!-- Botó per enviar les dades-->
+            <input type="submit" name="enviar" value="Enviar Dades"/>        
+        </form>
+    </p>
+</body>
+</html>
