@@ -17,14 +17,17 @@ body {
 
 h1 {
 	font-size: 2.3em;
-  line-height: 1.3em;
-	margin: 15px 0;
-	text-align: center;
+	text-align: left;
 	font-weight: 300;
 }
 
 p {
 	margin: 0 0 1.5em 0;
+}
+
+#busca {
+	padding-left: 20px;
+    padding-top: 20px;
 }
 
 img {
@@ -79,9 +82,7 @@ img {
 
 #usuari:hover {
 		color:  #0b76a6;
-       
-       
-	}
+}
 
 
 #usuari_txt {
@@ -167,6 +168,74 @@ nav {
 	#main-content .content {
 		padding: 40px;
 	}
+
+
+	#txtBox{
+	align-items: center;
+  padding: 0.5em 0em 1em 1em;
+    border-radius: 7px; 
+        
+	}
+
+#txtBox:select {
+		border-color: #0b76a6;  
+        
+}
+
+table{
+margin-top: auto;
+ 
+}
+
+#tbusca{
+width: 100½;
+    height: 100½;
+    border-color: black;
+    border-radius: 15px;
+  border: black 1px solid;
+    
+ 
+}
+
+
+/************
+//-----------------------------
+// Botons
+//-----------------------------
+************/
+
+#botoG {
+	background: #2363D1;
+	text-align: center;
+    padding: 7px 7px 7px 7px; 
+    border-radius: 7px;
+    position: static;
+    float: right;
+    margin-right: 20px;
+}
+
+#botoC {
+	background: #bfb9b9;
+	text-align: center;
+    padding: 7px 7px 7px 7px; 
+    border-radius: 7px;
+    position: static;
+    float: right;
+    margin-right: 20px;
+
+}
+
+
+#botoB {
+	background: #bfb9b9;
+	text-align: center;
+    padding: 7px 7px 7px 7px; 
+    border-radius: 7px;
+    position: static;
+    margin-right: 20px;
+
+}
+
 	
 
 
@@ -189,3 +258,4 @@ nav {
 	#main-footer a {
 		color: white;
 	}
+
