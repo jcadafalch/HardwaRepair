@@ -25,6 +25,7 @@ public class Controller {
     public String inici(Model model) {
         log.info("Executant el controlador Spring MVC");
         
+        //definim la variable gossos
         var gossos = gosDao.findAll();
         
         model.addAttribute("gossos", gossos);
