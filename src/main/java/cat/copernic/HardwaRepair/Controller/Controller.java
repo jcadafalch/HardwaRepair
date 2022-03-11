@@ -7,6 +7,7 @@ package cat.copernic.HardwaRepair.Controller;
 
 import cat.copernic.HardwaRepair.DAO.GosDAO;
 import cat.copernic.HardwaRepair.DAO.usuariDAO;
+import cat.copernic.HardwaRepair.Model.usuari;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
@@ -35,5 +36,11 @@ public class Controller {
         model.addAttribute("usuaris", usuaris);
 
         return "inici"; 
+    }
+    
+    @GetMapping("/formulariUsuari") //URL a la pàgina amb el formulari de les dades del usuari
+    public String crearFormulariGos(usuari usuari) {
+
+        return "formulariUsuari"; //Retorna la pàgina on es mostrarà el formulari de les dades dels usuaris
     }
 }

@@ -1,0 +1,95 @@
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Usuaris</title>
+        <meta charset="UTF-8"/>
+    </head>
+    <body>
+        
+        <h1>Crear Usuari</h1>
+
+        <a th:href="@{/}">Inici</a>
+
+        <p>
+            <!-- Creem un formulari per introduir les dades que el ControladorInici 
+                 assignarà als atributs del usuari passat com a paràmetre en el mètode 
+                 crearFormulariUsuari implementat en aquest ControladorInici. 
+                 Per associar le dades a l'objecte gos, fem servir l'element th:objecte de 
+                 Thymeleaf, al qual li assignem el paràmetre gos del mètode crearFormulariUsuari 
+                 o editar del controlador.-->
+        <form th:action="@{/guardarUsuari}" method="post" th:object="${usuari}">
+            
+            
+            
+            <p>
+                <label for="nom">Nom:</label> <!--Etiqueta on indiquem a l'usuari que ha d'introduir el nom del gos-->
+                <!--Thymeleaf associarà les dades afegides mitjançant aquest input, a l'atribut (*) nom de l'objecte
+                    gos assignat a th:objecte-->
+                <input type="text" name="nom" th:field="*{nom}"/>
+                
+                <!--Afegim un contenidor de tipus span per gestionar la validació-->
+                <!--Comprovem si el camp "nom" conté errors mitjançant th:if="${#fields.hasErrors('nom')}", on passem com a
+                    paràmetre el nom del camp on volem comprovar si hi ha errors, en el nostre cas "nom", i ens retornarà
+                    verdader si conté errors i fals en cas contrari.
+                    Si conté errors, li demanarem a l'atribut nom del gos que ens mostri els errors mitjançant th:errors="*{nom}".
+                    Tot això és possible perquè en la classe usuari hem afegit les anotacions per les validacions.-->
+                <div th:if="${#fields.hasErrors('nom')}" th:errors="*{nom}"/>
+            </p>
+
+            <p>
+                <label for="cognoms">Cognoms:</label> <!--Etiqueta per l'edat del gos-->            
+                <input type="text" name="cognoms" th:field="*{cognoms}"/> <!--Associem les dades introduïdes amb l'atribut edat-->
+                <!-- Gestió errors edat-->
+                <span th:if="${#fields.hasErrors('cognoms')}" th:errors="*{cognoms}"/>
+            </p>
+
+            <p>
+                <label for="codiPostal">Codi Postal:</label> <!--Etiqueta pel sexe del gos-->            
+                <input type="text" name="codiPostal" th:field="*{codiPostal}"/> <!--Associem les dades introduïdes amb l'atribut sexe-->
+                <!-- Gestió errors camp sexe-->
+                <span th:if="${#fields.hasErrors('codiPostal')}" th:errors="*{codiPostal}"/>
+            </p>
+            
+            <p>
+                <label for="email">Correu:</label> <!--Etiqueta pel sexe del gos-->            
+                <input type="text" name="email" th:field="*{email}"/> <!--Associem les dades introduïdes amb l'atribut sexe-->
+                <!-- Gestió errors camp sexe-->
+                <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"/>
+            </p>
+            
+            <p>
+                <label for="telefon">Telefon:</label> <!--Etiqueta pel sexe del gos-->            
+                <input type="text" name="telefon" th:field="*{telefon}"/> <!--Associem les dades introduïdes amb l'atribut sexe-->
+                <!-- Gestió errors camp sexe-->
+                <span th:if="${#fields.hasErrors('telefon')}" th:errors="*{telefon}"/>
+            </p>
+            
+            <p>
+                <label for="sexe">Adreça:</label> <!--Etiqueta pel sexe del gos-->            
+                <input type="text" name="adreca" th:field="*{adreca}"/> <!--Associem les dades introduïdes amb l'atribut sexe-->
+                <!-- Gestió errors camp sexe-->
+                <span th:if="${#fields.hasErrors('adreca')}" th:errors="*{adreca}"/>
+            </p>
+            
+            <p>
+                <label for="dni">DNI:</label> <!--Etiqueta pel sexe del gos-->            
+                <!-- Camp ocult on guardem l'id del gos per enviar-lo juntament amb les altres dades-->
+                <input type="text" name="dni" th:field="*{dni}"/>
+                <!-- Gestió errors camp sexe-->
+                <span th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}"/>
+            </p>
+            
+            <p>
+                <label for="contrasenya">Contrasenya:</label> <!--Etiqueta pel sexe del gos-->            
+                <input type="text" name="contrasenya" th:field="*{contrasenya}"/>
+                <!-- Gestió errors camp sexe-->
+                <span th:if="${#fields.hasErrors('contrasenya')}" th:errors="*{contrasenya}"/>
+            </p>
+
+
+            <!-- Botó per enviar les dades-->
+            <input type="submit" name="enviar" value="Enviar Dades"/>        
+        </form>
+    </p>
+    
+</body>
+</html>
