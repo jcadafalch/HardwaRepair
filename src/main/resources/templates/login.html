@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Login</title>
+        <meta charset="UTF-8"/>
+    </head>
+    <body>
+        <h1>Login HardwaRepair</h1>
+
+        <form method="POST" th:action="@{/resources/templates/login}">
+            <p>
+                <!--El name i id de el nom d'usuari ha de ser username perquè Spring Security el reconegui com a tal-->
+                <label for="username">Usuari:</label>
+                <input type="text" name="username" id="username"/>
+            <p/>
+
+            <p>
+                <!--El name i id de la contrasenya ha de ser password perquè Spring Security el reconegui com a tal-->
+                <label for="password">Contrasenya:</label>
+                <input type="password" name="password" id="password"/>
+            <p/>
+
+            <input type="submit" value="Login"/>
+        </form>
+
+    </body>
+</html>
