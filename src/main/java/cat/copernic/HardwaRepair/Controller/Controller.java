@@ -6,6 +6,7 @@
 package cat.copernic.HardwaRepair.Controller;
 
 import cat.copernic.HardwaRepair.DAO.GosDAO;
+import cat.copernic.HardwaRepair.DAO.usuariDAO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class Controller {
     @Autowired
     private GosDAO gosDao; 
+    private usuariDAO usuariDAO;
 
     @GetMapping("/controller")
     public String inici(Model model) {
@@ -27,8 +29,10 @@ public class Controller {
         
         //definim la variable gossos
         var gossos = gosDao.findAll();
+        var usuaris = usuariDAO.findAll();
         
         model.addAttribute("gossos", gossos);
+        model.addAttribute("usuaris", usuaris);
 
         return "inici"; 
     }
