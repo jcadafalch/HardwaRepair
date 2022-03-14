@@ -1,0 +1,62 @@
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Formulari Gos</title>
+        <meta charset="UTF-8"/>
+    </head>
+    <body>
+        <header th:replace="layout/plantilla :: capcalera" />
+        
+        <h2>Formulari Gos</h2>
+
+        <a th:href="@{/}">Inici</a>
+
+        <p>
+            <!-- Creem un formulari per introduir les dades que el ControladorInici 
+                 assignarà als atributs del gos passat com a paràmetre en el mètode 
+                 crearFormulariGos implementat en aquest ControladorInici. 
+                 Per associar le dades a l'objecte gos, fem servir l'element th:objecte de 
+                 Thymeleaf, al qual li assignem el paràmetre gos del mètode crearFormulariGos 
+                 o editar del controlador.-->
+        <form th:action="@{/guardarGos}" method="post" th:object="${gos}">
+            
+            <!-- Camp ocult on guardem l'id del gos per enviar-lo juntament amb les altres dades-->
+            <input type="hidden" name="idgos" th:field="*{idgos}"/>
+            
+            <p>
+                <label for="nom">Nom:</label> <!--Etiqueta on indiquem a l'usuari que ha d'introduir el nom del gos-->
+                <!--Thymeleaf associarà les dades afegides mitjançant aquest input, a l'atribut (*) nom de l'objecte
+                    gos assignat a th:objecte-->
+                <input type="text" name="nom" th:field="*{nom}"/>
+                
+                <!--Afegim un contenidor de tipus span per gestionar la validació-->
+                <!--Comprovem si el camp "nom" conté errors mitjançant th:if="${#fields.hasErrors('nom')}", on passem com a
+                    paràmetre el nom del camp on volem comprovar si hi ha errors, en el nostre cas "nom", i ens retornarà
+                    verdader si conté errors i fals en cas contrari.
+                    Si conté errors, li demanarem a l'atribut nom del gos que ens mostri els errors mitjançant th:errors="*{nom}".
+                    Tot això és possible perquè en la classe Gos hem afegit les anotacions per les validacions.-->
+                <div th:if="${#fields.hasErrors('nom')}" th:errors="*{nom}"/>
+            </p>
+
+            <p>
+                <label for="edat">Edat:</label> <!--Etiqueta per l'edat del gos-->            
+                <input type="text" name="edat" th:field="*{edat}"/> <!--Associem les dades introduïdes amb l'atribut edat-->
+                <!-- Gestió errors edat-->
+                <!--<span th:if="${#fields.hasErrors('edat')}" th:errors="*{edat}"/>-->
+            </p>
+
+            <p>
+                <label for="sexe">Sexe:</label> <!--Etiqueta pel sexe del gos-->            
+                <input type="text" name="sexe" th:field="*{sexe}"/> <!--Associem les dades introduïdes amb l'atribut sexe-->
+                <!-- Gestió errors camp sexe-->
+                <span th:if="${#fields.hasErrors('sexe')}" th:errors="*{sexe}"/>
+            </p>
+
+            <!-- Botó per enviar les dades-->
+            <input type="submit" name="enviar" value="Enviar Dades"/>        
+        </form>
+    </p>
+    
+    <footer th:replace="layout/plantilla :: peu" />
+    
+</body>
+</html>

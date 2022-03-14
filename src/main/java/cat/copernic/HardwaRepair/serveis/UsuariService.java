@@ -82,7 +82,7 @@ public class UsuariService implements UserDetailsService{
          *Com a paràmetres passem el nom d'usuari, la contrasenya i els rols del l'usuari alqual
          *li correspon el nom d'usuari passat com a paràmetre.
         */
-        return new User(usuari.getUsername(), usuari.getContrasenya(), rols);
+        return new User(usuari.getUsername(), usuari.getPassword(), rols);
     }
     
 }
