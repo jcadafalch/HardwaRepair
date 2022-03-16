@@ -3,92 +3,75 @@
         <title>Usuaris</title>
         <meta charset="UTF-8"/>
     </head>
-    <body>
-        
-        <h1>Crear Usuari</h1>
-
-        <a th:href="@{/}">Inici</a>
-
-        <p>
-            <!-- Creem un formulari per introduir les dades que el ControladorInici 
-                 assignarà als atributs del usuari passat com a paràmetre en el mètode 
-                 crearFormulariUsuari implementat en aquest ControladorInici. 
-                 Per associar le dades a l'objecte usuari, fem servir l'element th:objecte de 
-                 Thymeleaf, al qual li assignem el paràmetre usuari del mètode crearFormulariUsuari 
-                 o editar del controlador.-->
-        <form th:action="@{/guardarUsuari}" method="post" th:object="${usuari}">
-            
-            
-            
-            <p>
-                <label for="nom">Nom:</label> <!--Etiqueta on indiquem a l'usuari que ha d'introduir el nom del usuari-->
-                <!--Thymeleaf associarà les dades afegides mitjançant aquest input, a l'atribut (*) nom de l'objecte
-                    usuari assignat a th:objecte-->
-                <input type="text" name="nom" th:field="*{nom}"/>
-                
-                <!--Afegim un contenidor de tipus span per gestionar la validació-->
-                <!--Comprovem si el camp "nom" conté errors mitjançant th:if="${#fields.hasErrors('nom')}", on passem com a
-                    paràmetre el nom del camp on volem comprovar si hi ha errors, en el nostre cas "nom", i ens retornarà
-                    verdader si conté errors i fals en cas contrari.
-                    Si conté errors, li demanarem a l'atribut nom del usuari que ens mostri els errors mitjançant th:errors="*{nom}".
-                    Tot això és possible perquè en la classe usuari hem afegit les anotacions per les validacions.-->
-                <div th:if="${#fields.hasErrors('nom')}" th:errors="*{nom}"/>
-            </p>
-
-            <p>
-                <label for="cognoms">Cognoms:</label> <!--Etiqueta per els cognoms del usuari-->            
-                <input type="text" name="cognoms" th:field="*{cognoms}"/> <!--Associem les dades introduïdes amb l'atribut cognoms-->
-                <!-- Gestió errors edat-->
-                <span th:if="${#fields.hasErrors('cognoms')}" th:errors="*{cognoms}"/>
-            </p>
-
-            <p>
-                <label for="codiPostal">Codi Postal:</label> <!--Etiqueta pel codi postal del usuari-->            
-                <input type="text" name="codiPostal" th:field="*{codiPostal}"/> <!--Associem les dades introduïdes amb l'atribut codiPostal-->
-                <!-- Gestió errors camp sexe-->
-                <span th:if="${#fields.hasErrors('codiPostal')}" th:errors="*{codiPostal}"/>
-            </p>
-            
-            <p>
-                <label for="email">Correu:</label> <!--Etiqueta pel correu del usuari-->            
-                <input type="text" name="email" th:field="*{email}"/> <!--Associem les dades introduïdes amb l'atribut sexe-->
-                <!-- Gestió errors camp sexe-->
-                <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"/>
-            </p>
-            
-            <p>
-                <label for="telefon">Telefon:</label> <!--Etiqueta pel telefon del usuari-->            
-                <input type="text" name="telefon" th:field="*{telefon}"/> <!--Associem les dades introduïdes amb l'atribut sexe-->
-                <!-- Gestió errors camp sexe-->
-                <span th:if="${#fields.hasErrors('telefon')}" th:errors="*{telefon}"/>
-            </p>
-            
-            <p>
-                <label for="sexe">Adreça:</label> <!--Etiqueta per la adreça del usuari-->            
-                <input type="text" name="adreca" th:field="*{adreca}"/> <!--Associem les dades introduïdes amb l'atribut sexe-->
-                <!-- Gestió errors camp sexe-->
-                <span th:if="${#fields.hasErrors('adreca')}" th:errors="*{adreca}"/>
-            </p>
-            
-            <p>
-                <label for="dni">DNI:</label> <!--Etiqueta pel dni del usuari-->            
-                <input type="text" name="dni" th:field="*{dni}"/>
-                <!-- Gestió errors camp sexe-->
-                <span th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}"/>
-            </p>
-            
-            <p>
-                <label for="contrasenya">Contrasenya:</label> <!--Etiqueta per la contrasenya del usuari-->            
-                <input type="text" name="contrasenya" th:field="*{contrasenya}"/>
-                <!-- Gestió errors camp sexe-->
-                <span th:if="${#fields.hasErrors('contrasenya')}" th:errors="*{contrasenya}"/>
-            </p>
-
-
-            <!-- Botó per enviar les dades-->
-            <input type="submit" name="enviar" value="Enviar Dades"/>        
-        </form>
-    </p>
     
-</body>
+    <body>
+        <section th:fragment="formulariUsuari">
+            <div id="formulariUsuari" class="modal fade">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header/*Color del header (cambiar)*/ bg-info text-white">
+                            <h5 class="modal-title" th:text="#{accion.formulariUsuari}">Afegir Usuari</h5>
+                        </div> 
+                        <button class="close" data-dismiss="modal">
+                            <span>&times;</span>
+                        </button>
+                </div>
+                    <form th:action="@{/guardar}" th:object="${usuari}"
+                        method="POST" class="was-validated">
+                            <div class="modal-body">
+                                <!-- Nom -->
+                                <div class="form-group">
+                                    <label for="nom" th:text="#{usuari.nom}">Nom:</label>
+                                    <input type="text" class="form-control" name="nom" required="true">
+                                </div>
+                                
+                                <!-- Cognoms -->
+                                <div class="form-group">
+                                    <label for="cognoms" th:text="#{usuari.cognoms}">Cognoms:</label>
+                                    <input type="text" class="form-control" name="cognoms" required="true">
+                                </div>
+                                
+                                <!-- Telefon -->
+                                <div class="form-group">
+                                    <label for="telefon" th:text="#{usuari.telefon}">Telefon:</label>
+                                    <input type="text" class="form-control" name="telefon" required="true">
+                                </div>
+                                
+                                <!-- Adreça -->
+                                <div class="form-group">
+                                    <label for="adreca" th:text="#{usuari.adreca}">Adreça:</label>
+                                    <input type="text" class="form-control" name="nom" required="true">
+                                </div>
+                                
+                                <!-- Codi Postal -->
+                                <div class="form-group">
+                                    <label for="codipostal" th:text="#{usuari.codiPpostal}">Codi Postal:</label>
+                                    <input type="text" class="form-control" name="codipostal" required="true">
+                                </div>
+                                
+                                <!-- Email -->
+                                <div class="form-group">
+                                    <label for="email" th:text="#{usuari.email}">Email:</label>
+                                    <input type="text" class="form-control" name="email" required="true">
+                                </div>
+                                
+                                <!-- Contrasenya -->
+                                <div class="form-group">
+                                    <label for="contrasenya" th:text="#{usuari.contrasenya}">Contrasenya:</label>
+                                    <input type="text" class="form-control" name="contrasenya" required="true">
+                                </div>
+                                
+                                <!-- Repetir Contrasenya -->
+                                <div class="form-group">
+                                    <label for="contrasenya2" th:text="#{usuari.contrasenya2}">Repetir contrasenya:</label>
+                                    <input type="text" class="form-control" name="contrasenya2" required="true">
+                                </div>
+                            </div>
+                        <div class="modal-footer">
+                            <button class="bton bton-primary" type="submit" th:text="#{accion.guardar}">Guardar</button>
+                        </div>
+                    </form>
+            </div> 
+        </section>
+    </body>
 </html>

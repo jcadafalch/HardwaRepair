@@ -50,6 +50,9 @@ public class usuari implements Serializable{
     @NotEmpty(message="No has introduït la contrasenya")
     private String contrasenya;
     
+    @NotEmpty(message="Torna a introduir la contrasenya")
+    private String contrasenya2;
+    
     private boolean isAdministrador;
     
 }
