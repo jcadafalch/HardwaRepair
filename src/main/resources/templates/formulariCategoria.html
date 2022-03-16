@@ -3,11 +3,14 @@
         <title>Categories</title>
         <meta charset="UTF-8"/>
     </head>
+    <!-- El formulario de la creación de una categoria sera una ventana emergente dentro del propio listado de categorias-->
     <body>
         <section th:fragment="formulariCategoria">
+            <!-- Animación de fade -->
             <div id="formulariCategoria" class="modal fade">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
+                        <!-- Header de la ventana en la que aparece el nombre y una X para cerrarla-->
                         <div class="modal-header/*Color del header (cambiar)*/ bg-info text-white">
                             <h5 class="modal-title" th:text="#{accion.formulariCategoria}">Afegir Categoria</h5>
                         </div> 
@@ -23,6 +26,7 @@
                                     <input type="text" class="form-control" name="nom" required="true">
                                 </div>
                             </div>
+                        <!-- Botón para guardar la nueva categoria -->
                         <div class="modal-footer">
                             <button class="bton bton-primary" type="submit" th:text="#{accion.guardar}">Guardar</button>
                         </div>
