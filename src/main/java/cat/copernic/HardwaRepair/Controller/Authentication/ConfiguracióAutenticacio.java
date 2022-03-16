@@ -41,7 +41,7 @@ public class ConfiguracióAutenticacio extends WebSecurityConfigurerAdapter {
                 .formLogin() //Objecte que representa el formulari de login personalitzat que utilitzarem
                 .loginPage("/login") //Pàgina on es troba el formulari per fer login personalitzat
                 .and()
-                .exceptionHandling().accessDeniedPage("/errors/error403"); //Mostrarem la pàgina error403 si l'usuari no té accés a una àgina o acció 
+                .exceptionHandling().accessDeniedPage("/error/error403"); //Mostrarem la pàgina error403 si l'usuari no té accés a una àgina o acció 
     }
 }
     
