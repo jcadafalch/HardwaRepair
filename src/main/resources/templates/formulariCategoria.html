@@ -1,4 +1,6 @@
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
     <head>
         <title>Categories</title>
         <meta charset="UTF-8"/>
@@ -11,7 +13,7 @@
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                         <!-- Header de la ventana en la que aparece el nombre y una X para cerrarla-->
-                        <div class="modal-header/*Color del header (cambiar)*/ bg-info text-white">
+                        <div class="modal-header bg-info text-white">
                             <h5 class="modal-title" th:text="#{accion.formulariCategoria}">Afegir Categoria</h5>
                         </div> 
                         <button class="close" data-dismiss="modal">

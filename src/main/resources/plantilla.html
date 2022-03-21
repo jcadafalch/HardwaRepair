@@ -1,0 +1,57 @@
+<!--Afegim l'espai de noms per thymeleaf extras spring security-->
+<html xmlns="http://www.ww3.org/1999/xhtml" 
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <head>
+        <title>Plantilla</title>
+        <meta charset="UTF-8"/>
+        <link rel="stylesheet" th:ref="@{/webjars/bootstrap/css/bootstrap.min.css}"></link>
+        <link rel="stylesheet" th:ref="@{/webjars/font-awesome/css/all.css}"></link>
+        <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+        <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+        <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>        
+    </head>
+    <body>
+        <!-- Definim la capçalera que reutilitzarem en les altress pàgines que s'identificarà
+             com un fragment de nom "capcalera". El contingut és el de la variable plantilla.capcalera.titol
+             definida en el fitxer messages.properties. Aquest contingut el visualitzem
+             mitjançant la notació th:text="#{plantilla.capcalera.titol} que trobem com 
+             dins l'etiqueta de l'element-->
+        <header th:fragment="capcalera">
+            <nav class="navbar navbar-expand-sm navbar-dark bg-dark p-0">
+                <div class="container">
+                    <a th:href="@{/}" class="navbar-brand" th:text="#{plantilla.titulo}"></a>
+                    <button class="navbar-toggler" data-toggle="collapse" data-target="#navBarCollapse">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarCollapse">
+                        <ul class="collapse navbar-collapse" id="navbarCollapse">
+                            <li class="nav-item px-2">
+                                <a th:href="@{/}" class="nav-link active" th:text="#{barra.incidencias}"> </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <!-- Definim el peu que reutilitzarem en les altres pàgines que s'identificarà
+             com un fragment de nom "peu". El contingut és el de la variable plantilla.peu
+             definida en el fitxer messages.properties. Aquest contingut el visualitzem
+             mitjançant la notació [[#{plantilla.peu}]] que trobem com a contingut de l'element-->
+        <footer th:fragment="peu">
+            <div>[[#{plantilla.peu}]]</div>
+
+            <!--formulari per fer logout. El recurs (action) serà logout que està implicit en Spring Security-->
+            <form method="POST" th:action="@{/logout}">
+                <!--authentication és l'element de thymeleaf que l'indicara al sistema que ens retorni el
+                    nom de l'usuari autenticat, si li assignem el valor name, i el rol de l'usuari autenticat si
+                    li assignem el valor principal.authorities-->
+                <p><b>Hola <span sec:authentication="name"/>, el teu rol és <span sec:authentication="principal.authorities"/></b></p>
+                <!-- Botó per sortir de l'aplicació-->
+                <p><input type="submit" name="logout" value="Sortir"/></p> 
+            </form>
+        </footer>
+
+    </body>
+</html>

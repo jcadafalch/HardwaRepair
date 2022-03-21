@@ -5,7 +5,6 @@
  */
 package cat.copernic.HardwaRepair.Controller;
 
-import cat.copernic.HardwaRepair.DAO.GosDAO;
 import cat.copernic.HardwaRepair.DAO.usuariDAO;
 import cat.copernic.HardwaRepair.Model.usuari;
 import lombok.extern.slf4j.Slf4j;
@@ -21,7 +20,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Slf4j
 public class Controller {
     @Autowired
-    private GosDAO gosDao; 
     private usuariDAO usuariDAO;
 
     @GetMapping("/controller")
@@ -29,10 +27,8 @@ public class Controller {
         log.info("Executant el controlador Spring MVC");
         
         //definim la variable gossos
-        var gossos = gosDao.findAll();
         var usuaris = usuariDAO.findAll();
         
-        model.addAttribute("gossos", gossos);
         model.addAttribute("usuaris", usuaris);
 
         return "inici"; 
