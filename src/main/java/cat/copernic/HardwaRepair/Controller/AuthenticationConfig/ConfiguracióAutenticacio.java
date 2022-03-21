@@ -34,11 +34,11 @@ public class ConfiguracióAutenticacio extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests()
                 //URL i subURLS (**) on pot accedir...
-                .antMatchers("/selectModule")
+                .antMatchers("/SelectModule")
                 //...l'usuari amb rol admin
                 .hasRole("admin")
                 //URL inici on poden accedir...
-                .antMatchers("/", "/selectModule")
+                .antMatchers("/")
                 //...l'usuari amb rol usuari
                 .hasRole("usuari")
                 .and()
@@ -46,6 +46,7 @@ public class ConfiguracióAutenticacio extends WebSecurityConfigurerAdapter {
                 .formLogin()
                 //Pàgina on es troba el formulari per fer login personalitzat
                 .loginPage("/login")
+                .defaultSuccessUrl("/inici", true)
                 .and()
                 //Mostrarem la pàgina error403 si l'usuari no té accés a una àgina o acció 
                 .exceptionHandling().accessDeniedPage("/error/error403");

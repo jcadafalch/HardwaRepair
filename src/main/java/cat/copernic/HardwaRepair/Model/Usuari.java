@@ -26,7 +26,7 @@ public class Usuari implements Serializable{
 
     @Id //L'atribut idUsuari és la clau primària de la BBDD
     @GeneratedValue(strategy=GenerationType.IDENTITY) //Generació autonumèrica de l'id
-    private long id_usuari;
+    private long idUsuari;
     
     
     @NotEmpty
@@ -41,6 +41,6 @@ public class Usuari implements Serializable{
      *tots els rols de l'usuari.
     */
     @OneToMany //Indica al sistema que la relació entre les taules usuari i rol en aquest cas és d'un a molts.
-    @JoinColumn(name="id_usuari") //Columna de la base de dades que farà de clau forana relacionant les dues taules.
+    @JoinColumn(name="idUsuari") //Columna de la base de dades que farà de clau forana relacionant les dues taules.
     private List<Rol> rols;
 }
