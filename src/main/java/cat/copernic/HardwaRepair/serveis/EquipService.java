@@ -31,7 +31,7 @@ public class EquipService implements EquipServiceInterface{
     @Autowired
     private EquipDAO equip; 
 
-    /*LListar equips de la taula equip de la BBDD veterinari*/
+    /*LListar equips de la taula equip de la BBDD hardwarepair*/
     @Override
     /*La notació @Transactional fa referència a la classe Transactional de Spring Framework.
      *En aquest cas no hi haurà ni COMMITS, ni ROLLBACKS, ja que no modifiquem la informació
@@ -47,7 +47,7 @@ public class EquipService implements EquipServiceInterface{
         return (List<Equip>) equip.findAll(); 
     }
 
-    /*Afegir el equip passat per paràmetre a la taula equip de la BBDD veterinari*/
+    /*Afegir el equip passat per paràmetre a la taula equip de la BBDD hardwarepair*/
     @Override
     /*En aquest cas hi haurà COMMITS i ROLLBACKS, ja que modifiquem la informació de la BBDD, per tant,
      *utilitzarem aquesta notació sense passar-li cap paràmetre perquè es puguin fer els COMMITS 
@@ -57,29 +57,29 @@ public class EquipService implements EquipServiceInterface{
     public void afegirEquip(Equip equip) {
         
         /*Cridem al mètode save() de CrudRepository perquè afegeixi el equip passat com a paràmetre,
-         *a la taula equip de la BBDD veterinari.
+         *a la taula equip de la BBDD hardwarepair.
         */
         this.equip.save(equip); 
     }
 
-    /*Eliminar el equip passat per paràmetre de la taula equip de la BBDD veterinari*/
+    /*Eliminar el equip passat per paràmetre de la taula equip de la BBDD hardwarepair*/
     @Override
     @Transactional //Igual que en el mètode afegirEquip, modifiquem la informació de la BBDD
     public void eliminarEquip(Equip equip) {
         
         /*Cridem al mètode delete() de CrudRepository perquè elimini el equip passat com a paràmetre,
-         *de la taula equip de la BBDD veterinari.
+         *de la taula equip de la BBDD hardwarepair.
         */
         this.equip.delete(equip);
         
     }
 
-    /*Cercar el equip passat per paràmetre en la taula equip de la BBDD veterinari*/
+    /*Cercar el equip passat per paràmetre en la taula equip de la BBDD hardwarepair*/
     @Override
     @Transactional(readOnly=true) //Igual que en el mètode llistarEquipsos, no modifiquem la informació de la BBDD
     public Equip cercarEquip(Equip equip) {
         
-        /*Cridem al mètode findById() de CrudRepository perquè ens retorni el equip passat com a paràmetre.
+        /*Cridem al mètode findByUsername() de CrudRepository perquè ens retorni el equip passat com a paràmetre.
          *El paràmetre que li passem a aquest mètode, ha de ser la clau primària de l'entitat, en el nostre 
          *cas el equip.
          *

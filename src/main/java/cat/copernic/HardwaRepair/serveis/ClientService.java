@@ -47,7 +47,7 @@ public class ClientService implements ClientServiceInterface{
         return (List<Client>) client.findAll(); 
     }
 
-    /*Afegir el client passat per paràmetre a la taula client de la BBDD veterinari*/
+    /*Afegir el client passat per paràmetre a la taula client de la BBDD harwarepair*/
     @Override
     /*En aquest cas hi haurà COMMITS i ROLLBACKS, ja que modifiquem la informació de la BBDD, per tant,
      *utilitzarem aquesta notació sense passar-li cap paràmetre perquè es puguin fer els COMMITS 
@@ -57,18 +57,18 @@ public class ClientService implements ClientServiceInterface{
     public void afegirClient(Client client) {
         
         /*Cridem al mètode save() de CrudRepository perquè afegeixi el client passat com a paràmetre,
-         *a la taula client de la BBDD veterinari.
+         *a la taula client de la BBDD hardwarepair.
         */
         this.client.save(client); 
     }
 
-    /*Eliminar el client passat per paràmetre de la taula client de la BBDD veterinari*/
+    /*Eliminar el client passat per paràmetre de la taula client de la BBDD hardwarepair*/
     @Override
     @Transactional //Igual que en el mètode afegirClient, modifiquem la informació de la BBDD
     public void eliminarClient(Client client) {
         
         /*Cridem al mètode delete() de CrudRepository perquè elimini el client passat com a paràmetre,
-         *de la taula client de la BBDD veterinari.
+         *de la taula client de la BBDD hardwarepair.
         */
         this.client.delete(client);
         
@@ -79,7 +79,7 @@ public class ClientService implements ClientServiceInterface{
     @Transactional(readOnly=true) //Igual que en el mètode llistarClients, no modifiquem la informació de la BBDD
     public Client cercarClient(Client client) {
         
-        /*Cridem al mètode findById() de CrudRepository perquè ens retorni el client passat com a paràmetre.
+        /*Cridem al mètode indByUsername() de CrudRepository perquè ens retorni el client passat com a paràmetre.
          *El paràmetre que li passem a aquest mètode, ha de ser la clau primària de l'entitat, en el nostre 
          *cas el client.
          *

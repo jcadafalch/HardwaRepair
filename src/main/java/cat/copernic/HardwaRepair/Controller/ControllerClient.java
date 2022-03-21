@@ -6,7 +6,6 @@
 package cat.copernic.HardwaRepair.Controller;
 
 import cat.copernic.HardwaRepair.DAO.ClientDAO;
-import cat.copernic.HardwaRepair.DAO.GosDAO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
@@ -22,11 +21,11 @@ public class ControllerClient {
     @Autowired
     private ClientDAO clientDao; 
 
-    @GetMapping("/controller")
+    @GetMapping("/Clients")
     public String inici(Model model) {
         log.info("Executant el controlador de Client");
         
-        //definim la variable gossos
+        //definim la variable clients
         var clients = clientDao.findAll();
         
         model.addAttribute("clients", clients);

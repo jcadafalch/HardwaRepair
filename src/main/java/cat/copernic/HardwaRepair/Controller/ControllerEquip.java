@@ -22,14 +22,14 @@ public class ControllerEquip {
     @Autowired
     private EquipDAO equipDAO; 
 
-    @GetMapping("/controller")
+    @GetMapping("/Equips")
     public String inici(Model model) {
-        log.info("Executant el controlador de Client");
+        log.info("Executant el controlador de Equips");
         
-        //definim la variable gossos
+        //definim la variable equips
         var equips = equipDAO.findAll();
         
-        model.addAttribute("clients", equips);
+        model.addAttribute("equips", equips);
 
         return "inici"; 
     }

@@ -1,6 +1,5 @@
 package cat.copernic.HardwaRepair.Model;
 
-import cat.copernic.HardwaRepair.Model.Rol;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Entity;
@@ -25,12 +24,10 @@ public class Usuari implements Serializable{
     
     private static final long serialVersionUID=1L;
 
-    @Id //L'atribut idUsuari és la clau primària de la BBDD  
-    @NotEmpty//Validació perquè l'usuari afegeixi contingut al camp nom d'usuari
-    private String dni;
+    @Id //L'atribut idUsuari és la clau primària de la BBDD
+    @GeneratedValue(strategy=GenerationType.IDENTITY) //Generació autonumèrica de l'id
+    private long idUsuari;
     
-    @NotEmpty
-    private String telefon;
     
     @NotEmpty
     private String username;
@@ -44,6 +41,6 @@ public class Usuari implements Serializable{
      *tots els rols de l'usuari.
     */
     @OneToMany //Indica al sistema que la relació entre les taules usuari i rol en aquest cas és d'un a molts.
-    @JoinColumn(name="id_usuari") //Columna de la base de dades que farà de clau forana relacionant les dues taules.
+    @JoinColumn(name="idUsuari") //Columna de la base de dades que farà de clau forana relacionant les dues taules.
     private List<Rol> rols;
 }
