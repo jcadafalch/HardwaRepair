@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Login</title>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
+              integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+        <link rel="stylesheet" href="../static/css/loginStyle.css">
+    </head>
+    <body>
+        <!--https://mdbootstrap.com/docs/standard/extended/login/-->
+        <div class="bg">
+            <div class="container">
+                <div class="row text-center login-page">
+                    <div class="col-md-12 login-form">
+                        <form method="POST" th:action="@{/login}">			
+                            <div class="row">
+                                <div class="col-md-12 login-form-header">
+                                    <br/><br/><br/>
+                                    <h1 class="login-form-font-header">Iniciar Sessio</h1>
+                                    <!-- <br/><br/><br/>
+                                    <!--<p class="login-form-font-header">Intra<span>Life</span><p>-->
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 login-from-row">
+                                    <br/>
+                                    <input name="username" type="text" id="username" placeholder="Usuari" required/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 login-from-row">
+                                    <br/>
+                                    <input type="password" name="password" id="password" placeholder="Password" required/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 login-from-row">
+                                    <br/><br/>
+                                    <!--<input class="btn btn-info"  value="Login"/>-->
+                                    <button class="btn btn-info" type="submit" >Entrar</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!--<h1>Iniciar Sessio</h1>
+
+        <form method="POST" th:action="@{/login}">
+            <p>
+        <!--El name i id de el nom d'usuari ha de ser username perquè Spring Security el reconegui com a tal-->
+        <!--       <label for="username">Usuari:</label>
+               <input type="text" name="username" id="username"/>
+           <p/>
+
+           <p>
+        <!--El name i id de la contrasenya ha de ser password perquè Spring Security el reconegui com a tal-->
+        <!--      <label for="password">Contrasenya:</label>
+              <input type="password" name="password" id="password"/>
+          <p/>
+
+          <input type="submit" value="Login"/>
+      </form>
+        -->
+    </body>
+</html>

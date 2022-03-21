@@ -24,12 +24,10 @@ public class Usuari implements Serializable{
     
     private static final long serialVersionUID=1L;
 
-    @Id //L'atribut idUsuari és la clau primària de la BBDD  
-    @NotEmpty//Validació perquè l'usuari afegeixi contingut al camp nom d'usuari
-    private String dni;
+    @Id //L'atribut idUsuari és la clau primària de la BBDD
+    @GeneratedValue(strategy=GenerationType.IDENTITY) //Generació autonumèrica de l'id
+    private long id_usuari;
     
-    @NotEmpty
-    private String telefon;
     
     @NotEmpty
     private String username;
