@@ -19,5 +19,5 @@ public interface EquipDAO extends CrudRepository<Equip,String>{
     *com a mètode de seguretat per recuperar l'usuari.
     */
     
-    Client findByIdClient(String idclient);
+    Equip findByUsername(String username);
 }

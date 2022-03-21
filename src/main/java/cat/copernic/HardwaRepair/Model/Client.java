@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 import lombok.Data;
 
 
@@ -27,11 +28,17 @@ public class Client implements Serializable{
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @NotEmpty
     private String idclient;
+    @NotEmpty
     private String nom;
+    @NotEmpty
     private String cognom;
+    @NotEmpty
     private String adreça;
+    @NotEmpty
     private int telefon;
+    @NotEmpty
     private int codipostal;
     
 }

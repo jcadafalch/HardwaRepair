@@ -6,6 +6,7 @@
 package cat.copernic.HardwaRepair.DAO;
 
 import cat.copernic.HardwaRepair.Model.Client;
+import cat.copernic.HardwaRepair.Model.Equip;
 import org.springframework.data.repository.CrudRepository;
 
 /**
@@ -17,6 +18,5 @@ public interface ClientDAO extends CrudRepository<Client,String>{
     *El nom d'aquest mètode ha de ser findByUsername, ja que és el que reconeix Spring Boot
     *com a mètode de seguretat per recuperar l'usuari.
     */
-    
-    Client findByIdClient(String idclient);
+        Client findByUsername(String username);
 }
