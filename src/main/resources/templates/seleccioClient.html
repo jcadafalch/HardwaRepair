@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <head>
+        <title>Selecció Client</title>
+        <meta charset="UTF-8"/>
+    </head>
+    <body>
+
+
+        <section th:fragment="seleccioClient">
+
+            <h1>Selecció Client</h1>
+
+            <div id="seleccioClient" class="modal fade">
+                <div  class="modal-dialog modal-lg">
+
+                    <div  class="modal-content">
+
+                        <div class="modal-header bg-info text-white">
+
+                            <h5 class="modal-title" th:text="#{accion.seleccioClient}">Selecció Client</h5>
+                            <button class="close" data-dismiss="modal">
+
+                                <span>&times;</span>
+
+                            </button>
+
+                        </div>
+
+
+
+
+                        <form th:action="@{/seleccioClient}" method="POST" th:object="${Client}" class="was-validated">
+                            <div  class="modal-body">
+
+                                <div class="form-group">
+
+
+                                    <label for="idClient" th:text="#{Client.idClient}">DNI:</label>
+                                    <input type="text" class="form-control" name="IdClient" id="idClient" list="items"/>
+                                    
+                                    <datalist id="items">
+                                        <option value="1">Opción 1</option>
+                                        <option value="2">Opción 2</option>
+                                        <option value="3">Opción 3</option>
+                                    </datalist>
+                                    
+                                    <button class="btn btn-secondary" type="submit" th:text="#{accion.buscar}">Buscar</button>
+
+                                </div>
+
+                            </div>
+
+                            <div  class="modal-footer">
+                                <button class="btn btn-primary" type="submit" th:text="#{accion.guardar}">Guardar</button>
+                            </div>
+
+
+                        </form>
+
+
+
+
+                    </div>
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+    </body>
+</html>

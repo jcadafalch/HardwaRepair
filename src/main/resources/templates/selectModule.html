@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <head>
+        <title>Selecció de modul</title>
+        <meta charset="UTF-8"name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+            .selectModuleButton {
+                padding: 15px 25px;
+                font-size: 24px;
+                text-align: center;
+                cursor: pointer;
+                outline: none;
+                color: #fff;
+                background-color: #75a9f9;
+                border: none;
+                border-radius: 15px;
+                box-shadow: 0 9px #999;
+            }
+
+            .selectModuleButton:hover {background-color: #75a9f9}
+
+            .selectModuleButton:active {
+                background-color: #1464f6;
+                box-shadow: 0 5px #666;
+                transform: translateY(4px);
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Selecciona el modul amb el que vols treballar</h1>
+
+        <div>
+            <button class="selectModuleButton">Servei Tècnic</button>
+            <button class="selectModuleButton">Gestió Usuaris</button>
+        </div>
+    </body>
+</html>
