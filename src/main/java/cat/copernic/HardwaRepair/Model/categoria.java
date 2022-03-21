@@ -15,7 +15,7 @@ import javax.validation.constraints.NotEmpty;
 import lombok.Data;
 /**
  *
- * @author lktol
+ * @author Lucas Tolón Pacheco
  */
 
 @Data
