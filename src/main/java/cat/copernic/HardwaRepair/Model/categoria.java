@@ -31,7 +31,5 @@ public class categoria implements Serializable{
     
     @NotEmpty(message="No has introduït el nom")
     private String nom;
-    
-    
-    
+  
 }

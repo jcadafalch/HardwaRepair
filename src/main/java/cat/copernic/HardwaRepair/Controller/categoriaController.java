@@ -15,13 +15,12 @@ import org.springframework.web.bind.annotation.GetMapping;
  *
  * @author Lucas Tolón Pacheco
  */
-@org.springframework.stereotype.Controller
 @Slf4j
 public class categoriaController {
     @Autowired
     private categoriaDAO categoriaDAO;
     
-    @GetMapping("/controller")
+    @GetMapping("/categoriaController")
     public String inici(Model model) {
         log.info("Executant el controlador de Categoria");
         
@@ -29,6 +28,6 @@ public class categoriaController {
         
         model.addAttribute("categories", categories);
         
-        return "inici";
+        return "categoriaController";
     }
 }

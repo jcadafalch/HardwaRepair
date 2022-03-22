@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.GetMapping;
  *
  * @author Lucas Tolón Pacheco
  */
-@org.springframework.stereotype.Controller
 @Slf4j
 public class usuariController {
     @Autowired
