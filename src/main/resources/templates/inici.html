@@ -14,19 +14,19 @@
         <!--Enllaç que ens portarà a la pàgina per poder afegir un gos.
             Mitjançant l'element th:href de Thymeleaf definim l'URL de l'enllaç. 
             A href li assignarem la ruta de l'enllaç mitjançan @{ruta}-->
-        
+
         <!--Comprovem que el rol de l'usuari és veterinari per mostrar l'element enllaç, si no
             ho és no es mostrarà. Per fer això utilitzem l'element authorize de thymeleaf extra
             Spring Security assignant-li com a valor la funcio hasRole a la qual li passarem 
             com a paràmetre el nom del rol que volem comprovar precedit de ROLE_ -->
-        
+
         <h1>Estem al inici</h1>
-        
+
         <div sec:authorize="isAuthenticated()"></div>
         <div sec:authorize="isAnonymous()"></div>
-        
-Logged user: <span sec:authentication="name"></span>
-        
+
+        Logged user: <span sec:authentication="name"></span>
+
         <!-- Utilitzem la plantilla per escriure el peu, indicant l'adreça on
              es troba, és a dir, "layout/plantilla" i el fragment que volem inserir
              en aquest cas "peu" -->
