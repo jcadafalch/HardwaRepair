@@ -5,13 +5,13 @@
  */
 package cat.copernic.HardwaRepair.DAO;
 
-import cat.copernic.HardwaRepair.Model.Gos;
+import cat.copernic.HardwaRepair.Model.Producte;
 import org.springframework.data.repository.CrudRepository;
 
 /**
  *
  * @author jcadafalch
  */
-public interface GosDAO extends CrudRepository<Gos,Long>{
+public interface ProducteDAO extends CrudRepository<Producte, Long>{
     
 }

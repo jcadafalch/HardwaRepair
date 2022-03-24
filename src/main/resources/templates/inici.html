@@ -1,37 +1,36 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
     <head>
         <title>Inici dinàmic</title>
         <meta charset="UTF-8">
     </head>
     <body>
-        <h1>Inici dinàmic de l'aplicació</h1>
+        <!-- Utilitzem la plantilla per escriure la capçalera, indicant l'adreça on
+             es troba, és a dir, "layout/plantilla" i el fragment que volem inserir
+             en aquest cas "capcalera" -->
+        <!--<header th:replace="layout/plantilla :: capcalera" />-->
 
-        <h1>Gos</h1>
+        <!--Enllaç que ens portarà a la pàgina per poder afegir un gos.
+            Mitjançant l'element th:href de Thymeleaf definim l'URL de l'enllaç. 
+            A href li assignarem la ruta de l'enllaç mitjançan @{ruta}-->
 
-        <div th:if="${gossos!=null && !gossos.empty}">
-            
-            <!-- Mostrem en una taula les dades del gossos guardats en la taula gossos de la BBDD veterinari -->
-            <table border="1">
-                <tr>
-                    <th>Nom</th>
-                    <th>Edat</th>
-                    <th>Sexe</th>
-                </tr>
-                <!-- Recorregut dels gossos. Cada gos de l'ArrayList gossos es guarda en la variable gos-->
-                <tr th:each="gos : ${gossos}"> 
-                    <td th:text="${gos.nom}"></td>
-                    <td th:text="${gos.edat}"></td>
-                    <td th:text="${gos.sexe}"></td>
-                </tr>
-            </table>
-           
-        </div>
-        
-        <div th:if="${gossos==null || gossos.empty}"><!--Si l'ArrayList de gossos no està inicialitzat o no té contingut-->
-            <!-- Mostrem missatge-->
-            No hi ha gossos a la llista.
-        </div>
+        <!--Comprovem que el rol de l'usuari és veterinari per mostrar l'element enllaç, si no
+            ho és no es mostrarà. Per fer això utilitzem l'element authorize de thymeleaf extra
+            Spring Security assignant-li com a valor la funcio hasRole a la qual li passarem 
+            com a paràmetre el nom del rol que volem comprovar precedit de ROLE_ -->
+
+        <h1>Estem al inici</h1>
+
+        <div sec:authorize="isAuthenticated()"></div>
+        <div sec:authorize="isAnonymous()"></div>
+
+        Logged user: <span sec:authentication="name"></span>
+
+        <!-- Utilitzem la plantilla per escriure el peu, indicant l'adreça on
+             es troba, és a dir, "layout/plantilla" i el fragment que volem inserir
+             en aquest cas "peu" -->
+        <!--<footer th:replace="layout/plantilla :: peu" />-->
 
     </body>
 </html>

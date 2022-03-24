@@ -11,8 +11,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.NotEmpty;
 import lombok.Data;
-
 
 /**
  *
@@ -20,15 +21,20 @@ import lombok.Data;
  */
 @Data
 @Entity
-@Table(name="gos")
-public class Gos implements Serializable{
+@Table(name = "")
+public class Producte implements Serializable{
     
     private static final long serialVersionUID=1L;
-
+    
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private long idgos;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long idProducte;
+    
+    @NotEmpty
     private String nom;
-    private String sexe;
-    private int edat;
+    
+    private Double preu;
+    
+    private long categoriaId;
+    
 }

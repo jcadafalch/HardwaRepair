@@ -1,17 +1,16 @@
 package cat.copernic.HardwaRepair.Controller;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 import cat.copernic.HardwaRepair.Model.Usuari;
 import cat.copernic.HardwaRepair.serveis.UsuariServiceInterface;
-import javax.validation.Valid;
+import java.util.List;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,30 +24,31 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Slf4j
 public class ControladorInici {
     
-   // @Autowired
+    //private UsuariServiceInterface usuariService;
 
-    //Anotació que injecta tots els mètodes i possibles dependències de GosService al controlado
-    /*Mitjançant aquest atribut de tipus interface, es cridaran els mètodes implementats en la classe GosService,
-     *ja que l'objecte de tipus interface va a cercar una classe que implementi la interface, en el nostre cas, 
-     *GosService.
-     */
-
-    /*Farem que aquest mètode retorni la pàgina inici penjant de de l'arrel de l'aplicacó,
-     *passant a ser la pàgina inicial de l'aplicació, la que es mostrarà al escriure localhost:8080
-     */
-    
-    //private UsuariServiceInterface usuaris;
-    
-    
-    /*@AuthenticationPrincipal retorna l'usuari autenticat actualment com un objecte User de Spring security*/
     @GetMapping("/inici") //Arrel de l'aplicació localhost:8080
     public String iniciGet(Model model) {
-        return "inici";
+        
+        //Obtenim el username de l'usuari actual
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentPrincipalName = authentication.getName();
+        
+        //Omplim una llista amb tots els usuaris
+        /*System.out.println("Hola AAAAA");
+        System.out.println(usuariService.llistarUsuari().size());
+        List<Usuari> arrUsuari = usuariService.llistarUsuari();
+        
+        //Busquem l'usuari que el seu username coincideixi amb el de l'usuari actual, i passem l'objecte d'aquell usuari a la vista
+        arrUsuari.stream().filter(usuari -> (usuari.getUsername().equals(currentPrincipalName))).forEachOrdered(usuari -> {
+            model.addAttribute("usuari", usuari);
+        });*/
+        
+        return "selectModule";
     }
-    
-    @PostMapping("/inici") //Arrel de l'aplicació localhost:8080
+
+    @PostMapping("/inici")
     public String inici(Model model) {
-        return "inici";
+        return "selectModule";
     }
 
 }
