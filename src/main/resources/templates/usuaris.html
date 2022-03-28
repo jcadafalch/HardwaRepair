@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <head th:replace="layout/plantilla :: head">
+        <title>Usuaris</title>
+    </head>
+    <body>
+        
+        <section th:replace="layout/usuariButton :: usuariButton"></section>
+        <section th:replace="layout/formulariUsuari :: formulariUsuari"></section>
+
+        <section th:fragment="listadoUsuaris" id="usuari">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>[[#{usuaris.titulo}]]</h4>
+                            </div>
+                            <!-- Sentencia IF para consultar si la tabla está vacía -->
+                            <div th:if="${usuaris != null and !usuaris.empty">
+                                <table class="table table-stryped">
+                                    <!-- Cabecera de la tabla, nombres de cada columna -->
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th>#</th>
+                                            <th th:text="#{tabla.nombre}">Nom</th>
+                                            <th th:text="#{tabla.cognoms}">Cognoms</th>
+                                            <th th:text="#{tabla.dni}">DNI</th>
+                                            <th th:text="#{tabla.email}">Correu Electrònic</th>
+                                            <th> </th>
+                                        </tr>
+                                    </thead>
+                                    <!-- Cuerpo de la tabla, donde aparecerán 
+                                    los diferentes usuarios (conectado al controlador)-->
+                                    <tbody>
+                                        <!-- Esta columna se repetirá tantas veces 
+                                        como objetos del tipo usuario tengamos -->
+                                        <!-- Crearemos una variable contador para saber 
+                                        el número de registros totales que tenemos -->
+                                        <tr th:each="usuari, contador : ${usuaris}">
+                                            <td> [[${contador.count}]]</td>
+                                            <td> [[${usuari.nom}]]</td>
+                                            <td> [[${usuari.cognoms}]]</td>
+                                            <td> [[${usuari.dni}]]</td>
+                                            <td> [[${usuari.email}]]</td>
+                                            <!-- Añadimos un botón extra que nos abrirá un ventana emergente
+                                            mostrando los datos del usuario-->
+                                            <td>
+                                                <a href="#" class="btn btn-primary btn-block"
+                                                    data-toggle="modal" data-target="#formulariUsuari">
+                                                    <i class="fas fa-plus"></i>[[#{usuaris.add}]]
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- Si la tabla se encuentra vacía, se mostrará un mensaje indicandolo-->
+                            <div class="text-center p-2" th:if="${usuari == null or usuari.empty}">
+                                <span th:text="#{tabla.empty}"> La taula està buida </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </body>
+</html>
