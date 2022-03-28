@@ -11,10 +11,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.Max;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import lombok.Data;
+
 
 /**
  *
@@ -22,27 +21,17 @@ import lombok.Data;
  */
 @Data
 @Entity
-@Table(name = "producte")
-public class Producte implements Serializable{
+@Table(name="categoria")
+public class Categoria implements Serializable{
     
-    private static final long serialVersionUID=1L;
+    private static final long serialVersionUID=2L;
     
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long idProducte;
+    @GeneratedValue (strategy=GenerationType.IDENTITY)
+    private String idCategoria;
     
-    @NotEmpty
+    @NotEmpty(message="No has introduït el nom")
     private String nom;
-    
-    @NotNull
-    private Double preuCompra;
-    
-    @NotNull
-    private Double preuVenda;
-    
-    @NotEmpty
-    private String marca;
-    
-    //private long categoriaId;
-    
+  
 }
+
