@@ -1,7 +1,6 @@
-package cat.copernic.HardwaRepair.Controller;
+package cat.copernic.HardwaRepair.Controller.Producte;
 
 import cat.copernic.HardwaRepair.Model.Producte;
-import cat.copernic.HardwaRepair.serveis.CategoriaService;
 import cat.copernic.HardwaRepair.serveis.CategoriaServiceInterface;
 import cat.copernic.HardwaRepair.serveis.ProducteServiceInterface;
 import javax.validation.Valid;
@@ -19,11 +18,18 @@ import org.springframework.web.bind.annotation.PostMapping;
  */
 @Controller
 @Slf4j
-public class ControladorFormulariProducte {
+public class ControladorProducte {
     @Autowired
     
     private ProducteServiceInterface producteService;
     private CategoriaServiceInterface categoriaService;
+
+
+    @GetMapping("/llistarProductes")
+    public String llistarProductes(Model model){{
+        model.addAttribute("productes", producteService.llistarProductes());
+        return "llistarProductes";
+    }}
     
     @GetMapping("/formulariProducte")
     public String crearFormulariProducte(Producte producte, Model model){

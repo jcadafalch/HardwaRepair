@@ -20,7 +20,7 @@ public class ProducteService implements ProducteServiceInterface{
     // Llistar productes de la taula producte de la BBDD
     @Override
     @Transactional (readOnly = true)
-    public List<Producte> llistarProduces() {
+    public List<Producte> llistarProductes() {
         return (List<Producte>) producte.findAll();
     }
     

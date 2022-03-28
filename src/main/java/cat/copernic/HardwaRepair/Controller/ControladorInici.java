@@ -5,7 +5,9 @@ import cat.copernic.HardwaRepair.serveis.UsuariServiceInterface;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,11 +21,18 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Slf4j
 public class ControladorInici {
     
-    //private UsuariServiceInterface usuariService;
+    private UsuariServiceInterface usuariService;
 
     @GetMapping("/inici") //Arrel de l'aplicació localhost:8080
-    public String iniciGet(Model model) {
-        
+    public String iniciGet(Model model, @AuthenticationPrincipal User username) {
+        System.out.println("Executant el controlador Spring MVC");
+        System.out.println("L'usuari autenticat és: "+username);
+        System.out.println("L'usuari autenticat és + getUsername: "+username.getUsername());
+
+        //System.out.println("Usuari service == " + usuariService.llistarUsuari());
+
+        //System.out.println("L'usuari autenticat és: + rol"+username.getUsername());
+
         //Obtenim el username de l'usuari actual
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String currentPrincipalName = authentication.getName();

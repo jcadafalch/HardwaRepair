@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <head>
+        <meta charset="UTF-8">
+        <title>Productes</title>
+    </head>
+    <body>
+        <h1>Productes</h1>
+        <a th:href="@{/formulariProducte}" th:text="#{producte.crearProducte}"></a>
+        <div th:if="${productes!=null && !productes.empty}">
+            <table border="0">
+                <tr>
+                    <th>Id Producte</th>
+                    <th>Nom</th>
+                    <th>Preu</th>
+                    <!--<th>Categoria</th>-->
+                    <td><!--Columna per afegir el botó d'editar/eliminar producte--></td>
+                </tr>
+                <tr th:each="producte : ${productes}">
+                    <td th:text="${producte.idProducte}"></td>
+                    <td th:text="${producte.nom}"></td>
+                    <td th:text="${producte.preuVenda}"></td>
+                   <!-- <td th:text="${producte.categoria}"></td>-->
+                    <td><button>Detalls</button></td>
+                </tr>
+            </table>
+        </div>
+       <div th:if="${productes==null || productes.empty}">
+            <p>No hi ha productes</p>
+        </div>
+    </body>
+</html>

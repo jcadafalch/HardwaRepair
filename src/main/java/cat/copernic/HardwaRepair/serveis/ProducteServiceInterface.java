@@ -10,7 +10,7 @@ import java.util.List;
 public interface ProducteServiceInterface {
 
     //Mètode que implementarem per llistar productes
-    public List<Producte> llistarProduces();
+    public List<Producte> llistarProductes();
 
     // Mètode que implementarem per afegir un producte
     public void afegirProducte(Producte producte);
