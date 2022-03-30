@@ -1,22 +1,15 @@
-<html xmlns:th="http://www.thymeleaf.org">
-    <head>
-        <title>Formulari Gos</title>
-        <meta charset="UTF-8"/>
-    </head>
-    <body>
-        <!--<header th:replace="layout/plantilla :: capcalera" />-->
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Formulari Gos</title>
+    <meta charset="UTF-8"/>
+</head>
+<body>
+<!--<header th:replace="layout/plantilla :: capcalera" />-->
+    <h2>Crear Producte</h2>
 
-        <h2>Crear Producte</h2>
-
-        <!--<a th:href="@{/}">Inici</a>-->
-
-        <p>
-            <!-- Creem un formulari per introduir les dades que el ControladorInici 
-                 assignarà als atributs del gos passat com a paràmetre en el mètode 
-                 crearFormulariGos implementat en aquest ControladorInici. 
-                 Per associar le dades a l'objecte gos, fem servir l'element th:objecte de 
-                 Thymeleaf, al qual li assignem el paràmetre gos del mètode crearFormulariGos 
-                 o editar del controlador.-->
+    <p>
         <form th:action="@{/guardarProducte}" method="post" th:object="${producte}">
             <input type="hidden" name="idProducte" th:field="*{idProducte}"/>
             <table style="width:35%">
@@ -26,11 +19,11 @@
                 </tr>
                 <tr>
                     <td>
-                        <input type="text" name="nom" th:field="*{nom}" placeholder="Nom del producte"/>
+                        <input type="text" id="nom" name="nom" th:field="*{nom}" placeholder="Nom del producte"/>
                         <span th:if="${#fields.hasErrors('nom')}" th:errors="*{nom}"/>
                     </td>
                     <td>
-                        <input type="text" name="marca" th:field="*{marca}" placeholder="Marca del producte"/>
+                        <input type="text" id="marca" name="marca" th:field="*{marca}" placeholder="Marca del producte"/>
                         <span th:if="${#fields.hasErrors('marca')}" th:errors="*{marca}"/>
                     </td>
                 </tr>
@@ -40,11 +33,13 @@
                 </tr>
                 <tr>
                     <td>
-                        <input type="number" step="0.01" name="preuCompra" th:field="*{preuCompra}" placeholder="Preu de compra"/>
+                        <input type="number" step="0.01" id="preuCompra" name="preuCompra" th:field="*{preuCompra}"
+                               placeholder="Preu de compra"/>
                         <span th:if="${#fields.hasErrors('preuCompra')}" th:errors="*{preuCompra}"/>
                     </td>
                     <td>
-                        <input type="number" step="0.01" name="preuVenda" th:field="*{preuVenda}" placeholder="Preu de venda"/>
+                        <input type="number" step="0.01" id="preuVenda" name="preuVenda" th:field="*{preuVenda}"
+                               placeholder="Preu de venda"/>
                         <span th:if="${#fields.hasErrors('preuVenda')}" th:errors="*{preuVenda}"/>
                     </td>
                 </tr>
@@ -63,17 +58,16 @@
                     </td>
                 </tr>
             </table>
+        <br>
 
-            <!-- Botó per enviar les dades-->
-            <br>
-            <input type="submit" name="cancelar"  value="Cancel·lar">
-            <input type="submit" name="enviar" value="Guardar"/>
+        <button><a th:href="@{/llistarProductes}" th:text="#{cancelar}"></a></button>
+        <input type="submit" name="enviar" value="Guardar"/>
 
-            <br><br><br>  
-        </form>
+        <br><br><br>
+    </form>
     </p>
 
-    <!--<footer th:replace="layout/plantilla :: peu" />-->
+<!--<footer th:replace="layout/plantilla :: peu" />-->
 
 </body>
 </html>
