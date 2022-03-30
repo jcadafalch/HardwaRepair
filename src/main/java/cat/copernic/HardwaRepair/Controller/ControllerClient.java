@@ -8,14 +8,17 @@ package cat.copernic.HardwaRepair.Controller;
 import cat.copernic.HardwaRepair.DAO.ClientDAO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 /**
  *
- * @author jcadafalch
+ * @author marc
  */
-@org.springframework.stereotype.Controller
+
+
+@Controller
 @Slf4j
 public class ControllerClient {
     @Autowired

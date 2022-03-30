@@ -5,7 +5,6 @@
  */
 package cat.copernic.HardwaRepair.DAO;
 
-import cat.copernic.HardwaRepair.Model.Client;
 import cat.copernic.HardwaRepair.Model.Equip;
 import org.springframework.data.repository.CrudRepository;
 
@@ -19,5 +18,4 @@ public interface EquipDAO extends CrudRepository<Equip,String>{
     *com a mètode de seguretat per recuperar l'usuari.
     */
     
-    Equip findByUsername(String username);
 }

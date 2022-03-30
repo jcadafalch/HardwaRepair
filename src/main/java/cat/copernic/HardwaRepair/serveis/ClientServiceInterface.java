@@ -1,7 +1,7 @@
 package cat.copernic.HardwaRepair.serveis;
 
 import cat.copernic.HardwaRepair.Model.Client;
-import cat.copernic.HardwaRepair.Model.Gos;
+
 import java.util.List;
 
 /**
@@ -19,4 +19,5 @@ public interface ClientServiceInterface {
     public void eliminarClient(Client client); //Mètode que implementarem per eliminar un client
     
     public Client cercarClient(Client client); //Mètode que implementarem per cercar un client
+    
 }

@@ -1,7 +1,7 @@
 package cat.copernic.HardwaRepair.serveis;
 
 import cat.copernic.HardwaRepair.Model.Equip;
-import cat.copernic.HardwaRepair.Model.Gos;
+
 import java.util.List;
 
 /**

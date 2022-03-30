@@ -8,6 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import lombok.Data;
 
 
@@ -32,9 +33,9 @@ public class Client implements Serializable{
     private String cognom;
     @NotEmpty
     private String adreça;
-    @NotEmpty
+    @NotNull
     private int telefon;
-    @NotEmpty
+    @NotNull
     private int codipostal;
     
 }

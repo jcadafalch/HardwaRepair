@@ -12,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import lombok.Data;
 
 
@@ -19,6 +20,7 @@ import lombok.Data;
  *
  * @author marc
  */
+
 @Data
 @Entity
 @Table(name="equip")
@@ -30,15 +32,20 @@ public class Equip implements Serializable{
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @NotEmpty
     private String numSerie;
+    
     @NotEmpty
     private String idClient;
+    
     @NotEmpty
     private String marca;
+    
     @NotEmpty
     private String model;
+   
     @NotEmpty
     private String descripcio;
-    @NotEmpty
+    
+    @NotNull
     private int tipusEquip;
     
 }

@@ -14,5 +14,4 @@ public interface ClientDAO extends CrudRepository<Client,String>{
     *El nom d'aquest mètode ha de ser findByUsername, ja que és el que reconeix Spring Boot
     *com a mètode de seguretat per recuperar l'usuari.
     */
-        Client findByUsername(String username);
 }

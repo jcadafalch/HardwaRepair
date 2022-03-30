@@ -5,8 +5,7 @@
  */
 package cat.copernic.HardwaRepair.Controller;
 
-
-import cat.copernic.HardwaRepair.DAO.EquipDAO;
+import cat.copernic.HardwaRepair.DAO.IncidenciaDAO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,21 +16,24 @@ import org.springframework.web.bind.annotation.GetMapping;
  *
  * @author marc
  */
+
+
 @Controller
 @Slf4j
-public class ControllerEquip {
+public class ControllerIncidencia {
     @Autowired
-    private EquipDAO equipDAO; 
+    private IncidenciaDAO incidenciaDao; 
 
-    @GetMapping("/Equips")
+    @GetMapping("/Incidencies")
     public String inici(Model model) {
-        log.info("Executant el controlador de Equips");
+        log.info("Executant el controlador de Incidencia");
         
-        //definim la variable equips
-        var equips = equipDAO.findAll();
+        //definim la variable de l'incidencia
+        var incidencies = incidenciaDao.findAll();
         
-        model.addAttribute("equips", equips);
+        model.addAttribute("incidencies", incidencies);
 
         return "inici"; 
+        
     }
 }

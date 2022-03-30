@@ -14,17 +14,15 @@
             </div>
 
             <form th:action="@{/seleccioClient}" method="POST" th:object="${Client}" class="was-validated">
-                <div  class="modal-body">
+                <div class="modal-body">
 
                     <div class="form-group">
 
                         <label for="idClient" th:text="#{Client.idClient}">DNI:</label>
-                        <input type="text" class="form-control" name="IdClient" id="idClient" list="items"/>
+                        <input type="text" class="form-control" name="IdClient" id="idClient" list="clients"/>
 
                         <datalist id="items">
-                            <option value="1"></option>
-                            <option value="2"></option>
-                            <option value="3"></option>
+                            //
                         </datalist>
 
                         <button class="btn btn-secondary" type="submit" th:text="#{accion.buscar}">Buscar</button>
