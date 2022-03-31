@@ -5,8 +5,8 @@ import org.springframework.data.repository.CrudRepository;
 
 /**
  *
- * @author jcadafalch
+ * @author lktol
  */
-public interface CategoriaDAO extends CrudRepository<Categoria, Object>{
-    
+public interface CategoriaDAO extends CrudRepository<Categoria, Long>{
+
 }

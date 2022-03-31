@@ -5,13 +5,18 @@
     <head>
         <meta charset="UTF-8">
         <title>Productes</title>
+
     </head>
     <body>
         <h1>Productes</h1>
 
-        <a th:href="@{/formulariProducte}" th:text="#{producte.crearProducte}"></a>
-        <div th:if="${productes!=null && !productes.empty}">
-            <table border="0">
+        <a th:href="@{/formulariProducte}">
+            <button th:text="#{producte.crearProducte}"></button>
+        </a>
+        <br>
+
+       <div th:if="${productes!=null && !productes.empty}">
+            <table border="1">
                 <tr>
                     <th>Id Producte</th>
                     <th>Nom</th>
@@ -27,13 +32,13 @@
                     <td th:text="${producte.preuVenda}"></td>
                     <td></td>
                     <!-- <td th:text="${producte.categoria}"></td>-->
-                    <td><button>Detalls</button></td>
+                   <td><button>Detalls</button></td>
                 </tr>
             </table>
         </div>
        <div th:if="${productes==null || productes.empty}">
             <p>No hi ha productes</p>
-        </div>
+       </div>
 
     </body>
 </html>

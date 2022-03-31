@@ -1,5 +1,6 @@
 package cat.copernic.HardwaRepair.Controller.Producte;
 
+import cat.copernic.HardwaRepair.DAO.CategoriaDAO;
 import cat.copernic.HardwaRepair.Model.Producte;
 import cat.copernic.HardwaRepair.serveis.CategoriaServiceInterface;
 import cat.copernic.HardwaRepair.serveis.ProducteServiceInterface;
@@ -20,8 +21,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Slf4j
 public class ControladorProducte {
     @Autowired
-    
     private ProducteServiceInterface producteService;
+
+    @Autowired
     private CategoriaServiceInterface categoriaService;
 
 
@@ -33,11 +35,18 @@ public class ControladorProducte {
     
     @GetMapping("/formulariProducte")
     public String crearFormulariProducte(Producte producte, Model model){
-        
-       //System.out.println(categoriaService.llistarCategories());
-       /* var categories = categoriaService.llistarCategories();
-        model.addAttribute("categories", categories);
-        */
+
+        try{
+            var categories = categoriaService.llistarCategoria();
+            System.out.println(categories);
+            model.addAttribute("categories", categories);
+        }catch (NullPointerException e){
+            System.out.println("No hi ha categories");
+            System.out.println("Error == " + e.getMessage());
+        }
+
+
+
         return "formulariProducte";
     }
     

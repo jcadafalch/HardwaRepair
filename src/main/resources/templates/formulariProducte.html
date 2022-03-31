@@ -2,7 +2,7 @@
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
       xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title>Formulari Gos</title>
+    <title>Crear Producte</title>
     <meta charset="UTF-8"/>
 </head>
 <body>
@@ -43,17 +43,13 @@
                         <span th:if="${#fields.hasErrors('preuVenda')}" th:errors="*{preuVenda}"/>
                     </td>
                 </tr>
-
                 <tr>
                     <td><label for="categoria">Categoria</label></td>
                 </tr>
                 <tr>
                     <td>
-                        <select name="categoria" id="categoria" th:field="*{categoria}" th:each="categoria : ${categories}">
-                            <option value="Processador">Processador</option>
-                            <option value="PlacaBase">Placa Base</option>
-                            <option value="Ram">Memoria RAM</option>
-                            <option th:text="${categoria.nom}"></option>
+                        <select name="categoria" id="categoria" th:field="*{categoriaId}" >
+                            <option th:each="categoria : ${categories}" th:value="${categoria.idCategoria}" th:text="${categoria.nom}"></option>
                         </select>
                     </td>
                 </tr>

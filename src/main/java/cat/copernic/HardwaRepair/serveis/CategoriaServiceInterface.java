@@ -8,17 +8,15 @@ import java.util.List;
  * @author jcadafalch
  */
 public interface CategoriaServiceInterface {
-    
-    //Mètode que implementarem per llistar categoria
-    public List<Categoria> llistarCategories();
 
-    // Mètode que implementarem per afegir un categoria
-    public void afegirCategoria(Categoria categoria);
 
-    //Mètode que implementarem per eliminar un categoria
-    public void eliminarCategoria(Categoria categoria);
+    public List<Categoria> llistarCategoria(); //Mètode que implementarem per llistar Categories
 
-    //Mètode que implementarem per cercar un categoria
-    public Categoria cercarCategoria(Categoria categoria);
-    
+    public void afegirCategoria(Categoria categoria); //Mètode que implementarem per afegir un categoria
+
+    public void eliminarCategoria(Categoria categoria); //Mètode que implementarem per eliminar un categoria
+
+    public Categoria cercarCategoria(Categoria categoria); //Mètode que implementarem per cercar un categoria
+
+
 }
