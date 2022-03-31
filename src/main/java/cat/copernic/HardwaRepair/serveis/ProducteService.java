@@ -46,5 +46,10 @@ public class ProducteService implements ProducteServiceInterface{
         //Si el producte no existeix retornarà null ( orElse(null) )
         return this.producte.findById(producte.getIdProducte()).orElse(null);
     }
-    
+
+    @Override
+    public Producte cercarProducteById(Long id) {
+        return this.producte.findById(id).orElse(null);
+    }
+
 }

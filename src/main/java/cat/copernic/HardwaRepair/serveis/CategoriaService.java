@@ -45,5 +45,10 @@ public class CategoriaService implements CategoriaServiceInterface{
 
     }
 
+    @Override
+    public Categoria cercarCategoriaByID(Long id) {
+        return this.categoria.findById(id).orElse(null);
+    }
+
 
 }

@@ -29,7 +29,13 @@ public class ControladorProducte {
 
     @GetMapping("/llistarProductes")
     public String llistarProductes(Model model){{
-        model.addAttribute("productes", producteService.llistarProductes());
+        try{
+            model.addAttribute("categories", categoriaService.llistarCategoria());
+            model.addAttribute("productes", producteService.llistarProductes());
+        }catch (NullPointerException e){
+            System.out.println("No hi ha categories");
+            System.out.println("Error == " + e.getMessage());
+        }
         return "llistarProductes";
     }}
     

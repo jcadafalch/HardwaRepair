@@ -18,5 +18,6 @@ public interface CategoriaServiceInterface {
 
     public Categoria cercarCategoria(Categoria categoria); //Mètode que implementarem per cercar un categoria
 
+    public Categoria cercarCategoriaByID(Long id); //Mètode que implementarem per cercar un categoria per ID
 
 }

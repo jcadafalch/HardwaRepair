@@ -48,6 +48,8 @@
                 </tr>
                 <tr>
                     <td>
+                        <!--Llistat "categories" obtingut en el controlador: per cada categoria del llistat "categories" mostrem el nom
+                         de la categoria i guardem a la BBDD el "id" de la categoria-->
                         <select name="categoria" id="categoria" th:field="*{categoriaId}" >
                             <option th:each="categoria : ${categories}" th:value="${categoria.idCategoria}" th:text="${categoria.nom}"></option>
                         </select>

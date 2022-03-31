@@ -20,4 +20,7 @@ public interface ProducteServiceInterface {
 
     //Mètode que implementarem per cercar un producte
     public Producte cercarProducte(Producte producte);
+
+    //Mètode que implementarem per cercar un producte per ID
+    public Producte cercarProducteById(Long id);
 }
