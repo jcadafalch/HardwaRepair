@@ -84,6 +84,6 @@ public class IncidenciaService implements IncidenciaServiceInterface{
          *
          *Si el incidencia no existei retornarà null (orElse(null)).
         */ 
- return this.incidencia.findById(incidencia.getIdIncidencia()).orElse(null);    
+ return this.incidencia.findById(incidencia.getId_incidencia()).orElse(null);    
     }    
 }

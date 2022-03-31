@@ -7,6 +7,7 @@ package cat.copernic.HardwaRepair.Model;
 
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -31,47 +32,48 @@ public class Incidencia implements Serializable{
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)   
     @NotEmpty
-    private String idIncidencia;
+    private String id_incidencia;
    
     @NotNull
-    private double preuTotal;
+    private double preu_total;
+    
+    @NotNull
+    private double estat_id;
  
     @NotEmpty
     private String reparador;
    
     @NotEmpty
-    private String tipusOperacio;
+    private String tipus_operacio_id;
    
     @NotEmpty
-    private String idClient;
+    private String cliente_id;
    
     @NotEmpty
-    private boolean soluGarantia;
+    private boolean solicitud_pressupost;
    
     @NotEmpty
     private boolean garantia;
    
     @NotEmpty
-    private String decripcio;
+    private String descripcio_averia;
    
     @NotEmpty
-    private Date dataCreacio;
+    private Date data_creacio;
    
     @NotEmpty
-    private String tipusEquip;
+    private String tipus_equip;
    
     @NotEmpty
-    private String idEquip;
+    private String equip_a_reparar_id;
    
     @NotEmpty
-    private String idCreador;
+    private String creador;
    
     @NotEmpty
-    private Date dataResolucio;
+    private Date data_resolucio;
    
     @NotEmpty
-    private String numFactGarantia;
-    
-    @NotEmpty
-    private String productesUtilitzats;
+    private String num_factura_garantia;
+ 
 }
