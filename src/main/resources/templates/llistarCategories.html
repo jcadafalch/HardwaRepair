@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta charset="UTF-8"></meta>
+        <title>Categories</title>
+
+    </head>
+    <body>
+        <h1>Categories</h1>
+
+        <a th:href="@{/formulariCategoria}">
+            <button th:text="#{categoria.add}"></button>
+        </a>
+        <br>
+
+       <div th:if="${categories!=null && !categories.empty}">
+            <table border="1">
+                <tr>
+                    <th>Id Categoria</th>
+                    <th>Nom</th>
+                </tr>
+                <tr th:each="categoria : ${categories}">
+                    <td th:text="${categoria.idCategoria}"></td>
+                    <td th:text="${categoria.nom}"></td>
+                   <td><a th:href="@{/editarCategoria/}+${categoria.idCategoria}">Detalls</a></td>
+                </tr>
+            </table>
+        </div>
+       <div th:if="${categories==null || categories.empty}">
+            <p>No hi ha productes</p>
+       </div>
+
+    </body>
+</html>

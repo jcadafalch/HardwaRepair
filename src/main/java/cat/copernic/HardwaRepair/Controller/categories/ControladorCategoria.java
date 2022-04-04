@@ -1,0 +1,81 @@
+
+package cat.copernic.HardwaRepair.Controller.categories;
+
+import cat.copernic.HardwaRepair.DAO.CategoriaDAO;
+import cat.copernic.HardwaRepair.Model.Categoria;
+import cat.copernic.HardwaRepair.serveis.CategoriaServiceInterface;
+import javax.validation.Valid;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+
+/**
+ *
+ * @author Lucas Tolón Pacheco
+ */
+
+@Controller
+@Slf4j
+public class ControladorCategoria {
+    
+    @Autowired
+    private CategoriaServiceInterface categoriaService;
+    @Autowired
+    private CategoriaDAO categoriaDAO;
+    
+    @GetMapping("/llistarCategories")
+    public String llistarCategories(Model model){{
+        try{
+            model.addAttribute("categories", categoriaService.llistarCategoria());
+        }catch (NullPointerException e){
+            System.out.println("No hi ha categories");
+            System.out.println("Error == " + e.getMessage());
+        }
+        return "llistarCategories";
+    }}
+
+    @GetMapping("/formulariCategoria")
+    public String crearFormulariCategoria(Categoria categoria, Model model){
+        return "formulariCategoria";
+    }
+    
+    @PostMapping("/guardarCategoria")
+    public String guardarCategoria(@Valid Categoria categoria, Errors errors){
+        if (errors.hasErrors()) {
+            log.info("S'ha produït un error'");
+            return "formulariCategoria";
+        }
+        
+        categoriaService.afegirCategoria(categoria);
+        return "redirect:/llistarCategories";
+    }
+
+    /*@GetMapping("/editarProducte/{idCategoria}")
+    public String editarProducte(Categoria categoria, Model model){
+        System.out.println("Hola");
+        System.out.println("Categoria a editar == " + categoria);
+        //log.info(String.valueOf(producte.getIdProducte()));
+
+        categoria = categoriaService.cercarCategoria(categoria);
+        System.out.println("Categoria a editar == " + categoria);
+        model.addAttribute("Categoria", categoria);
+        return "formulariCategoria";
+    }*/
+
+    
+    @GetMapping("/categoriaController")
+    public String inici(Model model) {
+        log.info("Executant el controlador de Categoria");
+        
+        var categories = categoriaDAO.findAll();
+        
+        model.addAttribute("categories", categories);
+        
+        return "categoriaController";
+    }
+}
+

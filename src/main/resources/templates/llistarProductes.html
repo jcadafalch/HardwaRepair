@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta charset="UTF-8">
+        <title>Productes</title>
+
+    </head>
+    <body>
+        <h1>Productes</h1>
+
+        <a th:href="@{/formulariProducte}">
+            <button th:text="#{producte.crearProducte}"></button>
+        </a>
+        <br>
+
+       <div th:if="${productes!=null && !productes.empty}">
+            <table border="1">
+                <tr>
+                    <th>Id Producte</th>
+                    <th>Nom</th>
+                    <th>Marca</th>
+                    <th>Preu</th>
+                    <th>Categoria</th>
+                    <th>Accions</th>
+                </tr>
+                <tr th:each="producte : ${productes}">
+                    <td th:text="${producte.idProducte}"></td>
+                    <td th:text="${producte.nom}"></td>
+                    <td th:text="${producte.marca}"></td>
+                    <td th:text="${producte.preuVenda}"></td>
+                    <!-- Recorrem el llistat "categories" obtingut en el controlador: comprovem si el "id" de la
+                    categoria correspon al "categoriaId" del producte, en cas positiu mostrem el nom de la categoria
+                    a la cel·la-->
+                    <td th:each="categoria : ${categories}" th:if="${categoria.idCategoria == producte.categoriaId}" th:text="${categoria.nom}"></td>
+                   <td><a th:href="@{/editarProducte/}+${producte.idProducte}">Detalls</a></td>
+                </tr>
+            </table>
+        </div>
+       <div th:if="${productes==null || productes.empty}">
+            <p>No hi ha productes</p>
+       </div>
+
+    </body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <head>
+        <title>Selecció de modul</title>
+        <meta charset="UTF-8">
+        <style>
+            .selectModuleButton {
+                padding: 15px 25px;
+                font-size: 24px;
+                text-align: center;
+                cursor: pointer;
+                outline: none;
+                color: #fff;
+                align-self: center;
+                background-color: #75a9f9;
+                border: none;
+                border-radius: 15px;
+                box-shadow: 0 9px #999;
+            }
+
+            .selectModuleButton:hover {background-color: #75a9f9}
+
+            .selectModuleButton:active {
+                background-color: #1464f6;
+                box-shadow: 0 5px #666;
+                transform: translateY(4px);
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Selecciona el modul amb el que vols treballar</h1>
+
+        <div>
+            <td><a th:href="@{/llistarProductes}"><button class="selectModuleButton"> Servei Tècnic</button></a></td>
+            <!-- Si l'usuari té el rol de administrador se li mostrarà el botó de gestió d'usuaris -->
+            <td><a sec:authorize="hasRole('ROLE_admin')" th:href="@{/llistatUsuaris}"><button class="selectModuleButton" >Gestió Usuaris </button></a></td>
+        </div>  
+        
+          <!-- <h1>Estem al select module</h1>
+
+        <div sec:authorize="isAuthenticated()"></div>
+        <div sec:authorize="isAnonymous()"></div>
+
+        Logged user: <span sec:authentication="name"></span><br>
+        <p>
+            username<br>
+            <td th:text="${usuari.username}"></td>
+            isAdministador <br>
+            <td th:text="${usuari.isAdministrador}"></td>
+        </p>-->
+    </body>
+</html>
