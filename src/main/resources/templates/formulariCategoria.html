@@ -1,19 +1,19 @@
-<html xmlns:th="http://www.thymeleaf.org"
+<!--<html xmlns:th="http://www.thymeleaf.org"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
     <head>
         <title>Categories</title>
         <meta charset="UTF-8"/>
     </head>
-    <!-- El formulario de la creación de una categoria sera una ventana emergente dentro del propio listado de categorias-->
-    <body>
+     El formulario de la creación de una categoria sera una ventana emergente dentro del propio listado de categorias-->
+    <!--<body>
         <section th:fragment="formulariCategoria">
             <!-- Animación de fade -->
-            <div id="formulariCategoria" class="modal fade">
+            <!--<div id="formulariCategoria" class="modal fade">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                         <!-- Header de la ventana en la que aparece el nombre y una X para cerrarla-->
-                        <div class="modal-header bg-info text-white">
+                       <!--<div class="modal-header bg-info text-white">
                             <h5 class="modal-title" th:text="#{accion.formulariCategoria}">Afegir Categoria</h5>
                         </div> 
                         <button class="close" data-dismiss="modal">
@@ -29,11 +29,52 @@
                                 </div>
                             </div>
                         <!-- Botón para guardar la nueva categoria -->
-                        <div class="modal-footer">
+                        <!--<div class="modal-footer">
                             <button class="bton bton-primary" type="submit" th:text="#{accion.guardar}">Guardar</button>
                         </div>
                     </form>
             </div> 
         </section>
     </body>
+</html> -->
+                        
+                        
+                        
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Crear Categoria</title>
+    <meta charset="UTF-8"/>
+</head>
+<body>
+<!--<header th:replace="layout/plantilla :: capcalera" />-->
+    <h2>Crear Categoria</h2>
+
+    <p>
+        <form th:action="@{/guardarCategoria}" method="post" th:object="${categoria}">
+            <input type="hidden" name="idCategoria" th:field="*{idCategoria}"/>
+            <table style="width:35%">
+                <tr>
+                    <td><label for="nom">Nom</label></td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="text" id="nom" name="nom" th:field="*{nom}" placeholder="Nom de la Categoria"/>
+                        <span th:if="${#fields.hasErrors('nom')}" th:errors="*{nom}"></span>
+                    </td>
+                </tr>
+            </table>
+        <br>
+
+        <button><a th:href="@{/llistarCategories}" th:text="#{cancelar}"></a></button>
+        <input type="submit" name="enviar" value="Guardar"/>
+
+        <br><br><br>
+    </form>
+    </p>
+
+<!--<footer th:replace="layout/plantilla :: peu" />-->
+
+</body>
 </html>
