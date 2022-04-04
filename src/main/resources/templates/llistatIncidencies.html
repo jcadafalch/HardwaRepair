@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-    <head th:replace="layout/plantilla :: head">
+   
+    <head>
         <title>Incidencies</title>
         <meta charset="UTF-8"/>
     </head>
@@ -9,7 +10,7 @@
         <h1>Incidencies</h1>
         <a th:href="@{/llistatIncidencies}" th:text="#{incidencia.llistatIncidencia}"></a>
         <div th:if="${incidencies!=null && !incidencies.empty}">
-            <table border="0">
+            <table border="1">
                 <tr>
                     <th>Id Incidència</th>
                     <th>Data</th>
@@ -18,11 +19,11 @@
                     <th>Tipus d'operacio</th>
                 </tr>
                 <tr th:each="incidencia : ${incidencies}">
-                    <td th:text="${incidencia.idIncidencia}"></td>
-                    <td th:text="${incidencia.dataCreacio}"></td>
-                    <td th:text="${incidencia.idReparador}"></td>
-                    <td th:text="${incidencia.tipusEquip}"></td>
-                    <td th:text="${incidencia.tipusOperacio}"></td>
+                    <td th:text="${incidencia.id_incidencia}"></td>
+                    <td th:text="${incidencia.data_creacio}"></td>
+                    <td th:text="${incidencia.reparador}"></td>
+                    <td th:text="${incidencia.tipus_equip}"></td>
+                    <td th:text="${incidencia.tipus_operacio_id}"></td>
                     <td><button>Detalls</button></td>
                 </tr>
             </table>

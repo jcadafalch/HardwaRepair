@@ -24,18 +24,17 @@ public class Client implements Serializable{
     private static final long serialVersionUID=1L;
 
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
     @NotEmpty
-    private String idclient;
+    private String dni;
     @NotEmpty
     private String nom;
     @NotEmpty
-    private String cognom;
+    private String cognoms;
     @NotEmpty
-    private String adreça;
+    private String adreca;
     @NotNull
     private int telefon;
     @NotNull
-    private int codipostal;
+    private int codi_postal;
     
 }

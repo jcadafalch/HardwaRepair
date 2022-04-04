@@ -6,6 +6,7 @@
 package cat.copernic.HardwaRepair.Controller;
 
 import cat.copernic.HardwaRepair.DAO.IncidenciaDAO;
+import cat.copernic.HardwaRepair.serveis.IncidenciaServiceInterface;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -36,4 +37,20 @@ public class ControllerIncidencia {
         return "inici"; 
         
     }
+//    
+//    
+     @Autowired
+    private IncidenciaServiceInterface incidenciaService;
+
+
+    @GetMapping("/llistatIncidencies")
+    public String llistarProductes(Model model){{
+        try{
+            model.addAttribute("incidencies", incidenciaService.llistarIncidencies());
+        }catch (NullPointerException e){
+            System.out.println("No hi ha Incidencies");
+            System.out.println("Error == " + e.getMessage());
+        }
+        return "llistatIncidencies";
+    }}
 }

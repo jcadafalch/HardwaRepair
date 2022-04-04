@@ -22,6 +22,9 @@ import lombok.Data;
  *
  * @author marc
  */
+
+
+
 @Data
 @Entity
 @Table(name="incidencia")

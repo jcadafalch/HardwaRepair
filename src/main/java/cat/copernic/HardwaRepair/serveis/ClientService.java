@@ -86,7 +86,7 @@ public class ClientService implements ClientServiceInterface{
          *Si el client no existei retornarà null (orElse(null)).
         */ 
 
- return this.client.findById(client.getIdclient()).orElse(null);    
+ return this.client.findById(client.getDni()).orElse(null);    
     }
     
 }

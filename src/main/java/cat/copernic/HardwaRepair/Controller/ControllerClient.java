@@ -33,6 +33,6 @@ public class ControllerClient {
         
         model.addAttribute("clients", clients);
 
-        return "inici"; 
+        return "creaClient"; 
     }
 }

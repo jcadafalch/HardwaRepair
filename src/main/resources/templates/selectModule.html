@@ -26,13 +26,14 @@
                 box-shadow: 0 5px #666;
                 transform: translateY(4px);
             }
+            
         </style>
     </head>
     <body>
         <h1>Selecciona el modul amb el que vols treballar</h1>
-        
+
         <div>
-            <td><a th:href="@{/Incidencies}"><button class="selectModuleButton"> Servei Tècnic</button></a></td>
+            <td><a th:href="@{/llistatIncidencies}"><button class="selectModuleButton"> Servei Tècnic</button></a></td>
             <!-- Si l'usuari té el rol de administrador se li mostrarà el botó de gestió d'usuaris -->
             <td><a th:href="@{/llistatUsuaris}"><button class="selectModuleButton" >Gestió Usuaris </button></a></td>
         </div>  
