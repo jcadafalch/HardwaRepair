@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package cat.copernic.HardwaRepair.Model;
 
 import java.io.Serializable;
@@ -13,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import lombok.Data;
+
 /**
  *
  * @author Lucas Tolón Pacheco
@@ -20,18 +16,15 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name="categoria")
-public class Categoria implements Serializable{
-
+@Table(name="rol")
+public class Rol implements Serializable{
+    
     private static final long serialVersionUID=1L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long idCategoria;
-
-    @NotEmpty
+    @Id //L'atribut idRol és la clau primària de la BBDD
+    @GeneratedValue(strategy=GenerationType.IDENTITY) //Generació autonumèrica de l'id
+    private long idRol;
+    
+    @NotEmpty//Validació perquè l'usuari afegeixi contingut al camp nom
     private String nom;
-
-
 }
-

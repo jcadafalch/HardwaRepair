@@ -1,13 +1,18 @@
 package cat.copernic.HardwaRepair.Model;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 import lombok.Data;
+
 /**
  *
  * @author Lucas Tolón Pacheco
@@ -16,38 +21,46 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name="usuari")
-public class usuari implements Serializable{
+public class Usuari implements Serializable{
     
-    private static final long serialVersionUID=2L;
+    private static final long serialVersionUID=1L;
+
+    @Id //L'atribut idUsuari és la clau primària de la BBDD
+    @GeneratedValue(strategy=GenerationType.IDENTITY) //Generació autonumèrica de l'id
+    private long idUsuari;
     
-    @Id
-    @GeneratedValue (strategy=GenerationType.IDENTITY)
+    
+    @NotEmpty
+    private String username;
+    
+    
+    @NotEmpty//Validació perquè l'usuari afegeixi contingut al camp contrasenya
+    private String password;
+    
+    @NotEmpty
+    @Size(min = 9, max = 9)
     private String dni;
     
-    @NotEmpty(message="No has introduït el nom")
     private String nom;
     
-    @NotEmpty(message="No has introduït els cognoms")
     private String cognoms;
     
-    @NotEmpty(message="No has introduït el telefon")
+    @NotEmpty
     private String telefon;
     
-    @NotEmpty(message="No has introduït la adreça")
     private String adreca;
     
-    @NotEmpty(message="No has introduït el codi postal")
+    @Size(min = 5, max = 5)
     private String codiPostal;
     
-    @NotEmpty(message="No has introduït el correu")
-    private String email;
+    @NotEmpty
+    private Boolean isAdministrador;
     
-    @NotEmpty(message="No has introduït la contrasenya")
-    private String contrasenya;
-    
-    @NotEmpty(message="Torna a introduir la contrasenya")
-    private String contrasenya2;
-    
-    private boolean isAdministrador;
-    
+    /*Implementem l'atribut que relacionarà l'usuari amb el rol, tenint en compte que un 
+     *usuari pot tenir més d'un rol, per tant serà una col.lecció de tipus list, on guardarem
+     *tots els rols de l'usuari.
+    */
+    @OneToMany //Indica al sistema que la relació entre les taules usuari i rol en aquest cas és d'un a molts.
+    @JoinColumn(name="idUsuari") //Columna de la base de dades que farà de clau forana relacionant les dues taules.
+    private List<Rol> rols;
 }
