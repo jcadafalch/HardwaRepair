@@ -66,4 +66,17 @@ public class ControladorProducte {
         producteService.afegirProducte(producte);
         return "redirect:/llistarProductes";
     }
+
+    @GetMapping("/editarProducte/{idProducte}")
+    public String editarProducte(Producte producte, Model model){
+        System.out.println("Hola");
+        System.out.println("Producte a editar == " + producte);
+        //log.info(String.valueOf(producte.getIdProducte()));
+
+        producte = producteService.cercarProducte(producte);
+        System.out.println("Producte a editar == " + producte);
+        model.addAttribute("producte", producte);
+        model.addAttribute("categories", categoriaService.llistarCategoria());
+        return "formulariProducte";
+    }
 }

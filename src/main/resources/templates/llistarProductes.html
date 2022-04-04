@@ -34,7 +34,7 @@
                     categoria correspon al "categoriaId" del producte, en cas positiu mostrem el nom de la categoria
                     a la cel·la-->
                     <td th:each="categoria : ${categories}" th:if="${categoria.idCategoria == producte.categoriaId}" th:text="${categoria.nom}"></td>
-                   <td><button>Detalls</button></td>
+                   <td><a th:href="@{/editarProducte/}+${producte.idProducte}">Detalls</a></td>
                 </tr>
             </table>
         </div>
