@@ -1,9 +1,11 @@
 package cat.copernic.HardwaRepair.Controller;
 
 import cat.copernic.HardwaRepair.Model.Usuari;
+import cat.copernic.HardwaRepair.Utils.IsAdministrator;
 import cat.copernic.HardwaRepair.serveis.UsuariServiceInterface;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -20,7 +22,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 @Slf4j
 public class ControladorInici {
-    
+    @Autowired
     private UsuariServiceInterface usuariService;
 
     @GetMapping("/inici") //Arrel de l'aplicació localhost:8080
@@ -29,24 +31,8 @@ public class ControladorInici {
         System.out.println("L'usuari autenticat és: "+username);
         System.out.println("L'usuari autenticat és + getUsername: "+username.getUsername());
 
-        //System.out.println("Usuari service == " + usuariService.llistarUsuari());
+        model.addAttribute("isAdministrator", IsAdministrator.isAdministrator(username.getUsername(), usuariService));
 
-        //System.out.println("L'usuari autenticat és: + rol"+username.getUsername());
-
-        //Obtenim el username de l'usuari actual
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String currentPrincipalName = authentication.getName();
-        
-        //Omplim una llista amb tots els usuaris
-        /*System.out.println("Hola AAAAA");
-        System.out.println(usuariService.llistarUsuari().size());
-        List<Usuari> arrUsuari = usuariService.llistarUsuari();
-        
-        //Busquem l'usuari que el seu username coincideixi amb el de l'usuari actual, i passem l'objecte d'aquell usuari a la vista
-        arrUsuari.stream().filter(usuari -> (usuari.getUsername().equals(currentPrincipalName))).forEachOrdered(usuari -> {
-            model.addAttribute("usuari", usuari);
-        });*/
-        
         return "selectModule";
     }
 

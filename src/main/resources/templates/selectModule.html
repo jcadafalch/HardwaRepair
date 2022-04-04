@@ -34,8 +34,8 @@
         <div>
             <td><a th:href="@{/llistarProductes}"><button class="selectModuleButton"> Servei Tècnic</button></a></td>
             <!-- Si l'usuari té el rol de administrador se li mostrarà el botó de gestió d'usuaris -->
-            <td><a sec:authorize="hasRole('ROLE_admin')" th:href="@{/llistatUsuaris}"><button class="selectModuleButton" >Gestió Usuaris </button></a></td>
-        </div>  
+           <td th:if="${isAdministrator == true}"><a th:href="@{/llistatUsuaris}"><button class="selectModuleButton" >Gestió Usuaris </button></a></td>
+        </div>
         
           <!-- <h1>Estem al select module</h1>
 
