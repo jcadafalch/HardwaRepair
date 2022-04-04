@@ -5,13 +5,13 @@
  */
 package cat.copernic.HardwaRepair.DAO;
 
-import cat.copernic.HardwaRepair.Model.categoria;
+import cat.copernic.HardwaRepair.Model.Categoria;
 import org.springframework.data.repository.CrudRepository;
 
 /**
  *
  * @author lktol
  */
-public interface categoriaDAO extends CrudRepository<categoria, String>{
+public interface CategoriaDAO extends CrudRepository<Categoria, Long>{
     
 }
