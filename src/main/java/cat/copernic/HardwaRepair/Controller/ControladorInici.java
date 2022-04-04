@@ -25,12 +25,13 @@ public class ControladorInici {
     @Autowired
     private UsuariServiceInterface usuariService;
 
-    @GetMapping("/inici") //Arrel de l'aplicació localhost:8080
+    @GetMapping("/inici")
     public String iniciGet(Model model, @AuthenticationPrincipal User username) {
         System.out.println("Executant el controlador Spring MVC");
         System.out.println("L'usuari autenticat és: "+username);
         System.out.println("L'usuari autenticat és + getUsername: "+username.getUsername());
 
+        //Passem a la vista si l'usuari és administrador
         model.addAttribute("isAdministrator", IsAdministrator.isAdministrator(username.getUsername(), usuariService));
 
         return "selectModule";

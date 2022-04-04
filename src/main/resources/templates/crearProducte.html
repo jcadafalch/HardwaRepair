@@ -10,7 +10,7 @@
     <h2>Crear Producte</h2>
 
     <p>
-            <form th:action="@{/guardarProducte}" method="post" th:object="${producte}">
+            <form th:action="@{/guardarProducteCrear}" method="post" th:object="${producte}">
                 <input type="hidden" name="idProducte" th:field="*{idProducte}"/>
                 <table style="width:35%">
                     <tr>
@@ -67,12 +67,3 @@
 
 </body>
 </html>
-
-<!--
-Tymeleaf if/else example
-
-<td>
-    <span th:if="${teacher.gender == 'F'}">Female</span>
-    <span th:unless="${teacher.gender == 'F'}">Male</span>
-</td>
--->

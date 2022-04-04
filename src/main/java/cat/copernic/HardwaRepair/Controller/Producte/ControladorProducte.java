@@ -30,9 +30,13 @@ public class ControladorProducte {
     @GetMapping("/llistarProductes")
     public String llistarProductes(Model model){{
         try{
+            //Passem el llistat de categories a la vista
             model.addAttribute("categories", categoriaService.llistarCategoria());
+
+            //Passem el llistat de productes a la vista
             model.addAttribute("productes", producteService.llistarProductes());
         }catch (NullPointerException e){
+            //Si no hi ha categories o productes, mostrem un missatge d'error
             System.out.println("No hi ha categories");
             System.out.println("Error == " + e.getMessage());
         }
@@ -43,40 +47,58 @@ public class ControladorProducte {
     public String crearFormulariProducte(Producte producte, Model model){
 
         try{
+            //Passem el llistat de categories a la vista
             model.addAttribute("categories", categoriaService.llistarCategoria());
         }catch (NullPointerException e){
+            //Si no hi ha categories, mostrem un missatge d'error
             System.out.println("No hi ha categories");
             System.out.println("Error == " + e.getMessage());
         }
-
-
-
         return "crearProducte";
     }
     
-    @PostMapping("/guardarProducte")
-    public String guardarProducte(@Valid Producte producte, Errors errors){
+    @PostMapping("/guardarProducteCrear")
+    public String guardarProducteCrear(@Valid Producte producte, Errors errors){
         if (errors.hasErrors()) {
+            //Si hi ha errors, tornem a la vista de crear producte
             log.info("S'ha produït un error'");
             return "crearProducte";
         }
-        
+        //Guardem el producte
+        producteService.afegirProducte(producte);
+        return "redirect:/llistarProductes";
+    }
+
+    @PostMapping("/guardarProducteDetalls")
+    public String guardarProducteDetalls(@Valid Producte producte, Errors errors){
+        if (errors.hasErrors()) {
+            //Si hi ha errors, tornem a la vista de detalls producte
+            log.info("S'ha produït un error'");
+            return "detallsProducte";
+        }
+        //Actualitzem el producte
         producteService.afegirProducte(producte);
         return "redirect:/llistarProductes";
     }
 
     @GetMapping("/editarProducte/{idProducte}")
     public String editarProducte(Producte producte, Model model){
-
         producte = producteService.cercarProducte(producte);
+
+        //Passem el producte a la vista
         model.addAttribute("producte", producte);
+
+        //Passem el llistat de categories a la vista
         model.addAttribute("categories", categoriaService.llistarCategoria());
         return "detallsProducte";
     }
 
     @GetMapping("/eliminarProducte/{idProducte}")
     public String eliminarProducte(Producte producte){
+        //Eliminem el producte
         producteService.eliminarProducte(producte);
+
+        //Redirigim a la vista de llistar productes
         return "redirect:/llistarProductes";
     }
 }

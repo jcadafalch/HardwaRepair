@@ -2,7 +2,6 @@ package cat.copernic.HardwaRepair.serveis;
 
 
 import cat.copernic.HardwaRepair.DAO.UsuariDAO;
-import cat.copernic.HardwaRepair.Model.Rol;
 import cat.copernic.HardwaRepair.Model.Usuari;
 import java.util.ArrayList;
 import lombok.extern.slf4j.Slf4j;
@@ -73,9 +72,6 @@ public class UsuariService implements UserDetailsService{
          *classe SimpleGrantedAuthority la qual implementa GrantedAuthority, passant-li com a paràmetre 
          *el nom del rol.
         */
-        for(Rol rol: usuari.getRols()){
-            rols.add(new SimpleGrantedAuthority(rol.getNom()));
-        }
         
         /*Retornme el nou usuari de tipus UserDetails mitjançant la classe User d'Spring Security,
          *la qual implementa la interface UserDetails.

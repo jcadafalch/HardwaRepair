@@ -15,6 +15,7 @@
         </a>
         <br>
 
+        <!--Si hi han productes mostrem la taula-->
        <div th:if="${productes!=null && !productes.empty}">
             <table border="1">
                 <tr>
@@ -38,6 +39,8 @@
                 </tr>
             </table>
         </div>
+
+        <!--Si no hi han productes mostrem un missatge-->
        <div th:if="${productes==null || productes.empty}">
             <p>No hi ha productes</p>
        </div>
