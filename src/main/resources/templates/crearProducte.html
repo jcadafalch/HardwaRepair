@@ -1,0 +1,78 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Crear Producte</title>
+    <meta charset="UTF-8"/>
+</head>
+<body>
+<!--<header th:replace="layout/plantilla :: capcalera" />-->
+    <h2>Crear Producte</h2>
+
+    <p>
+            <form th:action="@{/guardarProducte}" method="post" th:object="${producte}">
+                <input type="hidden" name="idProducte" th:field="*{idProducte}"/>
+                <table style="width:35%">
+                    <tr>
+                        <td><label for="nom">Nom</label></td>
+                        <td><label for="marca">Marca</label></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="text" id="nom" name="nom" th:field="*{nom}" placeholder="Nom del producte"/>
+                            <span th:if="${#fields.hasErrors('nom')}" th:errors="*{nom}"></span>
+                        </td>
+                        <td>
+                            <input type="text" id="marca" name="marca" th:field="*{marca}" placeholder="Marca del producte"/>
+                            <span th:if="${#fields.hasErrors('marca')}" th:errors="*{marca}"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="preuCompra">Preu de compra</label></td>
+                        <td><label for="preuVenda">Preu de venda</label></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="number" step="0.01" id="preuCompra" name="preuCompra" th:field="*{preuCompra}"
+                                   placeholder="Preu de compra"/>
+                            <span th:if="${#fields.hasErrors('preuCompra')}" th:errors="*{preuCompra}"></span>
+                        </td>
+                        <td>
+                            <input type="number" step="0.01" id="preuVenda" name="preuVenda" th:field="*{preuVenda}"
+                                   placeholder="Preu de venda"/>
+                            <span th:if="${#fields.hasErrors('preuVenda')}" th:errors="*{preuVenda}"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="categoria">Categoria</label></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <!--Llistat "categories" obtingut en el controlador: per cada categoria del llistat "categories" mostrem el nom
+                             de la categoria i guardem a la BBDD el "id" de la categoria-->
+                            <select name="categoria" id="categoria" th:field="*{categoriaId}" >
+                                <option th:each="categoria : ${categories}" th:value="${categoria.idCategoria}" th:text="${categoria.nom}"></option>
+                            </select>
+                        </td>
+                    </tr>
+                </table>
+            <br>
+
+            <button><a th:href="@{/llistarProductes}" th:text="#{cancelar}"></a></button>
+            <input type="submit" name="enviar" value="Guardar"/>
+            </form>
+    </p>
+
+<!--<footer th:replace="layout/plantilla :: peu" />-->
+
+</body>
+</html>
+
+<!--
+Tymeleaf if/else example
+
+<td>
+    <span th:if="${teacher.gender == 'F'}">Female</span>
+    <span th:unless="${teacher.gender == 'F'}">Male</span>
+</td>
+-->

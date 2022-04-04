@@ -39,13 +39,11 @@ public class ControladorProducte {
         return "llistarProductes";
     }}
     
-    @GetMapping("/formulariProducte")
+    @GetMapping("/crearProducte")
     public String crearFormulariProducte(Producte producte, Model model){
 
         try{
-            var categories = categoriaService.llistarCategoria();
-            System.out.println(categories);
-            model.addAttribute("categories", categories);
+            model.addAttribute("categories", categoriaService.llistarCategoria());
         }catch (NullPointerException e){
             System.out.println("No hi ha categories");
             System.out.println("Error == " + e.getMessage());
@@ -53,14 +51,14 @@ public class ControladorProducte {
 
 
 
-        return "formulariProducte";
+        return "crearProducte";
     }
     
     @PostMapping("/guardarProducte")
     public String guardarProducte(@Valid Producte producte, Errors errors){
         if (errors.hasErrors()) {
             log.info("S'ha produït un error'");
-            return "formulariProducte";
+            return "crearProducte";
         }
         
         producteService.afegirProducte(producte);
@@ -69,14 +67,16 @@ public class ControladorProducte {
 
     @GetMapping("/editarProducte/{idProducte}")
     public String editarProducte(Producte producte, Model model){
-        System.out.println("Hola");
-        System.out.println("Producte a editar == " + producte);
-        //log.info(String.valueOf(producte.getIdProducte()));
 
         producte = producteService.cercarProducte(producte);
-        System.out.println("Producte a editar == " + producte);
         model.addAttribute("producte", producte);
         model.addAttribute("categories", categoriaService.llistarCategoria());
-        return "formulariProducte";
+        return "detallsProducte";
+    }
+
+    @GetMapping("/eliminarProducte/{idProducte}")
+    public String eliminarProducte(Producte producte){
+        producteService.eliminarProducte(producte);
+        return "redirect:/llistarProductes";
     }
 }
