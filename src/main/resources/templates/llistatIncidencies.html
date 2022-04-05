@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+   
+    <head>
+        <title>Incidencies</title>
+        <meta charset="UTF-8"/>
+    </head>
+    <body>
+        <h1>Incidencies</h1>
+        <a th:href="@{/llistatIncidencies}" th:text="#{incidencia.llistatIncidencia}"></a>
+        <div th:if="${incidencies!=null && !incidencies.empty}">
+            <table border="1">
+                <tr>
+                    <th>Id Incidència</th>
+                    <th>Data</th>
+                    <th>Reparador</th>
+                    <th>Tipus d'equip</th>
+                    <th>Tipus d'operacio</th>
+                </tr>
+                <tr th:each="incidencia : ${incidencies}">
+                    <td th:text="${incidencia.id_incidencia}"></td>
+                    <td th:text="${incidencia.data_creacio}"></td>
+                    <td th:text="${incidencia.reparador}"></td>
+                    <td th:text="${incidencia.tipus_equip}"></td>
+                    <td th:text="${incidencia.tipus_operacio_id}"></td>
+                    <td><button>Detalls</button></td>
+                </tr>
+            </table>
+        </div>
+       <div th:if="${incidencies==null || incidencies.empty}">
+            <p>No hi ha productes</p>
+        </div>
+    </body>
+</html>

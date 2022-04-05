@@ -1,6 +1,7 @@
 package cat.copernic.HardwaRepair.serveis;
 
-import cat.copernic.HardwaRepair.DAO.UsuariCrudDAO;
+//import cat.copernic.HardwaRepair.DAO.UsuariCrudDAO;
+import cat.copernic.HardwaRepair.DAO.UsuariDAO;
 import cat.copernic.HardwaRepair.Model.Usuari;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class UsuariServiceCRUD implements UsuariServiceInterface{
     
     @Autowired
-    private UsuariCrudDAO usuari;
+    private UsuariDAO usuari;
 
     @Override
     public List<Usuari> llistarUsuari() {
@@ -39,5 +40,5 @@ public class UsuariServiceCRUD implements UsuariServiceInterface{
     public Usuari cercarUsuari(Usuari usuari) {
         return this.usuari.findById(usuari.getIdUsuari()).orElse(null);
     }
-    
+
 }

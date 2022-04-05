@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <head>
+        <title>Selecció Client</title>
+        <meta charset="UTF-8"/>
+    </head>
+    <body>
+
+
+        <section th:fragment="seleccioClient">
+            <div>
+                <h1>Selecció Client</h1>
+            </div>
+
+            <form th:action="@{/seleccioClient}" method="POST" th:object="${Client}" class="was-validated">
+                <div class="modal-body">
+
+                    <div class="form-group">
+
+                        <label for="idClient" th:text="#{Client.idClient}">DNI:</label>
+                        <input type="text" class="form-control" name="IdClient" id="idClient" list="clients"/>
+
+                        <datalist id="items">
+                            //
+                        </datalist>
+
+                        <button class="btn btn-secondary" type="submit" th:text="#{accion.buscar}">Buscar</button>
+
+                    </div>
+
+                </div>
+
+                <div  class="modal-footer">
+                    <button class="btn btn-primary" type="submit" th:text="#{accion.guardar}">Guardar</button>
+                </div>
+            </form>
+        </section>
+    </body>
+</html>

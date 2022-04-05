@@ -1,3 +1,4 @@
+
 package cat.copernic.HardwaRepair.Model;
 
 import java.io.Serializable;
@@ -10,33 +11,30 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import lombok.Data;
 
+
 /**
  *
- * @author jcadafalch
+ * @author marc
  */
 @Data
 @Entity
-@Table(name = "producte")
-public class Producte implements Serializable{
+@Table(name="client")
+public class Client implements Serializable{
     
     private static final long serialVersionUID=1L;
-    
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long idProducte;
-    
+    @NotEmpty
+    private String dni;
     @NotEmpty
     private String nom;
-    
-    @NotNull
-    private Double preuCompra;
-    
-    @NotNull
-    private Double preuVenda;
-    
     @NotEmpty
-    private String marca;
-
-    private long categoriaId;
+    private String cognoms;
+    @NotEmpty
+    private String adreca;
+    @NotNull
+    private int telefon;
+    @NotNull
+    private int codi_postal;
     
 }
