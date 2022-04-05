@@ -84,7 +84,7 @@ public class EquipService implements EquipServiceInterface {
          *
          *Si el equip no existei retornarà null (orElse(null)).
          */
-        return this.equip.findById(equip.getNumSerie()).orElse(null);
+        return this.equip.findById(equip.getNum_serie()).orElse(null);
 
     }
 

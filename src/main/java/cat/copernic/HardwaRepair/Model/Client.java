@@ -18,7 +18,7 @@ import lombok.Data;
  */
 @Data
 @Entity
-@Table(name="client")
+@Table(name="cliente")
 public class Client implements Serializable{
     
     private static final long serialVersionUID=1L;
@@ -26,14 +26,19 @@ public class Client implements Serializable{
     @Id
     @NotEmpty
     private String dni;
+    
     @NotEmpty
     private String nom;
+    
     @NotEmpty
     private String cognoms;
+    
     @NotEmpty
     private String adreca;
+    
     @NotNull
     private int telefon;
+    
     @NotNull
     private int codi_postal;
     

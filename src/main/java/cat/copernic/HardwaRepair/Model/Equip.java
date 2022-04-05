@@ -29,12 +29,11 @@ public class Equip implements Serializable{
     private static final long serialVersionUID=1L;
 
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
     @NotEmpty
-    private String numSerie;
+    private String num_serie;
     
     @NotEmpty
-    private String idClient;
+    private String client_id;
     
     @NotEmpty
     private String marca;
@@ -46,6 +45,6 @@ public class Equip implements Serializable{
     private String descripcio;
     
     @NotNull
-    private int tipusEquip;
+    private int tipus_equip_id;
     
 }

@@ -32,6 +32,6 @@ public class ControllerEquip {
         
         model.addAttribute("equips", equips);
 
-        return "inici"; 
+        return "creaEquip"; 
     }
 }
