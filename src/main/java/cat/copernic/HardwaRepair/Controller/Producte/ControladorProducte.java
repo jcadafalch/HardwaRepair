@@ -1,8 +1,10 @@
 package cat.copernic.HardwaRepair.Controller.Producte;
 
 import cat.copernic.HardwaRepair.DAO.CategoriaDAO;
+import cat.copernic.HardwaRepair.Model.LiniaReparacio;
 import cat.copernic.HardwaRepair.Model.Producte;
 import cat.copernic.HardwaRepair.serveis.CategoriaServiceInterface;
+import cat.copernic.HardwaRepair.serveis.LiniaReparacioServiceInterface;
 import cat.copernic.HardwaRepair.serveis.ProducteServiceInterface;
 import javax.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
@@ -69,18 +71,6 @@ public class ControladorProducte {
         return "redirect:/llistarProductes";
     }
 
-    @PostMapping("/guardarProducteDetalls")
-    public String guardarProducteDetalls(@Valid Producte producte, Errors errors){
-        if (errors.hasErrors()) {
-            //Si hi ha errors, tornem a la vista de detalls producte
-            log.info("S'ha produït un error'");
-            return "detallsProducte";
-        }
-        //Actualitzem el producte
-        producteService.afegirProducte(producte);
-        return "redirect:/llistarProductes";
-    }
-
     @GetMapping("/editarProducte/{idProducte}")
     public String editarProducte(Producte producte, Model model){
         producte = producteService.cercarProducte(producte);
@@ -93,6 +83,18 @@ public class ControladorProducte {
         return "detallsProducte";
     }
 
+    @PostMapping("/guardarProducteDetalls")
+    public String guardarProducteDetalls(@Valid Producte producte, Errors errors){
+        if (errors.hasErrors()) {
+            //Si hi ha errors, tornem a la vista de detalls producte
+            log.info("S'ha produït un error'");
+            return "detallsProducte";
+        }
+        //Actualitzem el producte
+        producteService.afegirProducte(producte);
+        return "redirect:/llistarProductes";
+    }
+
     @GetMapping("/eliminarProducte/{idProducte}")
     public String eliminarProducte(Producte producte){
         //Eliminem el producte
@@ -101,4 +103,35 @@ public class ControladorProducte {
         //Redirigim a la vista de llistar productes
         return "redirect:/llistarProductes";
     }
+
+    @Autowired
+    private LiniaReparacioServiceInterface liniaService;
+
+    @GetMapping("/liniaReparacio")
+    public String liniaReparacio(Model model){
+        try {
+            //Passem el llistat de productes a la vista
+            model.addAttribute("productes", producteService.llistarProductes());
+        }catch (NullPointerException e){
+            //Si no hi ha productes, mostrem un missatge d'error
+            System.out.println("No hi ha productes");
+            System.out.println("Error == " + e.getMessage());
+        }
+
+        return "liniaReparacio";
+    }
+
+    @PostMapping("/guardarLiniaReparacio")
+    public String guardarLiniaReparacio(@Valid LiniaReparacio liniaReparacio, Errors errors){
+        if (errors.hasErrors()) {
+            //Si hi ha errors, tornem a la vista de linia reparació
+            log.info("S'ha produït un error'");
+            return "liniaReparacio";
+        }
+        //Guardem la linia reparació
+        liniaService.afegirLiniaReparacio(liniaReparacio);
+        //return "redirect:/liniaReparacio";
+        return "redirect:/llistarProductes";
+    }
+
 }
