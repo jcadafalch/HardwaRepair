@@ -23,7 +23,7 @@ public class ControllerEquip {
     @Autowired
     private EquipDAO equipDAO; 
 
-    @GetMapping("/Equips")
+    @GetMapping("/crearEquip")
     public String inici(Model model) {
         log.info("Executant el controlador de Equips");
         
