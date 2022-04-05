@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta charset="UTF-8"/>
+        <title>Usuaris</title>
+
+    </head>
+    <body>
+        <h1>Usuaris</h1>
+
+        <a th:href="@{/formulariUsuari}">
+            <button th:text="#{producte.crearUsuari}"></button>
+        </a>
+        <br>
+
+            <div th:if="${usuaris!=null && !usuaris.empty}">
+                <table border="1">
+                    <tr>
+                        <th>Nom</th>
+                        <th>Cognoms</th>
+                        <th>DNI</th>
+                        <th>Telèfon</th>
+                        <th>Accions</th>
+                    </tr>
+                    <tr th:each="usuari : ${usuaris}">
+                        <td th:text="${usuari.nom}"></td>
+                        <td th:text="${usuari.cognoms}"></td>
+                        <td th:text="${usuari.dni}"></td>
+                        <td th:text="${usuari.telefon}"></td>
+                        <td><a th:href="@{/editarUsuari/}+${usuari.idUsuari}">Detalls</a></td>
+                    </tr>
+                </table>
+            </div>
+            <div th:if="${usuaris==null || usuaris.empty}">
+                <p>No hi ha Usuaris</p>
+            </div>
+
+    </body>
+</html>

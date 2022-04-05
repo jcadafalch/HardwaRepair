@@ -1,4 +1,4 @@
-<html xmlns:th="http://www.thymeleaf.org"
+<!-- <html xmlns:th="http://www.thymeleaf.org"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
     <head>
@@ -7,12 +7,12 @@
     </head>
     
     <body>
-        <!-- El formulario de la creación de un usuario sera una ventana emergente dentro del propio listado de usuarios-->
+        <!-- El formulario de la creación de un usuario sera una ventana emergente dentro del propio listado de usuarios
         <section th:fragment="formulariUsuari">
             <div id="formulariUsuari" class="modal fade">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
-                        <!-- Header de la ventana en la que aparece el nombre y una X para cerrarla-->
+                        <!-- Header de la ventana en la que aparece el nombre y una X para cerrarla
                         <div class="modal-header bg-info text-white">
                             <h5 class="modal-title" th:text="#{accion.formulariUsuari}">Afegir Usuari</h5>
                         </div> 
@@ -23,55 +23,55 @@
                     <form th:action="@{/guardar}" th:object="${usuari}"
                         method="POST" class="was-validated">
                             <div class="modal-body">
-                                <!-- Nom -->
+                                <!-- Nom 
                                 <div class="form-group">
                                     <label for="nom" th:text="#{usuari.nom}">Nom:</label>
                                     <input type="text" class="form-control" name="nom" required="true">
                                 </div>
                                 
-                                <!-- Cognoms -->
+                                <!-- Cognoms 
                                 <div class="form-group">
                                     <label for="cognoms" th:text="#{usuari.cognoms}">Cognoms:</label>
                                     <input type="text" class="form-control" name="cognoms" required="true">
                                 </div>
                                 
-                                <!-- Telefon -->
+                                <!-- Telefon 
                                 <div class="form-group">
                                     <label for="telefon" th:text="#{usuari.telefon}">Telèfon:</label>
                                     <input type="text" class="form-control" name="telefon" required="true">
                                 </div>
                                 
-                                <!-- Adreça -->
+                                <!-- Adreça 
                                 <div class="form-group">
                                     <label for="adreca" th:text="#{usuari.adreca}">Adreça:</label>
                                     <input type="text" class="form-control" name="nom" required="true">
                                 </div>
                                 
-                                <!-- Codi Postal -->
+                                <!-- Codi Postal 
                                 <div class="form-group">
                                     <label for="codipostal" th:text="#{usuari.codi.postal}">Codi Postal:</label>
                                     <input type="text" class="form-control" name="codipostal" required="true">
                                 </div>
                                 
-                                <!-- Email -->
+                                <!-- Email 
                                 <div class="form-group">
                                     <label for="email" th:text="#{usuari.email}">Email:</label>
                                     <input type="text" class="form-control" name="email" required="true">
                                 </div>
                                 
-                                <!-- Contrasenya -->
+                                <!-- Contrasenya 
                                 <div class="form-group">
                                     <label for="contrasenya" th:text="#{usuari.contrasenya}">Contrasenya:</label>
                                     <input type="text" class="form-control" name="contrasenya" required="true">
                                 </div>
                                 
-                                <!-- Repetir Contrasenya -->
+                                <!-- Repetir Contrasenya 
                                 <div class="form-group">
                                     <label for="contrasenya2" th:text="#{usuari.contrasenya2}">Repetir contrasenya:</label>
                                     <input type="text" class="form-control" name="contrasenya2" required="true">
                                 </div>
                             </div>
-                        <!-- Botón para guardar el nuevo usuario -->
+                        <!-- Botón para guardar el nuevo usuario 
                         <div class="modal-footer">
                             <button class="bton bton-primary" type="submit" th:text="#{accion.guardar}">Guardar</button>
                         </div>
@@ -79,4 +79,81 @@
             </div> 
         </section>
     </body>
+</html> -->
+                        
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Crear Producte</title>
+    <meta charset="UTF-8"/>
+</head>
+<body>
+<!--<header th:replace="layout/plantilla :: capcalera" />-->
+    <h2>Crear Producte</h2>
+
+    <p>
+        <form th:action="@{/guardarProducte}" method="post" th:object="${producte}">
+            <input type="hidden" name="idProducte" th:field="*{idProducte}"/>
+            <table style="width:35%">
+                <tr>
+                    <td><label for="nom">Nom</label></td>
+                    <td><label for="cognoms">Cognoms</label></td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="text" id="nom" name="nom" th:field="*{nom}" placeholder="Nom del Usuari"/>
+                        <span th:if="${#fields.hasErrors('nom')}" th:errors="*{nom}"></span>
+                    </td>
+                    <td>
+                        <input type="text" id="cognoms" name="cognoms" th:field="*{cognoms}" placeholder="Cognoms del Usuari"/>
+                        <span th:if="${#fields.hasErrors('cognoms')}" th:errors="*{cognoms}"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="telefon">Telèfon</label></td>
+                    <td><label for="adreca">Adreça</label></td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="number"  id="telefon" name="telefon" th:field="*{telefon}"
+                               placeholder="Telefon del Usuari"/>
+                        <span th:if="${#fields.hasErrors('telefon')}" th:errors="*{telefon}"></span>
+                    </td>
+                    <td>
+                        <input type="text" id="adreca" name="adreca" th:field="*{adreca}"
+                               placeholder="Adreça del Usuari"/>
+                        <span th:if="${#fields.hasErrors('adreca')}" th:errors="*{adreca}"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="codiPostal">Codi Postal</label></td>
+                    <td><label for="password">Contrasenya</label></td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="text" id="codiPostal" name="codiPostal" th:field="*{codiPostal}"
+                               placeholder="Codi Postal del Usuari"/>
+                        <span th:if="${#fields.hasErrors('codiPostal')}" th:errors="*{codiPostal}"></span>
+                    </td>
+                    <td>
+                        <input type="text" id="password" name="password" th:field="*{password}"
+                               placeholder="Contrasenya"/>
+                        <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
+                    </td>
+                </tr>
+            </table>
+        <br>
+
+        <button><a th:href="@{/llistarUsuaris}" th:text="#{cancelar}"></a></button>
+        <input type="submit" name="enviar" value="Guardar"/>
+
+        <br><br><br>
+    </form>
+    </p>
+
+<!--<footer th:replace="layout/plantilla :: peu" />-->
+
+</body>
 </html>
+
