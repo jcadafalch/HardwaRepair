@@ -13,11 +13,11 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import lombok.Data;
+
 /**
  *
- * @author Lucas Tolón Pacheco
+ * @author lktol
  */
-
 @Data
 @Entity
 @Table(name="categoria")
@@ -34,4 +34,5 @@ public class Categoria implements Serializable{
 
 
 }
+
 

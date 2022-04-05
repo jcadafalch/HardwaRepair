@@ -54,17 +54,16 @@ public class ControladorCategoria {
         return "redirect:/llistarCategories";
     }
 
-    /*@GetMapping("/editarProducte/{idCategoria}")
-    public String editarProducte(Categoria categoria, Model model){
-        System.out.println("Hola");
+    @GetMapping("/editarCategoria/{idCategoria}")
+    public String editarCategoria(Categoria categoria, Model model){
         System.out.println("Categoria a editar == " + categoria);
-        //log.info(String.valueOf(producte.getIdProducte()));
+        log.info(String.valueOf(categoria.getIdCategoria()));
 
         categoria = categoriaService.cercarCategoria(categoria);
         System.out.println("Categoria a editar == " + categoria);
-        model.addAttribute("Categoria", categoria);
+        model.addAttribute("categoria", categoria);
         return "formulariCategoria";
-    }*/
+    }
 
     
     @GetMapping("/categoriaController")

@@ -23,7 +23,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class ControladorProducte {
     @Autowired
     private ProducteServiceInterface producteService;
-
     @Autowired
     private CategoriaServiceInterface categoriaService;
 
