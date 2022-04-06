@@ -1,4 +1,4 @@
-package cat.copernic.HardwaRepair.serveis;
+package cat.copernic.HardwaRepair.serveis.Producte;
 
 import cat.copernic.HardwaRepair.DAO.ProducteDAO;
 import cat.copernic.HardwaRepair.Model.Producte;

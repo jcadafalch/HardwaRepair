@@ -1,4 +1,4 @@
-package cat.copernic.HardwaRepair.serveis;
+package cat.copernic.HardwaRepair.serveis.Equip;
 
 import cat.copernic.HardwaRepair.Model.Equip;
 

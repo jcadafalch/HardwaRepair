@@ -1,4 +1,4 @@
-package cat.copernic.HardwaRepair.serveis;
+package cat.copernic.HardwaRepair.serveis.LiniaReparacio;
 
 import cat.copernic.HardwaRepair.Model.LiniaReparacio;
 import java.util.List;

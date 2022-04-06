@@ -1,11 +1,10 @@
 package cat.copernic.HardwaRepair.Controller.Producte;
 
-import cat.copernic.HardwaRepair.DAO.CategoriaDAO;
 import cat.copernic.HardwaRepair.Model.LiniaReparacio;
 import cat.copernic.HardwaRepair.Model.Producte;
-import cat.copernic.HardwaRepair.serveis.CategoriaServiceInterface;
-import cat.copernic.HardwaRepair.serveis.LiniaReparacioServiceInterface;
-import cat.copernic.HardwaRepair.serveis.ProducteServiceInterface;
+import cat.copernic.HardwaRepair.serveis.Categoria.CategoriaServiceInterface;
+import cat.copernic.HardwaRepair.serveis.LiniaReparacio.LiniaReparacioServiceInterface;
+import cat.copernic.HardwaRepair.serveis.Producte.ProducteServiceInterface;
 import javax.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -101,36 +100,6 @@ public class ControladorProducte {
         producteService.eliminarProducte(producte);
 
         //Redirigim a la vista de llistar productes
-        return "redirect:/llistarProductes";
-    }
-
-    @Autowired
-    private LiniaReparacioServiceInterface liniaService;
-
-    @GetMapping("/liniaReparacio")
-    public String liniaReparacio(Model model){
-        try {
-            //Passem el llistat de productes a la vista
-            model.addAttribute("productes", producteService.llistarProductes());
-        }catch (NullPointerException e){
-            //Si no hi ha productes, mostrem un missatge d'error
-            System.out.println("No hi ha productes");
-            System.out.println("Error == " + e.getMessage());
-        }
-
-        return "liniaReparacio";
-    }
-
-    @PostMapping("/guardarLiniaReparacio")
-    public String guardarLiniaReparacio(@Valid LiniaReparacio liniaReparacio, Errors errors){
-        if (errors.hasErrors()) {
-            //Si hi ha errors, tornem a la vista de linia reparació
-            log.info("S'ha produït un error'");
-            return "liniaReparacio";
-        }
-        //Guardem la linia reparació
-        liniaService.afegirLiniaReparacio(liniaReparacio);
-        //return "redirect:/liniaReparacio";
         return "redirect:/llistarProductes";
     }
 

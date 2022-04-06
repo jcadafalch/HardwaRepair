@@ -1,4 +1,4 @@
-package cat.copernic.HardwaRepair.serveis;
+package cat.copernic.HardwaRepair.serveis.Client;
 
 import cat.copernic.HardwaRepair.Model.Client;
 

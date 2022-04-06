@@ -15,7 +15,7 @@ import java.io.Serializable;
  */
 @Data
 @Entity
-@Table(name = "liniaReparacio")
+@Table(name = "linia_reparacio")
 public class LiniaReparacio implements Serializable {
 
     private static final long serialVersionUID=1L;

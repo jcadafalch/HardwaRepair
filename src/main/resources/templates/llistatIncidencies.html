@@ -25,6 +25,7 @@
                     <td th:text="${incidencia.tipus_equip}"></td>
                     <td th:text="${incidencia.tipus_operacio_id}"></td>
                     <td><button>Detalls</button></td>
+                    <td><a th:href="@{/liniaReparacio/}+${incidencia.id_incidencia}">Linia Reparacio</a></td>
                 </tr>
             </table>
         </div>

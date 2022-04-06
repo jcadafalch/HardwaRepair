@@ -1,15 +1,15 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
       xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <title>Crear Producte</title>
-    <meta charset="UTF-8"/>
-</head>
-<body>
-<!--<header th:replace="layout/plantilla :: capcalera" />-->
-    <h2>Crear Producte</h2>
+    <head>
+        <title>Crear Producte</title>
+        <meta charset="UTF-8"/>
+    </head>
+    <body>
+        <!--<header th:replace="layout/plantilla :: capcalera" />-->
+        <h2>Crear Producte</h2>
 
-    <p>
+        <p>
             <form th:action="@{/guardarProducteDetalls}" method="post" th:object="${producte}">
                 <input type="hidden" name="idProducte" th:field="*{idProducte}"/>
                 <table style="width:35%">
@@ -56,15 +56,15 @@
                         </td>
                     </tr>
                 </table>
-            <br>
+                <br>
 
-                <button><a th:href="@{/llistarProductes}" th:text="#{cancelar}"></a></button>
-                <input type="submit" name="enviar" value="Guardar"/>
-                <button><a th:href="@{/eliminarProducte/}+${producte.idProducte}" th:text="Eliminar"></a></button>
+                    <button><a th:href="@{/llistarProductes}" th:text="#{cancelar}"></a></button>
+                    <input type="submit" name="enviar" value="Guardar"/>
+                    <button><a th:href="@{/eliminarProducte/}+${producte.idProducte}" th:text="Eliminar"></a></button>
             </form>
-    </p>
+        </p>
 
-<!--<footer th:replace="layout/plantilla :: peu" />-->
+        <!--<footer th:replace="layout/plantilla :: peu" />-->
 
-</body>
+    </body>
 </html>

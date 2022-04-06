@@ -1,4 +1,4 @@
-package cat.copernic.HardwaRepair.serveis;
+package cat.copernic.HardwaRepair.serveis.Usuari;
 
 
 import cat.copernic.HardwaRepair.DAO.UsuariDAO;
