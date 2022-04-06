@@ -34,7 +34,7 @@ public class ControladorUsuari {
         }
     }
 
-    @GetMapping("/formulariUsuari")
+    /*@GetMapping("/formulariUsuari")
     public String crearFormulariUsuari(Usuari usuari, Model model){
 
         try{
@@ -46,32 +46,28 @@ public class ControladorUsuari {
             System.out.println("Error == " + e.getMessage());
         }
 
-
-
-        return "formulariUsuaris";
+        return "formulariUsuari";
     }
     
     @PostMapping("/guardarUsuari")
-    public String guardarProducte(@Valid Usuari usuari, Errors errors){
+    public String guardarUsuari(@Valid Usuari usuari, Errors errors){
         if (errors.hasErrors()) {
             log.info("S'ha produït un error'");
-            return "formulariProducte";
+            return "formulariUsuari";
         }
         
         usuariService.afegirUsuari(usuari);
         return "redirect:/llistarUsuaris";
-    }
+    }*/
 
-    /*@GetMapping("/editarProducte/{idProducte}")
-    public String editarProducte(Producte producte, Model model){
-        System.out.println("Hola");
-        System.out.println("Producte a editar == " + producte);
+    @GetMapping("/editarUsuari/{idUsuari}")
+    public String editarProducte(Usuari usuari, Model model){
+        System.out.println("Usuari a editar == " + usuari);
         //log.info(String.valueOf(producte.getIdProducte()));
 
-        producte = producteService.cercarProducte(producte);
-        System.out.println("Producte a editar == " + producte);
-        model.addAttribute("producte", producte);
-        model.addAttribute("categories", categoriaService.llistarCategoria());
-        return "formulariProducte";
-    }*/
+        usuari = usuariService.cercarUsuari(usuari);
+        System.out.println("Ususari a editar == " + usuari);
+        model.addAttribute("usuari", usuari);
+        return "formulariUsuari";
+    }
 }

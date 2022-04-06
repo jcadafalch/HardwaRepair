@@ -51,7 +51,7 @@ public class Usuari implements Serializable {
     @Size(min = 5, max = 5)
     private String codiPostal;
 
-    @NotNull
+    
     private Boolean isAdministrador;
 
     /*Implementem l'atribut que relacionarà l'usuari amb el rol, tenint en compte que un 

@@ -85,16 +85,16 @@
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
       xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title>Crear Producte</title>
+    <title>Crear Usuari</title>
     <meta charset="UTF-8"/>
 </head>
 <body>
 <!--<header th:replace="layout/plantilla :: capcalera" />-->
-    <h2>Crear Producte</h2>
+    <h2>Crear Usuari</h2>
 
     <p>
-        <form th:action="@{/guardarProducte}" method="post" th:object="${producte}">
-            <input type="hidden" name="idProducte" th:field="*{idProducte}"/>
+        <form th:action="@{/guardarUsuari}" method="post" th:object="${usuari}">
+            <input type="hidden" name="idUsuari" th:field="*{idUsuari}"/>
             <table style="width:35%">
                 <tr>
                     <td><label for="nom">Nom</label></td>
@@ -116,13 +116,11 @@
                 </tr>
                 <tr>
                     <td>
-                        <input type="number"  id="telefon" name="telefon" th:field="*{telefon}"
-                               placeholder="Telefon del Usuari"/>
+                        <input type="number"  id="telefon" name="telefon" th:field="*{telefon}" placeholder="Telefon del Usuari"/>
                         <span th:if="${#fields.hasErrors('telefon')}" th:errors="*{telefon}"></span>
                     </td>
                     <td>
-                        <input type="text" id="adreca" name="adreca" th:field="*{adreca}"
-                               placeholder="Adreça del Usuari"/>
+                        <input type="text" id="adreca" name="adreca" th:field="*{adreca}" placeholder="Adreça del Usuari"/>
                         <span th:if="${#fields.hasErrors('adreca')}" th:errors="*{adreca}"></span>
                     </td>
                 </tr>
@@ -137,9 +135,18 @@
                         <span th:if="${#fields.hasErrors('codiPostal')}" th:errors="*{codiPostal}"></span>
                     </td>
                     <td>
-                        <input type="text" id="password" name="password" th:field="*{password}"
-                               placeholder="Contrasenya"/>
+                        <!-- Type password no funciona -->
+                        <input type="text" id="password" name="password" th:field="*{password}" placeholder="password"/>
                         <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="dni">DNI</label></td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="text" id="dni" name="dni" th:field="*{dni}" placeholder="dni"/>
+                        <span th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}"></span>
                     </td>
                 </tr>
             </table>
