@@ -142,11 +142,16 @@
                 </tr>
                 <tr>
                     <td><label for="dni">DNI</label></td>
+                    <td><label for="username">Username</label></td>
                 </tr>
                 <tr>
                     <td>
                         <input type="text" id="dni" name="dni" th:field="*{dni}" placeholder="dni"/>
                         <span th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}"></span>
+                    </td>
+                    <td>
+                        <input type="text" id="username" name="username" th:field="*{username}" placeholder="username"/>
+                        <span th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></span>
                     </td>
                 </tr>
             </table>

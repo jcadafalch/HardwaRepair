@@ -34,7 +34,7 @@ public class ControladorUsuari {
         }
     }
 
-    /*@GetMapping("/formulariUsuari")
+    @GetMapping("/formulariUsuari")
     public String crearFormulariUsuari(Usuari usuari, Model model){
 
         try{
@@ -58,10 +58,10 @@ public class ControladorUsuari {
         
         usuariService.afegirUsuari(usuari);
         return "redirect:/llistarUsuaris";
-    }*/
+    }
 
     @GetMapping("/editarUsuari/{idUsuari}")
-    public String editarProducte(Usuari usuari, Model model){
+    public String editarUsuari(Usuari usuari, Model model){
         System.out.println("Usuari a editar == " + usuari);
         //log.info(String.valueOf(producte.getIdProducte()));
 
