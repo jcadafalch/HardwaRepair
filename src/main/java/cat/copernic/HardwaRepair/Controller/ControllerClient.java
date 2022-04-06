@@ -24,8 +24,8 @@ public class ControllerClient {
     @Autowired
     private ClientDAO clientDao; 
 
-    @GetMapping("/Clients")
-    public String inici(Model model) {
+    @GetMapping("/creaClient")
+    public String creaClient(Model model) {
         log.info("Executant el controlador de Client");
         
         //definim la variable clients

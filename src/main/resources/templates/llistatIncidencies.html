@@ -8,8 +8,10 @@
     </head>
     <body>
         <h1>Incidencies</h1>
-        <a th:href="@{/llistatIncidencies}" th:text="#{incidencia.llistatIncidencia}"></a>
+        <!--<a th:href="@{/llistatIncidencies}" th:text="#{incidencia.llistatIncidencia}"></a>-->
+<!--        If que mostra la taula segons si no es null-->
         <div th:if="${incidencies!=null && !incidencies.empty}">
+            <!--Realitzem una taula on mostrarem les categories trobades a la bbdd mitjançant un for each d'Incidències-->
             <table border="1">
                 <tr>
                     <th>Id Incidència</th>
@@ -24,12 +26,14 @@
                     <td th:text="${incidencia.reparador}"></td>
                     <td th:text="${incidencia.tipus_equip}"></td>
                     <td th:text="${incidencia.tipus_operacio_id}"></td>
+                    <!--Boto que ens permet accedir als detalls de les incidències.-->
                     <td><button>Detalls</button></td>
                 </tr>
             </table>
         </div>
+        <!--If que mostra un avis dient que no hi han Incidències.-->
        <div th:if="${incidencies==null || incidencies.empty}">
-            <p>No hi ha productes</p>
+            <p>No hi ha Incidencies</p>
         </div>
     </body>
 </html>

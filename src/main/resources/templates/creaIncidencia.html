@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
     <head>
-        <title>Selecció Client</title>
+        <title>CreaIncidencia</title>
         <meta charset="UTF-8"/>
     </head>
     <body>
@@ -10,9 +10,15 @@
 
         <section th:fragment="creaIncidencia">
             <div>
-                <h1> Incicdencia</h1>
+                <h1> Crea Incidencia</h1>
             </div>
+            <table>
+                <tr>
 
+                </tr>
+
+
+            </table>
             <form th:action="@{/detallsIncidencia}" method="POST" th:object="${Incidencia}" class="was-validated">
                 <div class="modal-body">
 
@@ -51,19 +57,32 @@
                         <input type="text" class="form-control" name="IdClient" id="idClient" list="clients"/>
 
 
-
-                        <button class="btn btn-secondary" type="submit" th:text="#{accion.crearClient}">Crea Client</button>
-
-                    </div>
-
-
-                    <div class="form-group">
-
-                        <label for="soluGarantia" th:text="#{Incidencia.soliGarantia}">Sol·licitud de Garantia : <input type="checkbox" id="soliGarantia" value="soliGarantia"></label>
-                        <label for="garantia" th:text="#{Incidencia.garantia}">En Garantia : <input type="checkbox" id="garantia" value="garantia"></label>
+                        <a th:href="@{/crearEquip}"><button class="btn btn-secondary" type="submit" th:text="#{accion.crearClient}">Crea Client</button></a>
 
                     </div>
 
+
+                    <br><!-- comment -->
+
+                    <!--<form:checkbox path="Food" value="BreakFast"/>-->  
+
+
+                    <div>
+                        <td><a th:href="@{../crearEquip}"><button class="selectModuleButton"> Servei Tècnic</button></a></td>
+                        <!-- Si l'usuari té el rol de administrador se li mostrarà el botó de gestió d'usuaris -->
+                        <td><a th:href="@{../llistatUsuaris}"><button class="selectModuleButton" >Gestió Usuaris </button></a></td>
+                    </div>  
+
+
+<a th:href="@{/llistatIncidencies}" th:text="#{incidencia.llistatIncidencia}"></a>
+                    <form:checkbox path="garantia"/>
+                    <form:checkbox path="solicitud_pressupost"/>
+
+                    <label for="soluGarantia" th:text="#{Incidencia.soliGarantia}">Sol·licitud de Garantia : </label>
+                    <label for="garantia" th:text="#{Incidencia.garantia}">En Garantia :</label>
+
+
+                    <br>
 
                     <div class="form-group">
 
@@ -72,11 +91,7 @@
 
                     </div>
 
-
-
                     //Columna 2
-
-
 
                     <div class="form-group">
 
@@ -97,7 +112,10 @@
                         <label for="idEquip" th:text="#{Incidencia.idEquip}">ID Equip:</label>
                         <input type="text" class="form-control" name="idEquip" id="idEquip" list="equips"/>
 
-                        <button class="btn btn-secondary" type="submit" th:text="#{accion.crearEquip}">Crea Equip</button>
+                        <!--                        <input type="button" th:href="@{/llistatIncidencies}" th:text="#{accion.crearEquip}"/>-->
+
+                        <a><button th:href="@{/creaEquip}" th:text="#{accion.crearEquip}" class="selectModuleButton"> Servei Tècnic</button></a>
+
 
                     </div>
 
@@ -123,31 +141,32 @@
                         <input type="text" class="form-control" name="numFactGarantia" id="numFactGarantia"/>
 
                     </div>
-
+                    <label for="productesUtilitzats" th:text="#{Incidencia.productesUtilitzats}">Productes Utilitzats :   </label>
+                    <button class="btn btn-secondary" type="submit" th:text="#{accion.afegirProducte}">Afegir Producte</button> <br/>
                     <div class="from-group">
 
-                        <label for="productesUtilitzats" th:text="#{Incidencia.productesUtilitzats}">Productes Utilitzats :   <button class="btn btn-secondary" type="submit" th:text="#{accion.afegirProducte}">Afegir Producte</button></label>
-                        <table id="tableProductes">
+                        <table id="tableProductes" border="1">
                             <tr>
                                 <td>
                                     <label for="nomProducte" th:text="#{Incidencia.nomProducte}">Nom</label>
                                 </td>
-                            </tr>
-                            <tr>
+
                                 <td>
                                     <label for="marcaProducte" th:text="#{Incidencia.marcaProducte}">Marca</label>
                                 </td>
-                            </tr>
-                            <tr>
+
                                 <td>
                                     <label for="categoriaProducte" th:text="#{Incidencia.categoriaProducte}">Categoria</label>
                                 </td>
-                            </tr>
-                            <tr>
+
                                 <td>
                                     <label for="quantittatProducte" th:text="#{Incidencia.quantitatProducte}">Quantitat</label>
                                 </td>
                             </tr>
+                            <tr>
+
+                            </tr>
+
                         </table>
                     </div>
                 </div>

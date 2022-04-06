@@ -5,6 +5,8 @@
  */
 package cat.copernic.HardwaRepair.Controller;
 
+import cat.copernic.HardwaRepair.DAO.ClientDAO;
+import cat.copernic.HardwaRepair.DAO.EquipDAO;
 import cat.copernic.HardwaRepair.DAO.IncidenciaDAO;
 import cat.copernic.HardwaRepair.serveis.IncidenciaServiceInterface;
 import lombok.extern.slf4j.Slf4j;
@@ -25,8 +27,9 @@ public class ControllerIncidencia {
     @Autowired
     private IncidenciaDAO incidenciaDao; 
 
-    @GetMapping("/Incidencies")
-    public String inici(Model model) {
+    
+    @GetMapping("/detallsIncidencia")
+    public String detallsIncidencia(Model model) {
         log.info("Executant el controlador de Incidencia");
         
         //definim la variable de l'incidencia
@@ -34,12 +37,28 @@ public class ControllerIncidencia {
         
         model.addAttribute("incidencies", incidencies);
 
-        return "inici"; 
+        return "detallsIncidencia"; 
+        
+    }
+    
+    
+    
+    
+    @GetMapping("/crearIncidencia")
+    public String crearIncidencia(Model model) {
+        log.info("Executant el controlador de Incidencia");
+        
+        //definim la variable de l'incidencia
+        var incidencies = incidenciaDao.findAll();
+        
+        model.addAttribute("incidencies", incidencies);
+
+        return "creaIncidencia"; 
         
     }
 //    
-//    
-     @Autowired
+//  
+    @Autowired  
     private IncidenciaServiceInterface incidenciaService;
 
 
@@ -47,10 +66,16 @@ public class ControllerIncidencia {
     public String llistarProductes(Model model){{
         try{
             model.addAttribute("incidencies", incidenciaService.llistarIncidencies());
+            System.out.println(incidenciaService.llistarIncidencies());
         }catch (NullPointerException e){
             System.out.println("No hi ha Incidencies");
             System.out.println("Error == " + e.getMessage());
         }
         return "llistatIncidencies";
     }}
+    
+    
+    
+    
+ 
 }
