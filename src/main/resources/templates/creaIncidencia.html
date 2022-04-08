@@ -5,6 +5,13 @@
         <title>CreaIncidencia</title>
         <meta charset="UTF-8"/>
     </head>
+    <style>
+        th, td {
+            padding: 15px;
+        }
+    </style>
+
+
     <body>
 
 
@@ -12,165 +19,194 @@
             <div>
                 <h1> Crea Incidencia</h1>
             </div>
-            <table>
-                <tr>
-
-                </tr>
-
-
-            </table>
+            <br/>
             <form th:action="@{/detallsIncidencia}" method="POST" th:object="${Incidencia}" class="was-validated">
+
                 <div class="modal-body">
 
-                    <div class="form-group">
 
-                        <label for="idIncidencia" th:text="#{Incidencia.id}">ID Incidencia :</label>
-                        <input type="text" class="form-control" name="idIncidencia" id="idIncidencia"/>
+                    <table border="0" padding="20px">
+                        <tr>
+                            <td>
+                                <div class="form-group">
 
-                    </div>
+                                    <label for="idIncidencia" th:text="#{Incidencia.id}">ID Incidencia :</label>
+                                    <input type="text" class="form-control" name="idIncidencia" id="idIncidencia"/>
 
-                    <div class="form-group">
+                                </div>
+                            </td>
+                            <td>   
+                                <div class="form-group">
 
-                        <label for="preuTotal" th:text="#{Incidencia.preuTotal}">Preu Total :</label>
-                        <input type="text" class="form-control" name="preuTotal" id="preuTotal"/>
+                                    <label for="dataCreacio" th:text="#{Incidencia.dataCreacio}">Data Creacio :</label>
+                                    <input type="date" id="dataCreacio" name="dataCreacio" value="" min="today">
 
-                    </div>
+                                </div>
 
-                    <div class="form-group">
+                            </td>
 
-                        <label for="reparador" th:text="#{Incidencia.reparador}">Reparador :</label>
-                        <input type="text" class="form-control" name="reparador" id="reparador"/>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="form-group">
 
-                    </div>
+                                    <label for="preuTotal" th:text="#{Incidencia.preuTotal}">Preu Total :</label>
+                                    <input type="text" class="form-control" name="preuTotal" id="preuTotal"/>
 
-                    <div class="form-group">
+                                </div>
 
-                        <label for="tipusOperacio" th:text="#{Incidencia.tipusOperacio}">Tipus Operacio :</label>
-                        <input type="text" class="form-control" name="tipusOperacio" id="tipusOperacio"/>
+                            </td>
 
-                    </div>
+                            <td>
 
+                                <div class="form-group">
 
-                    <div class="form-group">
+                                    <label for="tipusEquip" th:text="#{Incidencia.tipusEquip}">Tipus Equip :</label>
+                                    <input type="text" id="start" name="dataCreacio" value="" min="today">
 
-                        <label for="idClient" th:text="#{Incidencia.idClient}">ID Client:</label>
-                        <input type="text" class="form-control" name="IdClient" id="idClient" list="clients"/>
+                                </div> 
 
+                            </td>
+                        </tr>
 
-                        <a th:href="@{/crearEquip}"><button class="btn btn-secondary" type="submit" th:text="#{accion.crearClient}">Crea Client</button></a>
+                        <tr>
+                            <td>
+                                <div class="form-group">
 
-                    </div>
+                                    <label for="reparador" th:text="#{Incidencia.reparador}">Reparador :</label>
+                                    <input type="text" class="form-control" name="reparador" id="reparador"/>
 
+                                </div>
+                            </td>
 
-                    <br><!-- comment -->
+                            <td>
+                                <div class="form-group">
 
-                    <!--<form:checkbox path="Food" value="BreakFast"/>-->  
+                                    <label for="idEquip" th:text="#{Incidencia.idEquip}">ID Equip:</label>
+                                    <input type="text" class="form-control" name="idEquip" id="idEquip" list="equips"/>
 
-
-                    <div>
-                        <td><a th:href="@{../crearEquip}"><button class="selectModuleButton"> Servei Tècnic</button></a></td>
-                        <!-- Si l'usuari té el rol de administrador se li mostrarà el botó de gestió d'usuaris -->
-                        <td><a th:href="@{../llistatUsuaris}"><button class="selectModuleButton" >Gestió Usuaris </button></a></td>
-                    </div>  
-
-
-<a th:href="@{/llistatIncidencies}" th:text="#{incidencia.llistatIncidencia}"></a>
-                    <form:checkbox path="garantia"/>
-                    <form:checkbox path="solicitud_pressupost"/>
-
-                    <label for="soluGarantia" th:text="#{Incidencia.soliGarantia}">Sol·licitud de Garantia : </label>
-                    <label for="garantia" th:text="#{Incidencia.garantia}">En Garantia :</label>
-
-
-                    <br>
-
-                    <div class="form-group">
-
-                        <label for="decripcio" th:text="#{Incidencia.descripcio}">Descripcio :</label>
-                        <input type="text" class="form-control" name="descripcio" id="descripcio"/>
-
-                    </div>
-
-                    //Columna 2
-
-                    <div class="form-group">
-
-                        <label for="dataCreacio" th:text="#{Incidencia.dataCreacio}">Data Creacio :</label>
-                        <input type="date" id="dataCreacio" name="dataCreacio" value="" min="today">
-
-                    </div>
-
-                    <div class="form-group">
-
-                        <label for="tipusEquip" th:text="#{Incidencia.tipusEquip}">Tipus Equip :</label>
-                        <input type="text" id="start" name="dataCreacio" value="" min="today">
-
-                    </div> 
-
-                    <div class="form-group">
-
-                        <label for="idEquip" th:text="#{Incidencia.idEquip}">ID Equip:</label>
-                        <input type="text" class="form-control" name="idEquip" id="idEquip" list="equips"/>
-
-                        <!--                        <input type="button" th:href="@{/llistatIncidencies}" th:text="#{accion.crearEquip}"/>-->
-
-                        <a><button th:href="@{/creaEquip}" th:text="#{accion.crearEquip}" class="selectModuleButton"> Servei Tècnic</button></a>
+                                    <a th:href="@{/creaEquip}" th:text="#{accion.creaEquip}">Crea Equip</a>
 
 
-                    </div>
+                                </div>
 
-                    <div class="form-group">
+                            </td>
+                        </tr>
 
-                        <label for="idCreador" th:text="#{Incidencia.idCreador}">ID Creador :</label>
-                        <input type="text" class="form-control" name="idCreador" id="idCreador"/>
+                        <tr>
+                            <td>
+                                <div class="form-group">
 
-                    </div>
+                                    <label for="tipusOperacio" th:text="#{Incidencia.tipusOperacio}">Tipus Operacio :</label>
+                                    <input type="text" class="form-control" name="tipusOperacio" id="tipusOperacio"/>
+
+                                </div>
+                            </td>
+
+                            <td>
+                                <div class="form-group">
+
+                                    <label for="idCreador" th:text="#{Incidencia.idCreador}">ID Creador :</label>
+                                    <input type="text" class="form-control" name="idCreador" id="idCreador"/>
+
+                                </div>
+
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <div class="form-group">
+
+                                    <label for="idClient" th:text="#{Incidencia.idClient}">ID Client:</label>
+                                    <input type="text" class="form-control" name="IdClient" id="idClient" list="clients"/>
 
 
-                    <div class="form-group">
-
-                        <label for="dataResolucio" th:text="#{Incidencia.dataResolucio}">Data Resolucio :</label>
-                        <input type="date" id="dataResolucio" name="dataResolucio" value="" min="today">
-
-                    </div>
+                                    <a th:href="@{/creaClient}" th:text="#{accion.creaClient}">Crea Client</a>
 
 
-                    <div class="form-group">
+                                    <!--<a th:href="@{/crearEquip}"><button class="btn btn-secondary" type="submit" th:text="#{accion.crearClient}">Crea Client</button></a>-->
 
-                        <label for="numFactGarantia" th:text="#{Incidencia.numFactGarantia}">Num Factura Garantia :</label>
-                        <input type="text" class="form-control" name="numFactGarantia" id="numFactGarantia"/>
+                                </div>
+                            </td>
 
-                    </div>
-                    <label for="productesUtilitzats" th:text="#{Incidencia.productesUtilitzats}">Productes Utilitzats :   </label>
-                    <button class="btn btn-secondary" type="submit" th:text="#{accion.afegirProducte}">Afegir Producte</button> <br/>
-                    <div class="from-group">
+                            <td>
 
-                        <table id="tableProductes" border="1">
-                            <tr>
-                                <td>
-                                    <label for="nomProducte" th:text="#{Incidencia.nomProducte}">Nom</label>
-                                </td>
+                                <div class="form-group">
 
-                                <td>
-                                    <label for="marcaProducte" th:text="#{Incidencia.marcaProducte}">Marca</label>
-                                </td>
+                                    <label for="dataResolucio" th:text="#{Incidencia.dataResolucio}">Data Resolucio :</label>
+                                    <input type="date" id="dataResolucio" name="dataResolucio" value="" min="today">
 
-                                <td>
-                                    <label for="categoriaProducte" th:text="#{Incidencia.categoriaProducte}">Categoria</label>
-                                </td>
+                                </div>
+                            </td>
+                        </tr>
 
-                                <td>
-                                    <label for="quantittatProducte" th:text="#{Incidencia.quantitatProducte}">Quantitat</label>
-                                </td>
-                            </tr>
-                            <tr>
 
-                            </tr>
+                        <tr>
+                            <td>
+                        <form:checkbox path="garantia"/>
+                        <form:checkbox path="solicitud_pressupost"/>
 
-                        </table>
-                    </div>
+                        <label for="soluGarantia" th:text="#{Incidencia.soliGarantia}">Sol·licitud de Garantia : </label>
+                        <label for="garantia" th:text="#{Incidencia.garantia}">En Garantia :</label>
+                        </td>
+
+                        <td>
+
+                            <div class="form-group">
+
+                                <label for="numFactGarantia" th:text="#{Incidencia.numFactGarantia}">Num Factura Garantia :</label>
+                                <input type="text" class="form-control" name="numFactGarantia" id="numFactGarantia"/>
+
+                            </div>
+                        </td>
+                        </tr>
+
+
+                        <tr>
+                            <td>
+                                <div class="form-group">
+
+                                    <label for="decripcio" th:text="#{Incidencia.descripcio}">Descripcio :</label>
+                                    <input type="text" class="form-control" name="descripcio" id="descripcio"/>
+
+                                </div>
+                            </td>
+
+                            <td>
+                                <label for="productesUtilitzats" th:text="#{Incidencia.productesUtilitzats}">Productes Utilitzats :   </label>
+                                <button class="btn btn-secondary" type="submit" th:text="#{accion.afegirProducte}">Afegir Producte</button> <br/>
+                                <div class="from-group">
+
+                                    <table id="tableProductes" border="1">
+                                        <tr>
+                                            <td>
+                                                <label for="nomProducte" th:text="#{Incidencia.nomProducte}">Nom</label>
+                                            </td>
+
+                                            <td>
+                                                <label for="marcaProducte" th:text="#{Incidencia.marcaProducte}">Marca</label>
+                                            </td>
+
+                                            <td>
+                                                <label for="categoriaProducte" th:text="#{Incidencia.categoriaProducte}">Categoria</label>
+                                            </td>
+
+                                            <td>
+                                                <label for="quantittatProducte" th:text="#{Incidencia.quantitatProducte}">Quantitat</label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+
+                                        </tr>
+
+                                    </table>
+                                </div>
+
+                            </td>
+                        </tr>     
+                    </table>
                 </div>
-
                 <div  class="modal-footer">
                     <button class="btn btn-primary" type="submit" th:text="#{accion.guardar}">Guardar</button>
                 </div>

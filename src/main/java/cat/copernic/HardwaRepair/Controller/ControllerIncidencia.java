@@ -25,9 +25,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Slf4j
 public class ControllerIncidencia {
     @Autowired
-    private IncidenciaDAO incidenciaDao; 
-
-    
+    private IncidenciaDAO incidenciaDao;
+  
     @GetMapping("/detallsIncidencia")
     public String detallsIncidencia(Model model) {
         log.info("Executant el controlador de Incidencia");
@@ -60,7 +59,6 @@ public class ControllerIncidencia {
 //  
     @Autowired  
     private IncidenciaServiceInterface incidenciaService;
-
 
     @GetMapping("/llistatIncidencies")
     public String llistarProductes(Model model){{

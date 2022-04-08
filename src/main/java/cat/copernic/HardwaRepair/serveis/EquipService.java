@@ -56,8 +56,7 @@ public class EquipService implements EquipServiceInterface {
     public void afegirEquip(Equip equip) {
 
         /*Cridem al mètode save() de CrudRepository perquè afegeixi el equip passat com a paràmetre,
-         *a la taula equip de la BBDD hardwarepair.
-         */
+         *a la taula equip de la BBDD hardwarepair.*/
         this.equip.save(equip);
     }
 
@@ -75,7 +74,7 @@ public class EquipService implements EquipServiceInterface {
 
     /*Cercar el equip passat per paràmetre en la taula equip de la BBDD hardwarepair*/
     @Override
-    @Transactional(readOnly = true) //Igual que en el mètode llistarEquipsos, no modifiquem la informació de la BBDD
+    @Transactional(readOnly = true) //Igual que en el mètode llistarEquips, no modifiquem la informació de la BBDD
     public Equip cercarEquip(Equip equip) {
 
         /*Cridem al mètode findByUsername() de CrudRepository perquè ens retorni el equip passat com a paràmetre.

@@ -10,6 +10,8 @@
         <h1>Incidencies</h1>
         <!--<a th:href="@{/llistatIncidencies}" th:text="#{incidencia.llistatIncidencia}"></a>-->
 <!--        If que mostra la taula segons si no es null-->
+
+ <a th:href="@{/crearIncidencia}" th:text="#{accion.creaIncidencia}">Crea Incidencia</a>
         <div th:if="${incidencies!=null && !incidencies.empty}">
             <!--Realitzem una taula on mostrarem les categories trobades a la bbdd mitjançant un for each d'Incidències-->
             <table border="1">

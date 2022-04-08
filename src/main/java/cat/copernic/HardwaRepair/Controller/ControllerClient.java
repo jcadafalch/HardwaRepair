@@ -6,6 +6,7 @@
 package cat.copernic.HardwaRepair.Controller;
 
 import cat.copernic.HardwaRepair.DAO.ClientDAO;
+import cat.copernic.HardwaRepair.serveis.ClientService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -35,4 +36,34 @@ public class ControllerClient {
 
         return "creaClient"; 
     }
+    
+    
+//    
+//    @GetMapping("/formulariClient")
+//    public String crearFormulariClient(Client client, Model model) {
+//
+//        try {
+//            var categories = ClientService.llistarCategoria();
+//            System.out.println(categories);
+//            model.addAttribute("categories", categories);
+//        } catch (NullPointerException e) {
+//            System.out.println("No hi ha categories");
+//            System.out.println("Error == " + e.getMessage());
+//        }
+//
+//        return "formulariClient";
+//    }
+//
+//    @PostMapping("/guardarClient")
+//    public String guardarClient(@Valid Client client, Errors errors) {
+//        if (errors.hasErrors()) {
+//            log.info("S'ha produït un error'");
+//            return "formulariClient";
+//        }
+//
+//        ClientService.afegirClient(client);
+//        return "redirect:/llistarClients";
+//    }
+
+
 }
