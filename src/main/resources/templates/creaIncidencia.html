@@ -85,8 +85,8 @@
                                     <label for="idEquip" th:text="#{Incidencia.idEquip}">ID Equip:</label>
                                     <input type="text" class="form-control" name="idEquip" id="idEquip" list="equips"/>
 
-                                    <a th:href="@{/creaEquip}" th:text="#{accion.creaEquip}">Crea Equip</a>
-
+                                    <!--<a th:href="@{/creaEquip}" th:text="#{accion.creaEquip}">Crea Equip</a>-->
+                                    <button><a th:href="@{/creaEquip}" th:text="#{accion.creaEquip}"></a></button>
 
                                 </div>
 
@@ -122,7 +122,8 @@
                                     <input type="text" class="form-control" name="IdClient" id="idClient" list="clients"/>
 
 
-                                    <a th:href="@{/creaClient}" th:text="#{accion.creaClient}">Crea Client</a>
+                                    <!--<a th:href="@{/creaClient}" th:text="#{accion.creaClient}">Crea Client</a>-->
+                                    <button><a th:href="@{/creaClient}" th:text="#{accion.creaClient}"></a></button>
 
 
                                     <!--<a th:href="@{/crearEquip}"><button class="btn btn-secondary" type="submit" th:text="#{accion.crearClient}">Crea Client</button></a>-->
@@ -209,6 +210,8 @@
                 </div>
                 <div  class="modal-footer">
                     <button class="btn btn-primary" type="submit" th:text="#{accion.guardar}">Guardar</button>
+                    
+                    <button><a th:href="@{/llistatIncidencies}" th:text="#{accion.cancelar}"></a></button>
                 </div>
             </form>
         </section>

@@ -25,7 +25,7 @@
                                 <span>&times;</span>
 
                             </button>
-                            
+
                         </div>
 
                         <form th:action="@{/crearClient}" method="POST" th:object="${Client}" class="was-validated">
@@ -76,7 +76,10 @@
                             </div>
 
                             <div  class="modal-footer">
+
+                                <button><a th:href="@{/crearIncidencia}" th:text="#{accion.cancelar}"></a></button>
                                 <button class="btn btn-primary" type="submit" th:text="#{accion.guardar}">Guardar</button>
+
                             </div>
 
                         </form>

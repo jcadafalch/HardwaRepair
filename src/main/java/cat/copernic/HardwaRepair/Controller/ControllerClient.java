@@ -22,11 +22,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 @Slf4j
 public class ControllerClient {
+    
     @Autowired
     private ClientDAO clientDao; 
 
     @GetMapping("/creaClient")
-    public String creaClient(Model model) {
+    public String inici(Model model) {
         log.info("Executant el controlador de Client");
         
         //definim la variable clients
@@ -39,7 +40,7 @@ public class ControllerClient {
     
     
 //    
-//    @GetMapping("/formulariClient")
+//    @GetMapping("/")
 //    public String crearFormulariClient(Client client, Model model) {
 //
 //        try {
