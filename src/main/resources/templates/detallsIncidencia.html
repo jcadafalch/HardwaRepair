@@ -18,7 +18,7 @@
             </div>
             <br/>
 
-            <form th:action="@{/guardarIncidenciaCrear}" method="POST" th:object="${incidencia}">
+            <form th:action="@{/guardarIncidenciaDetalls}" method="POST" th:object="${incidencia}">
 
                 <div class="modal-body">
 
@@ -291,6 +291,7 @@
                 <div  class="modal-footer">
                      <button><a th:href="@{/llistatIncidencies}" th:text="#{accion.cancelar}"></a></button>
                      <input type="submit" name="enviar" value="Guardar"/>
+                     <button><a th:href="@{/eliminarIncidencia/}+${incidencia.id_incidencia}" th:text="Eliminar"></a></button>
                 </div>
             </form>
         </section>

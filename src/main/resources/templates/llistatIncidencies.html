@@ -11,7 +11,7 @@
         <!--<a th:href="@{/llistatIncidencies}" th:text="#{incidencia.llistatIncidencia}"></a>-->
 <!--        If que mostra la taula segons si no es null-->
 
- <a th:href="@{/crearIncidencia}" th:text="#{accion.creaIncidencia}">Crea Incidencia</a>
+<button> <a th:href="@{/crearIncidencia}" th:text="#{accion.creaIncidencia}">Crea Incidencia</a> </button>
         <div th:if="${incidencies!=null && !incidencies.empty}">
             <!--Realitzem una taula on mostrarem les categories trobades a la bbdd mitjançant un for each d'Incidències-->
             <table border="1">
@@ -29,7 +29,7 @@
                     <td th:text="${incidencia.tipus_equip}"></td>
                     <td th:text="${incidencia.tipus_operacio_id}"></td>
                     <!--Boto que ens permet accedir als detalls de les incidències.-->
-                    <td><button>Detalls</button></td>
+                    <td><a th:href="@{/editarIncidencia/}+${incidencia.id_incidencia}">Detalls</a></td>
                 </tr>
             </table>
         </div>

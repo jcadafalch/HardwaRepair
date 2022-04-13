@@ -6,6 +6,7 @@
 package cat.copernic.HardwaRepair.Model;
 
 import java.io.Serializable;
+
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,6 +17,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 
 /**
@@ -52,16 +55,16 @@ public class Incidencia implements Serializable{
     @NotEmpty
     private String cliente_id;
    
-    @NotEmpty
+    
     private boolean solicitud_pressupost;
    
-    @NotEmpty
+    
     private boolean garantia;
    
     @NotEmpty
     private String descripcio_averia;
    
-    @NotEmpty
+    @DateTimeFormat(iso = ISO.DATE)
     private Date data_creacio;
    
     @NotEmpty
@@ -73,7 +76,7 @@ public class Incidencia implements Serializable{
     @NotEmpty
     private String creador;
    
-    @NotEmpty
+    @DateTimeFormat(iso = ISO.DATE)
     private Date data_resolucio;
    
     @NotEmpty
