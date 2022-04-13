@@ -23,7 +23,7 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name="equip")
+@Table(name = "equip")
 public class Equip implements Serializable{
     
     private static final long serialVersionUID=1L;

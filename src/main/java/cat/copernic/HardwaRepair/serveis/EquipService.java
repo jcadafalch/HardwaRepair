@@ -59,7 +59,7 @@ public class EquipService implements EquipServiceInterface {
          *a la taula equip de la BBDD hardwarepair.*/
         this.equip.save(equip);
     }
-
+ 
     /*Eliminar el equip passat per paràmetre de la taula equip de la BBDD hardwarepair*/
     @Override
     @Transactional //Igual que en el mètode afegirEquip, modifiquem la informació de la BBDD

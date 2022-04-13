@@ -1,6 +1,6 @@
-<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <title>Crea Client</title>
         <meta charset="UTF-8"/>
@@ -28,57 +28,75 @@
 
                         </div>
 
-                        <form th:action="@{/crearClient}" method="POST" th:object="${Client}" class="was-validated">
+                        <form th:action="@{/guardarClientCrear}" method="post" th:object="${client}">
                             <div  class="modal-body">
 
                                 <div class="form-group">
 
-                                    <label for="dni" th:text="#{Client.dni}">DNI:</label>
-                                    <input type="text" class="form-control" name="dni" id="dni"/>
+                                    <label for="dni" th:text="#{Client.dni}">DNI: </label>
+                                    
+                                    <input type="text" id="dni" name="dni" th:field="*{dni}" placeholder="DNI"/>
+                                    <span th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}"></span>
+                                    
 
                                 </div>
 
                                 <div class="form-group">
 
-                                    <label for="nombre" th:text="#{Client.nom}">Nom:</label>
-                                    <input type="text" class="form-control" name="Nom" id="nom"/>
+                                    <label for="nom" th:text="#{Client.nom}">Nom:</label>
+                                  
+                                    <input type="text" id="nom" name="nom" th:field="*{nom}" placeholder="Nom"/>
+                                    <span th:if="${#fields.hasErrors('nom')}" th:errors="*{nom}"></span>
+                                    
+
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="cognoms" th:text="#{Client.cognoms}">Cognoms:</label>
+                                    <!--<input type="text" class="form-control" name="Marca" id="marca" />-->
+
+                                    
+                                    <input type="text" id="cognoms" name="cognoms" th:field="*{cognoms}" placeholder="Cognoms"/>
+                                    <span th:if="${#fields.hasErrors('cognoms')}" th:errors="*{cognoms}"></span>
+                                </div>
+
+                                <div class="form-group">
+
+
+                                    <label for="adreca" th:text="#{Client.adreca}">Adreça: </label>
+                                    <!--<input type="text" class="form-control" name="Model" id="model"/>-->
+                                    
+                                    
+                                    <input type="text" id="adreca" name="adreca" th:field="*{adreca}" placeholder="Adreça"/>
+                                    <span th:if="${#fields.hasErrors('adreca')}" th:errors="*{adreca}"></span>
 
                                 </div>
 
                                 <div class="form-group">
 
-                                    <label for="cognom" th:text="#{Client.cognom}">Cognom:</label>
-                                    <input type="text" class="form-control" name="Cognom" id="cognom"/>
-
-                                </div>
-
-                                <div class="form-group">
-
-                                    <label for="adreça" th:text="#{Client.adreca}">Adreça:</label>
-                                    <input type="text" class="form-control" name="Adreça" id="adreça"/>
-
-                                </div>
-
-                                <div class="form-group">
 
                                     <label for="telefon" th:text="#{Client.telefon}">Telefon:</label>
-                                    <input type="tel" class="form-control" name="Telefon" id="telefon"/>
+                                    <!--<input type="text" class="form-control" name="Descripcio" id="descripcio" />-->
+                                    
+                                    <input type="tel" id="telefon" name="telefon" th:field="*{telefon}" placeholder="Telefón"/>
+                                    <span th:if="${#fields.hasErrors('telefon')}" th:errors="*{telefon}"></span>
 
                                 </div>
 
                                 <div class="form-group">
-
-                                    <label for="codiPostal" th:text="#{Client.codiPostal}">Codi Postal:</label>
-                                    <input type="number" class="form-control" name="CodiPostal" id="codiPostal"/>
-
+                                    
+                                    <label for="codi_postal" th:text="#{Client.codiPostal}">Codi Postal:</label>
+                                    <!--<input type="number" class="form-control" name="Tipus_Equip_Id" id="tipus_equip_id"/>-->
+                                    
+                                    <input type="number" id="codi_postal" name="codi_postal" th:field="*{codi_postal}" placeholder="Codi Postal"/>
+                                    <span th:if="${#fields.hasErrors('codi_postal')}" th:errors="*{codi_postal}"></span>
                                 </div>
 
                             </div>
 
                             <div  class="modal-footer">
-
                                 <button><a th:href="@{/crearIncidencia}" th:text="#{accion.cancelar}"></a></button>
-                                <button class="btn btn-primary" type="submit" th:text="#{accion.guardar}">Guardar</button>
+                                <input type="submit" name="enviar" value="Guardar"/>
 
                             </div>
 
