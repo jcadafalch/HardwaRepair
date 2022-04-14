@@ -42,7 +42,6 @@ public class ProducteService implements ProducteServiceInterface{
     @Override
     @Transactional (readOnly = true)
     public Producte cercarProducte(Producte producte) {
-        
         //Si el producte no existeix retornarà null ( orElse(null) )
         return this.producte.findById(producte.getIdProducte()).orElse(null);
     }

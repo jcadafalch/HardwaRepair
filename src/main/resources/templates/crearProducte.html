@@ -4,6 +4,9 @@
     <head>
         <title>Crear Producte</title>
         <meta charset="UTF-8"/>
+        <!-- Bootstrap -->
+        <script src="../webjars/bootstrap/5.1.3/js/bootstrap.min.js"></script>
+        <link href="../webjars/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
     </head>
     <body>
         <!--<header th:replace="layout/plantilla :: capcalera" />-->
@@ -15,36 +18,42 @@
                 <table style="width:35%">
                     <tr>
                         <td><label for="nom">Nom</label></td>
+                        <td></td>
                         <td><label for="marca">Marca</label></td>
                     </tr>
                     <tr>
                         <td>
-                            <input type="text" id="nom" name="nom" th:field="*{nom}" placeholder="Nom del producte"/>
+                            <input type="text" id="nom" name="nom" th:field="*{nom}" placeholder="Nom del producte"/><br>
                             <span th:if="${#fields.hasErrors('nom')}" th:errors="*{nom}"></span>
                         </td>
+                        <td></td>
                         <td>
-                            <input type="text" id="marca" name="marca" th:field="*{marca}" placeholder="Marca del producte"/>
+                            <input type="text" id="marca" name="marca" th:field="*{marca}" placeholder="Marca del producte"/><br>
                             <span th:if="${#fields.hasErrors('marca')}" th:errors="*{marca}"></span>
                         </td>
+                        <td></td>
                     </tr>
                     <tr>
                         <td><label for="preuCompra">Preu de compra</label></td>
+                        <td></td>
                         <td><label for="preuVenda">Preu de venda</label></td>
                     </tr>
                     <tr>
                         <td>
                             <input type="number" step="0.01" id="preuCompra" name="preuCompra" th:field="*{preuCompra}"
-                                   placeholder="Preu de compra"/>
+                                   placeholder="Preu de compra"/><br>
                             <span th:if="${#fields.hasErrors('preuCompra')}" th:errors="*{preuCompra}"></span>
                         </td>
+                        <td></td>
                         <td>
                             <input type="number" step="0.01" id="preuVenda" name="preuVenda" th:field="*{preuVenda}"
-                                   placeholder="Preu de venda"/>
+                                   placeholder="Preu de venda"/><br>
                             <span th:if="${#fields.hasErrors('preuVenda')}" th:errors="*{preuVenda}"></span>
                         </td>
+                        <td></td>
                     </tr>
                     <tr>
-                        <td><label for="categoria">Categoria</label></td>
+                        <td><p hidden>Hidden paragraph</p></td>
                     </tr>
                     <tr>
                         <td>
@@ -58,8 +67,8 @@
                 </table>
                 <br>
 
-                    <button><a th:href="@{/llistarProductes}" th:text="#{cancelar}"></a></button>
-                    <input type="submit" name="enviar" value="Guardar"/>
+                    <button class="btn btn-warning"><a th:href="@{/llistarProductes}" style="color:white; text-decoration: none;"  th:text="#{cancelar}"></a></button>
+                    <input  class="btn btn-success" type="submit" name="enviar" value="Guardar"/>
             </form>
         </p>
 

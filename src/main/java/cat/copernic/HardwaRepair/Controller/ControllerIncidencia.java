@@ -69,20 +69,25 @@ public class ControllerIncidencia {
         return "llistatIncidencies";
     }}
 
-    
+
 
 
     @GetMapping("/liniaReparacio/{id_incidencia}")
-    public String liniaReparacio(Incidencia incidencia,Model model){
+    public String liniaReparacio(Incidencia incidencia,Model model,LiniaReparacio liniareparacio){
         try {
             //Passem el llistat de productes a la vista
             model.addAttribute("productes", producteService.llistarProductes());
 
+            model.addAttribute("liniareparacio", liniareparacio);
+
             System.out.println("Productes == " + producteService.llistarProductes());
 
+            System.out.println("Llistat liniaReparacio == " + liniaReparacioService.llistarLiniaReparacio());
+
             //Passem la incidencia a la vista
-            model.addAttribute("incidencia", incidencia);
-            System.out.println("Incidencia == " + incidencia);
+            model.addAttribute("incidencia", incidenciaService.cercarIncidencia(incidencia));
+            System.out.println("Incidencia == " + incidenciaService.cercarIncidencia(incidencia));
+            //System.out.println("Llistat incidencies == " + incidenciaService.llistarIncidencies());
 
         }catch (NullPointerException e){
             //Si no hi ha productes, mostrem un missatge d'error
@@ -100,6 +105,8 @@ public class ControllerIncidencia {
             log.info("S'ha produït un error'");
             return "liniaReparacio";
         }
+
+        System.out.println("LiniaReparacio == " + liniaReparacio);
         //Guardem la linia reparació
         liniaReparacioService.afegirLiniaReparacio(liniaReparacio);
         //return "redirect:/liniaReparacio";

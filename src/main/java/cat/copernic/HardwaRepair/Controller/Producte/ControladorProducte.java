@@ -50,6 +50,7 @@ public class ControladorProducte {
         try{
             //Passem el llistat de categories a la vista
             model.addAttribute("categories", categoriaService.llistarCategoria());
+            System.out.println("Categories == " + categoriaService.llistarCategoria());
         }catch (NullPointerException e){
             //Si no hi ha categories, mostrem un missatge d'error
             System.out.println("No hi ha categories");
@@ -59,10 +60,11 @@ public class ControladorProducte {
     }
     
     @PostMapping("/guardarProducteCrear")
-    public String guardarProducteCrear(@Valid Producte producte, Errors errors){
+    public String guardarProducteCrear(@Valid Producte producte, Errors errors, Model model){
         if (errors.hasErrors()) {
             //Si hi ha errors, tornem a la vista de crear producte
             log.info("S'ha produït un error'");
+            model.addAttribute("categories", categoriaService.llistarCategoria());
             return "crearProducte";
         }
         //Guardem el producte
@@ -83,10 +85,11 @@ public class ControladorProducte {
     }
 
     @PostMapping("/guardarProducteDetalls")
-    public String guardarProducteDetalls(@Valid Producte producte, Errors errors){
+    public String guardarProducteDetalls(@Valid Producte producte, Errors errors, Model model){
         if (errors.hasErrors()) {
             //Si hi ha errors, tornem a la vista de detalls producte
             log.info("S'ha produït un error'");
+            model.addAttribute("categories", categoriaService.llistarCategoria());
             return "detallsProducte";
         }
         //Actualitzem el producte

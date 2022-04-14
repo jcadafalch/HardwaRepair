@@ -30,8 +30,6 @@ public class IsAdministrator {
                     System.out.println("Inside for isAdmin: " + isAdmin);
                 }
             }
-
-
         }catch (NullPointerException e){
             //Si no hi ha usuaris
             System.out.println("No s'ha trobat l'usuari");
@@ -40,5 +38,4 @@ public class IsAdministrator {
         //Retornem si l'usuari es administrador o no
         return isAdmin;
     }
-
 }

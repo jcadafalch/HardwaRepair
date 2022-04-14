@@ -2,32 +2,33 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
       xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <meta charset="UTF-8">
-            <title>Title</title>
-    </head>
-    <body>
-        <h1>Afegir producte</h1>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Afegir producte</h1>
+<p th:text="${incidencia.id_incidencia}"></p>
+<div th:if="${productes!=null && !productes.empty}">
+    <p>
 
-        <p>
-            Selecciona el producte que vols afegir:
-        </p>
-        <div th:if="${productes!=null && !productes.empty}">
-            <p>
-                <form action="afegirProducteAIncidencia" method="post">
-                  <input type="hidden" name="incidenciaId" th:field="*{incidenciaId}"/>
-                <!-- <select name="producte" id="producte" th:field="*{producteId}">
-                    <option th:each="producte : ${productes}" th:value="${producte.idProducte}" th:text="${producte.marca} + ' ' + ${producte.nom}"></option>
-                </select>-->
-                   <input type="submit" value="Afegir producte" />
-                   <button><a th:href="@{/llistarProductes}" th:text="#{cancelar}"></a></button>
-                </form>
-            </p>
-        </div>
+    <form action="@{/guardarLiniaReparacio}" method="POST" th:object="${liniareparacio}">
+        <input type="hidden" name="incidenciaId" th:field="*{incidenciaId}" th:value="${incidencia.id_incidencia}"/>
+        <br>
+        <label for="producte">Selecciona el producte que vols afegir: </label><br>
+        <select name="producte" id="producte" th:field="*{producteId}">
+            <option th:each="producte : ${productes}" th:value="${producte.idProducte}"
+                    th:text="${producte.marca} + ' ' + ${producte.nom}"></option>
+        </select>
+        <input type="submit" name="enviar" value="Afegir producte"/>
+        <button><a th:href="@{/llistatIncidencies}" th:text="#{cancelar}"></a></button>
+    </form>
+    </p>
+</div>
 
-        <div th:if="${productes==null || productes.empty}">
-            <p>No hi ha productes</p>
-        </div>
+<div th:if="${productes==null || productes.empty}">
+    <p>No hi ha productes</p>
+</div>
 
-    </body>
+</body>
 </html>
