@@ -200,11 +200,13 @@
 
                         <tr>
                             <td>
-                                <form:checkbox path="garantia"/>
-                                <form:checkbox path="solicitud_pressupost"/>
-
+                                
+                                <input type="checkbox" class="btn-check" id="soluGarantia" autocomplete="off">
                                 <label for="soluGarantia" th:text="#{Incidencia.soliGarantia}">Sol·licitud de Garantia : </label>
+  
+                                <input type="checkbox" class="btn-check" id="garantia" autocomplete="off">
                                 <label for="garantia" th:text="#{Incidencia.garantia}">En Garantia :</label>
+                                
                             </td>
 
                             <td>

@@ -4,10 +4,12 @@
     <head>
         <title>Crea Client</title>
         <meta charset="UTF-8"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"></link>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     </head>
     <body>
-
-
         <section th:fragment="creaClient">
 
             <h1>Crea Client</h1>
@@ -34,20 +36,20 @@
                                 <div class="form-group">
 
                                     <label for="dni" th:text="#{Client.dni}">DNI: </label>
-                                    
+
                                     <input type="text" id="dni" name="dni" th:field="*{dni}" placeholder="DNI"/>
                                     <span th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}"></span>
-                                    
+
 
                                 </div>
 
                                 <div class="form-group">
 
                                     <label for="nom" th:text="#{Client.nom}">Nom:</label>
-                                  
+
                                     <input type="text" id="nom" name="nom" th:field="*{nom}" placeholder="Nom"/>
                                     <span th:if="${#fields.hasErrors('nom')}" th:errors="*{nom}"></span>
-                                    
+
 
                                 </div>
 
@@ -55,7 +57,7 @@
                                     <label for="cognoms" th:text="#{Client.cognoms}">Cognoms:</label>
                                     <!--<input type="text" class="form-control" name="Marca" id="marca" />-->
 
-                                    
+
                                     <input type="text" id="cognoms" name="cognoms" th:field="*{cognoms}" placeholder="Cognoms"/>
                                     <span th:if="${#fields.hasErrors('cognoms')}" th:errors="*{cognoms}"></span>
                                 </div>
@@ -65,8 +67,8 @@
 
                                     <label for="adreca" th:text="#{Client.adreca}">Adreça: </label>
                                     <!--<input type="text" class="form-control" name="Model" id="model"/>-->
-                                    
-                                    
+
+
                                     <input type="text" id="adreca" name="adreca" th:field="*{adreca}" placeholder="Adreça"/>
                                     <span th:if="${#fields.hasErrors('adreca')}" th:errors="*{adreca}"></span>
 
@@ -77,17 +79,17 @@
 
                                     <label for="telefon" th:text="#{Client.telefon}">Telefon:</label>
                                     <!--<input type="text" class="form-control" name="Descripcio" id="descripcio" />-->
-                                    
+
                                     <input type="tel" id="telefon" name="telefon" th:field="*{telefon}" placeholder="Telefón"/>
                                     <span th:if="${#fields.hasErrors('telefon')}" th:errors="*{telefon}"></span>
 
                                 </div>
 
                                 <div class="form-group">
-                                    
+
                                     <label for="codi_postal" th:text="#{Client.codiPostal}">Codi Postal:</label>
                                     <!--<input type="number" class="form-control" name="Tipus_Equip_Id" id="tipus_equip_id"/>-->
-                                    
+
                                     <input type="number" id="codi_postal" name="codi_postal" th:field="*{codi_postal}" placeholder="Codi Postal"/>
                                     <span th:if="${#fields.hasErrors('codi_postal')}" th:errors="*{codi_postal}"></span>
                                 </div>
@@ -96,7 +98,7 @@
 
                             <div  class="modal-footer">
                                 <button><a th:href="@{/crearIncidencia}" th:text="#{accion.cancelar}"></a></button>
-                                <input type="submit" name="enviar" value="Guardar"/>
+                                <input type="submit" name="enviar" value="Guardar" class="btn btn-primary"/>
 
                             </div>
 

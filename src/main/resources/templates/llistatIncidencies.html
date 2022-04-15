@@ -1,41 +1,83 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-   
-    <head>
-        <title>Incidencies</title>
-        <meta charset="UTF-8"/>
-    </head>
-    <body>
-        <h1>Incidencies</h1>
-        <!--<a th:href="@{/llistatIncidencies}" th:text="#{incidencia.llistatIncidencia}"></a>-->
-<!--        If que mostra la taula segons si no es null-->
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns="http://www.w3.org/1999/xhtml">
 
-<button> <a th:href="@{/crearIncidencia}" th:text="#{accion.creaIncidencia}">Crea Incidencia</a> </button>
-        <div th:if="${incidencies!=null && !incidencies.empty}">
-            <!--Realitzem una taula on mostrarem les categories trobades a la bbdd mitjançant un for each d'Incidències-->
-            <table border="1">
-                <tr>
-                    <th>Id Incidència</th>
-                    <th>Data</th>
-                    <th>Reparador</th>
-                    <th>Tipus d'equip</th>
-                    <th>Tipus d'operacio</th>
-                </tr>
-                <tr th:each="incidencia : ${incidencies}">
-                    <td th:text="${incidencia.id_incidencia}"></td>
-                    <td th:text="${incidencia.data_creacio}"></td>
-                    <td th:text="${incidencia.reparador}"></td>
-                    <td th:text="${incidencia.tipus_equip}"></td>
-                    <td th:text="${incidencia.tipus_operacio_id}"></td>
-                    <!--Boto que ens permet accedir als detalls de les incidències.-->
-                    <td><a th:href="@{/editarIncidencia/}+${incidencia.id_incidencia}">Detalls</a></td>
-                </tr>
-            </table>
-        </div>
-        <!--If que mostra un avis dient que no hi han Incidències.-->
-       <div th:if="${incidencies==null || incidencies.empty}">
-            <p>No hi ha Incidencies</p>
-        </div>
+    <head>
+        <meta charset="utf-8"/>
+        <title>Incidencies</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"></link>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
+    </head>
+
+    <body>
+
+
+        <section th:fragment="llistatIncidencies" id="incidencies">
+
+            <div class="container">
+
+                <div class="row">
+
+                    <div class="col-md-9">
+
+
+                        <div class="card">
+
+                            <div class="card-header">
+
+                                <h1>Incidencies</h1>
+
+                            </div>
+
+
+
+                            <button> <a th:href="@{/crearIncidencia}" th:text="#{accion.creaIncidencia}" class="btn btn-primary">Crea Incidencia</a> </button>
+                            <!--If que mostra la taula segons si no es null-->
+
+                            <div th:if="${incidencies!=null && !incidencies.empty}">
+                                <!--Realitzem una taula on mostrarem les categories trobades a la bbdd mitjançant un for each d'Incidències-->
+                                <table border="1" class="table table-stryped">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th>Id Incidència</th>
+                                            <th>Data</th>
+                                            <th>Reparador</th>
+                                            <th>Tipus d'equip</th>
+                                            <th>Tipus d'operacio</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        <tr th:each="incidencia : ${incidencies}">
+                                            <td th:text="${incidencia.id_incidencia}"></td>
+                                            <td th:text="${incidencia.data_creacio}"></td>
+                                            <td th:text="${incidencia.reparador}"></td>
+                                            <td th:text="${incidencia.tipus_equip}"></td>
+                                            <td th:text="${incidencia.tipus_operacio_id}"></td>
+                                            <!--Boto que ens permet accedir als detalls de les incidències.-->
+                                            <td><a th:href="@{/editarIncidencia/}+${incidencia.id_incidencia}" class="btn btn-secondary">Detalls</a></td>
+                                        </tr> 
+                                    </tbody>
+
+                                </table>
+                            </div>
+                            <!--If que mostra un avis dient que no hi han Incidències.-->
+                            <div th:if="${incidencies==null || incidencies.empty}">
+                                <p>No hi ha Incidencies</p>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
     </body>
 </html>
