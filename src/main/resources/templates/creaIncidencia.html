@@ -9,6 +9,8 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"></link>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
+        <script src="../webjars/bootstrap/5.1.3/js/bootstrap.min.js"></script>
+        <link href="../webjars/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
     </head>
     <style>
         th, td {
@@ -74,7 +76,14 @@
 
                                     <label for="tipus_equip" th:text="#{Incidencia.tipusEquip}">Tipus Equip </label>
 
-                                    <input type="text" id="tipus_equip" name="tipus_equip" th:field="*{tipus_equip}" placeholder="Tipus Equip"/>
+                                    <!--<input type="text" id="tipus_equip" name="tipus_equip" th:field="*{tipus_equip}" placeholder="Tipus Equip"/>-->
+
+                                    <select name="tipus_equip" id="tipus_equip" th:field="*{tipus_equip}" >
+                                        <option th:text="S" th:value=0 ></option>
+                                        <option th:text="Portatil" th:value=1></option>
+                                    </select>
+
+
                                     <span th:if="${#fields.hasErrors('tipus_equip')}" th:errors="*{tipus_equip}"></span>
 
 
@@ -119,7 +128,8 @@
                                     <!--<input type="text" class="form-control" name="idEquip" id="idEquip" list="equips"/>-->
 
                                     <!--<a th:href="@{/creaEquip}" th:text="#{accion.creaEquip}">Crea Equip</a>-->
-                                    <button><a th:href="@{/creaEquip}" th:text="#{accion.creaEquip}"></a></button>
+
+                                    <a th:href="@{/creaEquip}" th:text="#{accion.creaEquip}" class="btn btn-primary" type="button"></a>
 
                                 </div>
 
@@ -176,9 +186,8 @@
 
 
                                     <!--<a th:href="@{/creaClient}" th:text="#{accion.creaClient}">Crea Client</a>-->
-                                    <button><a th:href="@{/creaClient}" th:text="#{accion.creaClient}"></a></button>
 
-
+                                    <a type="button" th:href="@{/creaClient}" class="btn btn-primary" th:text="#{accion.creaClient}"></a>
                                     <!--<a th:href="@{/crearEquip}"><button class="btn btn-secondary" type="submit" th:text="#{accion.crearClient}">Crea Client</button></a>-->
 
                                 </div>
@@ -250,7 +259,7 @@
 
                                             <td>
                                                 <label for="productesUtilitzats" th:text="#{Incidencia.productesUtilitzats}">Productes Utilitzats :</label>
-                                                <button class="btn btn-secondary" type="submit" th:text="#{accion.afegirProducte}">Afegir Producte</button> <br/>
+                                                <button class="btn btn-primary" type="submit" th:text="#{accion.afegirProducte}">Afegir Producte</button> <br/>
                                                 <div class="from-group">
 
                                                     <table id="tableProductes" border="1">
@@ -294,7 +303,7 @@
                                         </table>
                                         </div>
                                         <div  class="modal-footer">
-                                            <button><a th:href="@{/llistatIncidencies}" th:text="#{accion.cancelar}"></a></button>
+                                            <a type="button" th:href="@{/llistatIncidencies}" th:text="#{accion.cancelar}" class="btn btn-secondary"></a>
                                             <input type="submit" name="enviar" value="Guardar" class="btn btn-primary"/>
                                         </div>
                                         </form>
