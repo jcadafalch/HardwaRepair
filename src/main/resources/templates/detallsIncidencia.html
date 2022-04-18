@@ -2,8 +2,14 @@
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
       xmlns="http://www.w3.org/1999/xhtml">
     <head>
-        <title>Crea Incidencia</title>
-        <meta charset="UTF-8"/>
+        <meta charset="utf-8"/>
+        <title>Detalls Incidencia</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"></link>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
+        <script src="../webjars/bootstrap/5.1.3/js/bootstrap.min.js"></script>
+        <link href="../webjars/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
     </head>
     <style>
         th, td {
@@ -12,9 +18,9 @@
     </style>
 
     <body>
-        <section th:fragment="creaIncidencia">
+        <section th:fragment="detallsIncidencia">
             <div>
-                <h1>Crea Incidencia</h1>
+                <h1>Detalls Incidencia</h1>
             </div>
             <br/>
 
@@ -69,7 +75,11 @@
 
                                     <label for="tipus_equip" th:text="#{Incidencia.tipusEquip}">Tipus Equip </label>
 
-                                    <input type="text" id="tipus_equip" name="tipus_equip" th:field="*{tipus_equip}" placeholder="Tipus Equip"/>
+                                    <select name="tipus_equip" id="tipus_equip" th:field="*{tipus_equip}" >
+                                        <option th:each="tipus_equip : ${tipus_equips}" th:value="${tipus_equip.id_tipus_equip}" th:text="${tipus_equip.nom}"></option>
+                                    </select>
+
+                                    <!--<input type="text" id="tipus_equip" name="tipus_equip" th:field="*{tipus_equip}" placeholder="Tipus Equip"/>-->
                                     <span th:if="${#fields.hasErrors('tipus_equip')}" th:errors="*{tipus_equip}"></span>
 
 
@@ -114,7 +124,7 @@
                                     <!--<input type="text" class="form-control" name="idEquip" id="idEquip" list="equips"/>-->
 
                                     <!--<a th:href="@{/creaEquip}" th:text="#{accion.creaEquip}">Crea Equip</a>-->
-                                    <button><a th:href="@{/creaEquip}" th:text="#{accion.creaEquip}"></a></button>
+                                    <a th:href="@{/creaEquip}" th:text="#{accion.creaEquip}" class="btn btn-primary" type="button"></a>
 
                                 </div>
 
@@ -131,7 +141,7 @@
                                     <select name="tipus_operacio_id" id="tipus_operacio_id" th:field="*{tipus_operacio_id}" >
                                         <option th:each="tipus_operacio : ${tipus_operacions}" th:value="${tipus_operacio.id_tipus_operacio}" th:text="${tipus_operacio.nom}"></option>
                                     </select>
-                                    
+
                                     <!--<input type="text" id="tipus_operacio_id" name="tipus_operacio_id" th:field="*{tipus_operacio_id}" placeholder="Tipus Operacio"/>-->
                                     <span th:if="${#fields.hasErrors('tipus_operacio_id')}" th:errors="*{tipus_operacio_id}"></span>
 
@@ -175,7 +185,7 @@
 
 
                                     <!--<a th:href="@{/creaClient}" th:text="#{accion.creaClient}">Crea Client</a>-->
-                                    <button><a th:href="@{/creaClient}" th:text="#{accion.creaClient}"></a></button>
+                                    <a type="button" th:href="@{/creaClient}" class="btn btn-primary" th:text="#{accion.creaClient}"></a>
 
 
                                     <!--<a th:href="@{/crearEquip}"><button class="btn btn-secondary" type="submit" th:text="#{accion.crearClient}">Crea Client</button></a>-->
@@ -204,102 +214,115 @@
 
                         <tr>
                             <td>
-                                
+
                                 <input type="checkbox" class="btn-check" id="soluGarantia" autocomplete="off">
-                                <label for="soluGarantia" th:text="#{Incidencia.soliGarantia}">Sol·licitud de Garantia : </label>
-  
-                                <input type="checkbox" class="btn-check" id="garantia" autocomplete="off">
-                                <label for="garantia" th:text="#{Incidencia.garantia}">En Garantia :</label>
-                                
-                            </td>
+                                    <label for="soluGarantia" th:text="#{Incidencia.soliGarantia}">Sol·licitud de Garantia : </label>
 
-                            <td>
+                                    <input type="checkbox" class="btn-check" id="garantia" autocomplete="off">
+                                        <label for="garantia" th:text="#{Incidencia.garantia}">En Garantia :</label>
 
-                                <div class="form-group">
+                                        </td>
 
+                                        <td>
 
-                                    <label for="num_factura_garantia" th:text="#{Incidencia.numFactGarantia}">Num. Factura Garantia</label>
-
-                                    <input type="text" id="num_factura_garantia" name="num_factura_garantia" th:field="*{num_factura_garantia}" placeholder="Num. Factura Garantia"/>
-                                    <span th:if="${#fields.hasErrors('num_factura_garantia')}" th:errors="*{num_factura_garantia}"></span>
+                                            <div class="form-group">
 
 
-                                    <!--<label for="numFactGarantia" th:text="#{Incidencia.numFactGarantia}">Num Factura Garantia :</label>-->
-                                    <!--<input type="text" class="form-control" name="numFactGarantia" id="numFactGarantia"/>-->
+                                                <label for="num_factura_garantia" th:text="#{Incidencia.numFactGarantia}">Num. Factura Garantia</label>
 
-                                </div>
-                            </td>
-                        </tr>
+                                                <input type="text" id="num_factura_garantia" name="num_factura_garantia" th:field="*{num_factura_garantia}" placeholder="Num. Factura Garantia"/>
+                                                <span th:if="${#fields.hasErrors('num_factura_garantia')}" th:errors="*{num_factura_garantia}"></span>
 
 
-                        <tr>
-                            <td>
-                                <div class="form-group">
+                                                <!--<label for="numFactGarantia" th:text="#{Incidencia.numFactGarantia}">Num Factura Garantia :</label>-->
+                                                <!--<input type="text" class="form-control" name="numFactGarantia" id="numFactGarantia"/>-->
 
-
-                                    <label for="descripcio_averia" th:text="#{Incidencia.descripcio}">Descripcio Averia</label>
-
-                                    <input type="text" id="descripcio_averia" name="descripcio_averia" th:field="*{descripcio_averia}" placeholder="Descripcio Averia"/>
-                                    <span th:if="${#fields.hasErrors('descripcio_averia')}" th:errors="*{descripcio_averia}"></span>
-
-
-                                    <!--<label for="decripcio" th:text="#{Incidencia.descripcio}">Descripcio :</label>-->
-                                    <!--<input type="text" class="form-control" name="descripcio" id="descripcio"/>-->
-
-                                </div>
-                            </td>
-
-                            <td>
-                                <label for="productesUtilitzats" th:text="#{Incidencia.productesUtilitzats}">Productes Utilitzats :</label>
-                                <button class="btn btn-secondary" type="submit" th:text="#{accion.afegirProducte}">Afegir Producte</button> <br/>
-                                <div class="from-group">
-
-                                    <table id="tableProductes" border="1">
-                                        <tr>
-                                            <td>
-                                                <label for="nomProducte" th:text="#{Incidencia.nomProducte}">Nom</label>
-                                            </td>
-
-                                            <td>
-                                                <label for="marcaProducte" th:text="#{Incidencia.marcaProducte}">Marca</label>
-                                            </td>
-
-                                            <td>
-                                                <label for="categoriaProducte" th:text="#{Incidencia.categoriaProducte}">Categoria</label>
-                                            </td>
-
-                                            <td>
-                                                <label for="quantittatProducte" th:text="#{Incidencia.quantitatProducte}">Quantitat</label>
-                                            </td>
-                                        </tr>
-                                        <tr>
-
+                                            </div>
+                                        </td>
                                         </tr>
 
-                                    </table>
-                                </div>
 
-                            </td>
-                        </tr>
-                        
-                        <tr>
-                            <td>
-                                <label for="estat_id" th:text="#{Incidencia.estat_id}">Estat ID</label>
+                                        <tr>
+                                            <td>
+                                                <div class="form-group">
 
-                                    <input type="number" id="estat_id" name="estat_id" th:field="*{estat_id}" placeholder="Estat ID"/>
-                                    <span th:if="${#fields.hasErrors('estat_id')}" th:errors="*{estat_id}"></span>
-                                
-                            </td>
-                            
-                        </tr>
-                    </table>
-                </div>
-                <div  class="modal-footer">
-                     <button><a th:href="@{/llistatIncidencies}" th:text="#{accion.cancelar}"></a></button>
-                     <input type="submit" name="enviar" value="Guardar"/>
-                     <button><a th:href="@{/eliminarIncidencia/}+${incidencia.id_incidencia}" th:text="Eliminar"></a></button>
-                </div>
-            </form>
-        </section>
-    </body>
-</html>
+                                                    <label for="descripcio_averia" th:text="#{Incidencia.descripcio}">Descripcio Averia</label>
+
+                                                    <div class="input-group">
+                                                        <div class="input-group-prepend">
+                                                            <span th:if="${#fields.hasErrors('descripcio_averia')}" th:errors="*{descripcio_averia}"></span>
+                                                        </div>
+                                                        <textarea type="text" id="descripcio_averia" name="descripcio_averia" th:field="*{descripcio_averia}" placeholder="Descripcio Averia" class="form-control" aria-label="With textarea"/>
+                                                    </div>
+                                                    
+
+
+
+
+
+
+
+
+                                                    <!--<label for="decripcio" th:text="#{Incidencia.descripcio}">Descripcio :</label>-->
+                                                    <!--<input type="text" class="form-control" name="descripcio" id="descripcio"/>-->
+
+                                                </div>
+                                            </td>
+
+                                            <td>
+                                                <label for="productesUtilitzats" th:text="#{Incidencia.productesUtilitzats}">Productes Utilitzats :</label>
+                                                <button class="btn btn-secondary" type="submit" th:text="#{accion.afegirProducte}">Afegir Producte</button> <br/>
+                                                <div class="from-group">
+
+                                                    <table id="tableProductes" border="1">
+                                                        <tr>
+                                                            <td>
+                                                                <label for="nomProducte" th:text="#{Incidencia.nomProducte}">Nom</label>
+                                                            </td>
+
+                                                            <td>
+                                                                <label for="marcaProducte" th:text="#{Incidencia.marcaProducte}">Marca</label>
+                                                            </td>
+
+                                                            <td>
+                                                                <label for="categoriaProducte" th:text="#{Incidencia.categoriaProducte}">Categoria</label>
+                                                            </td>
+
+                                                            <td>
+                                                                <label for="quantittatProducte" th:text="#{Incidencia.quantitatProducte}">Quantitat</label>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+
+                                                        </tr>
+
+                                                    </table>
+                                                </div>
+
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>
+                                                <label for="estat_id" th:text="#{Incidencia.estat_id}">Estat ID</label>
+
+                                                <select name="estat_id" id="estat_id" th:field="*{estat_id}" >
+                                                    <option th:each="estat : ${estats}" th:value="${estat.id_estat}" th:text="${estat.nom}"></option>
+                                                </select>
+                                                <!--<input type="number" id="estat_id" name="estat_id" th:field="*{estat_id}" placeholder="Estat ID"/>-->
+                                                <span th:if="${#fields.hasErrors('estat_id')}" th:errors="*{estat_id}"></span>
+
+                                            </td>
+
+                                        </tr>
+                                        </table>
+                                        </div>
+                                        <div  class="modal-footer">
+                                            <a type="button" th:href="@{/llistatIncidencies}" th:text="#{accion.cancelar}" class="btn btn-secondary"></a>
+                                            <input type="submit" name="enviar" value="Guardar" class="btn btn-primary"/>
+                                            <a type="button" th:href="@{/eliminarIncidencia/}+${incidencia.id_incidencia}" th:text="#{accion.eliminar}" class="btn btn-danger"></a>
+                                        </div>
+                                        </form>
+                                        </section>
+                                        </body>
+                                        </html>

@@ -79,8 +79,7 @@
                                     <!--<input type="text" id="tipus_equip" name="tipus_equip" th:field="*{tipus_equip}" placeholder="Tipus Equip"/>-->
 
                                     <select name="tipus_equip" id="tipus_equip" th:field="*{tipus_equip}" >
-                                        <option th:text="S" th:value=0 ></option>
-                                        <option th:text="Portatil" th:value=1></option>
+                                        <option th:each="tipus_equip : ${tipus_equips}" th:value="${tipus_equip.id_tipus_equip}" th:text="${tipus_equip.nom}"></option>
                                     </select>
 
 
@@ -143,11 +142,11 @@
 
                                     <label for="tipus_operacio_id" th:text="#{Incidencia.tipusOperacio}">Tipus Operacio </label>
 
-                                    
+
                                     <select name="tipus_operacio_id" id="tipus_operacio_id" th:field="*{tipus_operacio_id}" >
                                         <option th:each="tipus_operacio : ${tipus_operacions}" th:value="${tipus_operacio.id_tipus_operacio}" th:text="${tipus_operacio.nom}"></option>
                                     </select>
-                                    
+
                                     <!--<input type="text" id="tipus_operacio_id" name="tipus_operacio_id" th:field="*{tipus_operacio_id}" placeholder="Tipus Operacio"/>-->
                                     <span th:if="${#fields.hasErrors('tipus_operacio_id')}" th:errors="*{tipus_operacio_id}"></span>
 
@@ -297,9 +296,14 @@
 
                                         <tr>
                                             <td>
-                                                <label for="estat_id" th:text="#{Incidencia.estat_id}">Estat ID</label>
+                                                <label for="estat_id" th:text="#{Incidencia.estat_id}">Estat</label>
 
-                                                <input type="number" id="estat_id" name="estat_id" th:field="*{estat_id}" placeholder="Estat ID"/>
+                                                <select name="estat_id" id="estat_id" th:field="*{estat_id}" >
+                                                    <option th:each="estat : ${estats}" th:value="${estat.id_estat}" th:text="${estat.nom}"></option>
+                                                </select>
+
+
+                                                <!--<input type="number" id="estat_id" name="estat_id" th:field="*{estat_id}" placeholder="Estat ID"/>-->
                                                 <span th:if="${#fields.hasErrors('estat_id')}" th:errors="*{estat_id}"></span>
 
                                             </td>

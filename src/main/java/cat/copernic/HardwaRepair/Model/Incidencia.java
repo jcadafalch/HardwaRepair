@@ -44,7 +44,7 @@ public class Incidencia implements Serializable{
     private double preu_total;
     
     @NotNull
-    private double estat_id;
+    private long estat_id;
  
     @NotEmpty
     private String reparador;
@@ -67,8 +67,8 @@ public class Incidencia implements Serializable{
     @DateTimeFormat(iso = ISO.DATE)
     private Date data_creacio;
    
-    @NotEmpty
-    private String tipus_equip;
+    @NotNull
+    private long tipus_equip;
    
     @NotEmpty
     private String equip_a_reparar_id;

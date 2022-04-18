@@ -56,10 +56,11 @@
                                             <td th:text="${incidencia.id_incidencia}"></td>
                                             <td th:text="${incidencia.data_creacio}"></td>
                                             <td th:text="${incidencia.reparador}"></td>
-                                            <td th:text="${incidencia.tipus_equip}"></td>
-                                            <!--<td th:text="${incidencia.tipus_operacio_id}"></td>-->
-                                           
 
+                                            <td th:each="tipus_equip : ${tipus_equips}" th:if="${tipus_equip.id_tipus_equip == incidencia.tipus_equip}" th:text="${tipus_equip.nom}"></td>
+
+                                            <!--<td th:text="${incidencia.tipus_equip}"></td>-->
+                                            <!--<td th:text="${incidencia.tipus_operacio_id}"></td>-->
 
 
                                             <!--                                            <select name="tipus_operacio_id" id="tipus_operacio_id" th:field="*{tipus_operacio_id}" >
@@ -67,16 +68,15 @@
                                                                                         </select>-->
 
 
-                                 <td th:each="tipus_operacio : ${tipus_operacions}" th:if="${tipus_operacio.id_tipus_operacio == incidencia.tipus_operacio_id}" th:text="${tipus_operacio.nom}"></td>
+                                            <td th:each="tipus_operacio : ${tipus_operacions}" th:if="${tipus_operacio.id_tipus_operacio == incidencia.tipus_operacio_id}" th:text="${tipus_operacio.nom}"></td>
 
-                                            
-                            <td>
-                                <div class="badge bg-primary text-wrap" style="width: 6rem;">
-                                <a th:href="@{/editarIncidencia/}+${incidencia.id_incidencia}" class="btn btn-primary">Detalls</a>
-                                </div>
-                            </td>
-                                            
-                                            
+
+                                            <td>
+                                                <div class="badge bg-primary text-wrap" style="width: 6rem;">
+                                                    <a th:href="@{/editarIncidencia/}+${incidencia.id_incidencia}" class="btn btn-primary">Detalls</a>
+                                                </div>
+                                            </td>
+
                                             <!--Boto que ens permet accedir als detalls de les incidències.-->
                                             <!--<td><a th:href="@{/editarIncidencia/}+${incidencia.id_incidencia}" class="btn btn-primary">Detalls</a></td>-->
                                         </tr> 

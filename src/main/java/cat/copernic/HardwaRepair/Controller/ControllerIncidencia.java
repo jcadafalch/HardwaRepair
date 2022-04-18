@@ -7,7 +7,9 @@ package cat.copernic.HardwaRepair.Controller;
 
 import cat.copernic.HardwaRepair.DAO.IncidenciaDAO;
 import cat.copernic.HardwaRepair.Model.Incidencia;
+import cat.copernic.HardwaRepair.serveis.EstatServiceInterface;
 import cat.copernic.HardwaRepair.serveis.IncidenciaServiceInterface;
+import cat.copernic.HardwaRepair.serveis.Tipus_EquipServiceInterface;
 import javax.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,15 +35,27 @@ public class ControllerIncidencia {
     private tipusOperacioServiceInterface tipusOperacioService;
 
     @Autowired
+    private Tipus_EquipServiceInterface tipusEquipService;
+
+    @Autowired
+    private EstatServiceInterface estatService;
+
+    @Autowired
     private IncidenciaDAO incidenciaDao;
 
     @GetMapping("/crearIncidencia")
     public String crearIncidencia(Incidencia incidencia, Model model) {
         try {
-            
+
+            //Passem el llistat de estat d'equips a la vista
+            model.addAttribute("estats", estatService.llistarEstat());
+
+            //Passem el llistat de tipus d'equips a la vista
+            model.addAttribute("tipus_equips", tipusEquipService.llistarTipus_Equip());
+
             //Passem el llistat de tipusOperacions a la vista
             model.addAttribute("tipus_operacions", tipusOperacioService.llistartipusOperacio());
-            
+
             //Passem el llistat de incidencies a la vista
             model.addAttribute("Incidencies", incidenciaService.llistarIncidencies());
         } catch (NullPointerException e) {
@@ -81,13 +95,17 @@ public class ControllerIncidencia {
 //    
 //  
     @GetMapping("/llistatIncidencies")
-    public String llistarProductes(Model model) {
+    public String llistarIncidencies(Model model) {
         {
             try {
 
-                //Passem el llistat de categories a la vista
+                //Passem el llistat de tipus_equips a la vista
+                model.addAttribute("tipus_equips", tipusEquipService.llistarTipus_Equip());
+
+                //Passem el llistat de tipus_operacions a la vista
                 model.addAttribute("tipus_operacions", tipusOperacioService.llistartipusOperacio());
-                
+
+                //Passem el llistat de incidencies a la vista
                 model.addAttribute("incidencies", incidenciaService.llistarIncidencies());
 
             } catch (NullPointerException e) {
@@ -114,13 +132,19 @@ public class ControllerIncidencia {
     public String editarIncidencia(Incidencia incidencia, Model model) {
         incidencia = incidenciaService.cercarIncidencia(incidencia);
 
+        //Passem el llistat de estat d'equips a la vista
+        model.addAttribute("estats", estatService.llistarEstat());
+
+        //Passem el llistat de tipus d'equips a la vista
+        model.addAttribute("tipus_equips", tipusEquipService.llistarTipus_Equip());
+
         //Passem el llistat de tipusOperacions a la vista
         model.addAttribute("tipus_operacions", tipusOperacioService.llistartipusOperacio());
-        
-        //Passem el producte a la vista
+
+        //Passem la incidencia a la vista
         model.addAttribute("incidencia", incidencia);
 
-        //Passem el llistat de categories a la vista
+        //Retornem el formulari de detalls
         return "/detallsIncidencia";
     }
 
