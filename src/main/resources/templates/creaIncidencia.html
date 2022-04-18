@@ -143,7 +143,12 @@
 
                                     <label for="tipus_operacio_id" th:text="#{Incidencia.tipusOperacio}">Tipus Operacio </label>
 
-                                    <input type="text" id="tipus_operacio_id" name="tipus_operacio_id" th:field="*{tipus_operacio_id}" placeholder="Tipus Operacio"/>
+                                    
+                                    <select name="tipus_operacio_id" id="tipus_operacio_id" th:field="*{tipus_operacio_id}" >
+                                        <option th:each="tipus_operacio : ${tipus_operacions}" th:value="${tipus_operacio.id_tipus_operacio}" th:text="${tipus_operacio.nom}"></option>
+                                    </select>
+                                    
+                                    <!--<input type="text" id="tipus_operacio_id" name="tipus_operacio_id" th:field="*{tipus_operacio_id}" placeholder="Tipus Operacio"/>-->
                                     <span th:if="${#fields.hasErrors('tipus_operacio_id')}" th:errors="*{tipus_operacio_id}"></span>
 
                                     <!--<label for="tipusOperacio" th:text="#{Incidencia.tipusOperacio}">Tipus Operacio :</label>-->

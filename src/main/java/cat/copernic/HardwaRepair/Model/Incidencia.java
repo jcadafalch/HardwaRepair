@@ -49,8 +49,8 @@ public class Incidencia implements Serializable{
     @NotEmpty
     private String reparador;
    
-    @NotEmpty
-    private String tipus_operacio_id;
+    @NotNull
+    private long tipus_operacio_id;
    
     @NotEmpty
     private String cliente_id;

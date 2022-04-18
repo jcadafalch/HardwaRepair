@@ -5,7 +5,6 @@
  */
 package cat.copernic.HardwaRepair.Controller;
 
-
 import cat.copernic.HardwaRepair.DAO.IncidenciaDAO;
 import cat.copernic.HardwaRepair.Model.Incidencia;
 import cat.copernic.HardwaRepair.serveis.IncidenciaServiceInterface;
@@ -17,55 +16,56 @@ import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import cat.copernic.HardwaRepair.serveis.tipusOperacioServiceInterface;
 
 /**
  *
  * @author marc
  */
-
-
 @Controller
 @Slf4j
 public class ControllerIncidencia {
-    
+
     @Autowired
     private IncidenciaServiceInterface incidenciaService;
-    
+
+    @Autowired
+    private tipusOperacioServiceInterface tipusOperacioService;
+
     @Autowired
     private IncidenciaDAO incidenciaDao;
-    
-    
+
     @GetMapping("/crearIncidencia")
     public String crearIncidencia(Incidencia incidencia, Model model) {
-        try{
-            //Passem el llistat de categories a la vista
+        try {
+            
+            //Passem el llistat de tipusOperacions a la vista
+            model.addAttribute("tipus_operacions", tipusOperacioService.llistartipusOperacio());
+            
+            //Passem el llistat de incidencies a la vista
             model.addAttribute("Incidencies", incidenciaService.llistarIncidencies());
-        }catch (NullPointerException e){
+        } catch (NullPointerException e) {
             //Si no hi ha categories, mostrem un missatge d'error
             System.out.println("No hi ha Incidencies");
             System.out.println("Error == " + e.getMessage());
         }
-        
-        return "creaIncidencia"; 
+
+        return "creaIncidencia";
     }
-    
-    
-    
+
     @GetMapping("/detallsIncidencia")
     public String detallsIncidencia(Model model) {
         log.info("Executant el controlador de Incidencia");
-        
+
         //definim la variable de l'incidencia
         var incidencies = incidenciaDao.findAll();
-        
+
         model.addAttribute("incidencies", incidencies);
 
-        return "detallsIncidencia"; 
-        
+        return "detallsIncidencia";
+
     }
-    
-    
-    
+
 //    @GetMapping("/crearIncidencia")
 //    public String crearIncidencia(Model model) {
 //        log.info("Executant el controlador de Incidencia");
@@ -80,23 +80,26 @@ public class ControllerIncidencia {
 //    }
 //    
 //  
-
     @GetMapping("/llistatIncidencies")
-    public String llistarProductes(Model model){{
-        try{
-            model.addAttribute("incidencies", incidenciaService.llistarIncidencies());
-            System.out.println(incidenciaService.llistarIncidencies());
-        }catch (NullPointerException e){
-            System.out.println("No hi ha Incidencies");
-            System.out.println("Error == " + e.getMessage());
+    public String llistarProductes(Model model) {
+        {
+            try {
+
+                //Passem el llistat de categories a la vista
+                model.addAttribute("tipus_operacions", tipusOperacioService.llistartipusOperacio());
+                
+                model.addAttribute("incidencies", incidenciaService.llistarIncidencies());
+
+            } catch (NullPointerException e) {
+                System.out.println("No hi ha Incidencies");
+                System.out.println("Error == " + e.getMessage());
+            }
+            return "llistatIncidencies";
         }
-        return "llistatIncidencies";
-    }}
-    
-    
-    
+    }
+
     @PostMapping("/guardarIncidenciaCrear")
-    public String guardarIncidenciaCrear(@Valid Incidencia incidencia, Errors errors){
+    public String guardarIncidenciaCrear(@Valid Incidencia incidencia, Errors errors) {
         if (errors.hasErrors()) {
             //Si hi ha errors, tornem a la vista de crear incidencia
             log.info("S'ha produït un error'");
@@ -106,52 +109,43 @@ public class ControllerIncidencia {
         incidenciaService.afegirIncidencia(incidencia);
         return "redirect:/llistatIncidencies";
     }
-    
-    
-    
+
     @GetMapping("/editarIncidencia/{id_incidencia}")
-    public String editarIncidencia(Incidencia incidencia, Model model){
+    public String editarIncidencia(Incidencia incidencia, Model model) {
         incidencia = incidenciaService.cercarIncidencia(incidencia);
 
+        //Passem el llistat de tipusOperacions a la vista
+        model.addAttribute("tipus_operacions", tipusOperacioService.llistartipusOperacio());
+        
         //Passem el producte a la vista
         model.addAttribute("incidencia", incidencia);
 
         //Passem el llistat de categories a la vista
-        
         return "/detallsIncidencia";
     }
-    
-    
+
     @PostMapping("/guardarIncidenciaDetalls")
-    public String guardarIncidenciaDetalls(@Valid Incidencia incidencia, Errors errors){
-        
+    public String guardarIncidenciaDetalls(@Valid Incidencia incidencia, Errors errors) {
+
         if (errors.hasErrors()) {
-            
+
             //Si hi ha errors, tornem a la vista de detalls de l'incidencia
             log.info("S'ha produït un error'");
             return "";
         }
-        
+
         //Actualitzem el producte
         incidenciaService.afegirIncidencia(incidencia);
         return "redirect:/llistatIncidencies";
     }
-    
-    
- 
-    
+
     @GetMapping("/eliminarIncidencia/{id_incidencia}")
-    public String eliminarIncidencia(Incidencia incidencia){
+    public String eliminarIncidencia(Incidencia incidencia) {
         //Eliminem el producte
         incidenciaService.eliminarIncidencia(incidencia);
 
         //Redirigim a la vista de llistar productes
         return "redirect:/llistatIncidencies";
     }
-    
-    
-    
-    
-    
- 
+
 }
