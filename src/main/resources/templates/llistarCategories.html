@@ -5,31 +5,44 @@
     <head>
         <meta charset="UTF-8"></meta>
         <title>Categories</title>
-
+        
+        <!-- Bootstrap -->
+        <script src="../webjars/bootstrap/5.1.3/js/bootstrap.min.js"></script>
+        <link href="../webjars/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet"></link>
     </head>
     <body>
         <h1>Categories</h1>
 
-        <a th:href="@{/formulariCategoria}">
+        <!-- a th:href="@{/formulariCategoria}">
             <button th:text="#{categoria.add}"></button>
         </a>
-        <br>
+        <br -->
 
-       <div th:if="${categories!=null && !categories.empty}">
-            <table border="1">
-                <tr>
-                    <th>Id Categoria</th>
-                    <th>Nom</th>
-                </tr>
-                <tr th:each="categoria : ${categories}">
+        <div th:if="${categories!=null && !categories.empty}" class="table-responsive-md">
+            <table border="1" class="table table-bordered align-middle table-sm caption-top">
+                <caption>
+                    <a th:href="@{/formulariCategoria}">
+                        <button type="button" class="btn btn-outline-primary" th:text="#{categoria.add}"></button>
+                    </a>
+                </caption>
+                <thead>
+                    <tr>
+                        <th>Id Categoria</th>
+                        <th>Nom</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="categoria : ${categories}">
                     <td th:text="${categoria.idCategoria}"></td>
                     <td th:text="${categoria.nom}"></td>
                    <td><a th:href="@{/editarCategoria/}+${categoria.idCategoria}">Detalls</a></td>
                 </tr>
+                </tbody>
+                
             </table>
         </div>
        <div th:if="${categories==null || categories.empty}">
-            <p>No hi ha productes</p>
+            <p class="font-monospace">No hi ha productes</p>
        </div>
 
     </body>

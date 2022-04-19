@@ -50,9 +50,6 @@ public class ControladorProducte {
             System.out.println("No hi ha categories");
             System.out.println("Error == " + e.getMessage());
         }
-
-
-
         return "formulariProducte";
     }
     
