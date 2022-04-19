@@ -1,43 +1,95 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
-      xmlns="http://www.w3.org/1999/xhtml">
+<!doctype html>
+<html lang="en">
     <head>
-        <meta charset="UTF-8"/>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
+
         <title>Usuaris</title>
 
+        <!-- Bootstrap -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"></link>
+        <script src="../webjars/bootstrap/5.1.3/js/bootstrap.min.js"></script>
+        <link href="../webjars/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet"></link>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     </head>
+
     <body>
-        <h1>Usuaris</h1>
+        <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
+            <a class="navbar-brand col-sm-3 col-md-2 mr-0" th:href="@{/}">HardwaRepair</a>
+        </nav>
 
-        <a th:href="@{/formulariUsuari}">
-            <button th:text="#{usuaris.add}"></button>
-        </a>
-        <br>
+        <div class="container-fluid">
+            <div class="row">
+                <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+                    <div class="sidebar-sticky">
+                        <ul class="nav flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">
+                                    Incidencies
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">
+                                    Productes
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" th:href="@{/llistarCategories}">
+                                    Categories
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" th:href="@{/llistarUsuaris}">
+                                    Usuaris
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
 
-            <div th:if="${usuaris!=null && !usuaris.empty}">
-                <table border="1">
-                    <tr>
-                        <th>Nom</th>
-                        <th>Cognoms</th>
-                        <th>DNI</th>
-                        <th>Telèfon</th>
-                        <th>Accions</th>
-                    </tr>
-                    <tr th:each="usuari : ${usuaris}">
-                        <td th:text="${usuari.nom}"></td>
-                        <td th:text="${usuari.cognoms}"></td>
-                        <td th:text="${usuari.dni}"></td>
-                        <td th:text="${usuari.telefon}"></td>
-                        <td><a th:href="@{/editarUsuari/}+${usuari.idUsuari}">Detalls</a></td>
-                    </tr>
-                </table>
+                <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+                    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+                        <h1 class="h2">Usuaris</h1>
+                        <div class="btn-toolbar mb-2 mb-md-0">
+                            <div class="btn-group mr-2">
+                                <a th:href="@{/formulariUsuari}">
+                                    <button class="btn btn-sm btn-outline-secondary">Crear Usuari</button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="table-responsive" th:if="${usuaris!=null && !usuaris.empty}">
+                        <table class="table table-striped table-sm">
+                            <thead>
+                                <tr>
+                                    <th>Nom</th>
+                                    <th>Cognoms</th>
+                                    <th>DNI</th>
+                                    <th>Telèfon</th>
+                                    <th>Accions</th>
+                                </tr>
+                                <tr th:each="usuari : ${usuaris}">
+                                    <td th:text="${usuari.nom}"></td>
+                                    <td th:text="${usuari.cognoms}"></td>
+                                    <td th:text="${usuari.dni}"></td>
+                                    <td th:text="${usuari.telefon}"></td>
+                                    <td>
+                                        <div class="badge bg-primary text-wrap" style="width: 6rem;">
+                                            <a th:href="@{/editarUsuari/}+${usuari.idUsuari}" style="color:white; text-decoration: none;">Detalls</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </main>
             </div>
-            <div th:if="${usuaris==null || usuaris.empty}">
-                <p>No hi ha Usuaris</p>
-            </div>
-
+        </div>
     </body>
 </html>
-
-
