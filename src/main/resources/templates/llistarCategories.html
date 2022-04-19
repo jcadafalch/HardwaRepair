@@ -5,45 +5,80 @@
     <head>
         <meta charset="UTF-8"></meta>
         <title>Categories</title>
-        
+
         <!-- Bootstrap -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"></link>
         <script src="../webjars/bootstrap/5.1.3/js/bootstrap.min.js"></script>
         <link href="../webjars/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet"></link>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
+
     </head>
+    
+    
     <body>
-        <h1>Categories</h1>
-
-        <!-- a th:href="@{/formulariCategoria}">
-            <button th:text="#{categoria.add}"></button>
-        </a>
-        <br -->
-
-        <div th:if="${categories!=null && !categories.empty}" class="table-responsive-md">
-            <table border="1" class="table table-bordered align-middle table-sm caption-top">
-                <caption>
-                    <a th:href="@{/formulariCategoria}">
-                        <button type="button" class="btn btn-outline-primary" th:text="#{categoria.add}"></button>
-                    </a>
-                </caption>
-                <thead>
-                    <tr>
-                        <th>Id Categoria</th>
-                        <th>Nom</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr th:each="categoria : ${categories}">
-                    <td th:text="${categoria.idCategoria}"></td>
-                    <td th:text="${categoria.nom}"></td>
-                   <td><a th:href="@{/editarCategoria/}+${categoria.idCategoria}">Detalls</a></td>
-                </tr>
-                </tbody>
-                
-            </table>
+        <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
+          <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">HardwaRepair </a>
+        </nav>
+        <div class="container-fluid">
+            <div class="row">
+                <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+          <div class="sidebar-sticky">
+            <ul class="nav flex-column">
+              <li class="nav-item">
+                <a class="nav-link active" href="#">
+                  Dashboard <span class="sr-only">(current)</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  Orders
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  Products
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  Customers
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  Reports
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  Integrations
+                </a>
+              </li>
+            </ul>          
         </div>
-       <div th:if="${categories==null || categories.empty}">
-            <p class="font-monospace">No hi ha productes</p>
-       </div>
+        </nav>
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+            <h1>Categories</h1>
+            <div class="table-responsive">
+                <table class="table table-striped table-sm">
+                    <thead>
+                            <tr>
+                                <th>Id Categoria</th>
+                                <th>Nom</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="categoria : ${categories}">
+                                <td th:text="${categoria.idCategoria}"></td>
+                                <td th:text="${categoria.nom}"></td>
+                                <td><a th:href="@{/editarCategoria/}+${categoria.idCategoria}">Detalls</a></td>
+                            </tr>
+                        </tbody>
+                </table>
 
+            </div>
+        </main>
     </body>
 </html>
