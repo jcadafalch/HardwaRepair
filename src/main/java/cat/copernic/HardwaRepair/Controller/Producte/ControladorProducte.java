@@ -2,12 +2,17 @@ package cat.copernic.HardwaRepair.Controller.Producte;
 
 import cat.copernic.HardwaRepair.Model.LiniaReparacio;
 import cat.copernic.HardwaRepair.Model.Producte;
+import cat.copernic.HardwaRepair.Utils.IsAdministrator;
 import cat.copernic.HardwaRepair.serveis.Categoria.CategoriaServiceInterface;
 import cat.copernic.HardwaRepair.serveis.LiniaReparacio.LiniaReparacioServiceInterface;
 import cat.copernic.HardwaRepair.serveis.Producte.ProducteServiceInterface;
 import javax.validation.Valid;
+
+import cat.copernic.HardwaRepair.serveis.Usuari.UsuariServiceInterface;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -26,6 +31,9 @@ public class ControladorProducte {
 
     @Autowired
     private CategoriaServiceInterface categoriaService;
+
+    @Autowired
+    private UsuariServiceInterface usuariService;
 
 
     @GetMapping("/llistarProductes")
@@ -73,7 +81,7 @@ public class ControladorProducte {
     }
 
     @GetMapping("/editarProducte/{idProducte}")
-    public String editarProducte(Producte producte, Model model){
+    public String editarProducte(Producte producte, Model model, @AuthenticationPrincipal User username){
         producte = producteService.cercarProducte(producte);
 
         //Passem el producte a la vista
@@ -81,15 +89,23 @@ public class ControladorProducte {
 
         //Passem el llistat de categories a la vista
         model.addAttribute("categories", categoriaService.llistarCategoria());
+
+        //Passem a la vista si l'usuari és administrador
+        model.addAttribute("isAdministrator", IsAdministrator.isAdministrator(username.getUsername(), usuariService));
         return "detallsProducte";
     }
 
     @PostMapping("/guardarProducteDetalls")
-    public String guardarProducteDetalls(@Valid Producte producte, Errors errors, Model model){
+    public String guardarProducteDetalls(@Valid Producte producte, Errors errors, Model model, @AuthenticationPrincipal User username){
         if (errors.hasErrors()) {
             //Si hi ha errors, tornem a la vista de detalls producte
             log.info("S'ha produït un error'");
+
+            //Passem el llistat de categories a la vista
             model.addAttribute("categories", categoriaService.llistarCategoria());
+
+            //Passem a la vista si l'usuari és administrador
+            model.addAttribute("isAdministrator", IsAdministrator.isAdministrator(username.getUsername(), usuariService));
             return "detallsProducte";
         }
         //Actualitzem el producte
