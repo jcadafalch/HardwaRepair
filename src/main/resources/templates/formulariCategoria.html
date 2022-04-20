@@ -63,20 +63,14 @@
                     </div>
                     <form th:action="@{/guardarCategoria}" method="post" th:object="${categoria}">
                         <input type="hidden" name="idCategoria" th:field="*{idCategoria}"/>
-                        <div class="modal-body">
-                            <table border="0" class="">
-                                <thead>
-                                    <tr>
-                                        <td><label for="nom">Nom</label></td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <input type="text" id="nom" name="nom" th:field="*{nom}" placeholder="Nom de la categoria"/>
-                                            <span th:if="${#fields.hasErrors('nom')}" th:errors="*{nom}"></span>
-                                        </td>
-                                    </tr>
-                                </thead>
-                            </table>
+                        <div class="row kt-margin-b-20">
+                            <div class="col-lg-5 kt-margin-b-10-tablet-and-mobile">
+                                <label style="font-weight: bold;">Nom:</label>
+                                <div class="input-icon">
+                                    <input class="form-control" type="text" id="nom" name="nom" th:field="*{nom}" placeholder="Nom de la categoria"/>
+                                    <span th:if="${#fields.hasErrors('nom')}" th:errors="*{nom}"></span>
+                                </div>
+                            </div>
                         </div>
                         <div  class="modal-footer">
                             <a th:href="@{/llistarCategories}" th:text="#{cancelar}" class="btn btn-secondary"></a>
