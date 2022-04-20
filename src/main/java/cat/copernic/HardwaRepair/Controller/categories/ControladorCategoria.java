@@ -40,6 +40,7 @@ public class ControladorCategoria {
 
     @GetMapping("/formulariCategoria")
     public String crearFormulariCategoria(Categoria categoria, Model model){
+        model.addAttribute("founded", false);
         return "formulariCategoria";
     }
     
@@ -62,8 +63,19 @@ public class ControladorCategoria {
         categoria = categoriaService.cercarCategoria(categoria);
         System.out.println("Categoria a editar == " + categoria);
         model.addAttribute("categoria", categoria);
+        model.addAttribute("founded", true);
         return "formulariCategoria";
     }
+    
+    @GetMapping("/eliminarCategoria/{idCategoria}")
+    public String eliminarCategoria(Categoria categoria){
+        //Eliminem la categoria
+        categoriaService.eliminarCategoria(categoria);
+
+        //Redirigim a la vista de llistar categories
+        return "redirect:/llistarCategories";
+    }
+
 
     
     @GetMapping("/categoriaController")

@@ -144,7 +144,12 @@
                         </div>
 
 
-                        <div  class="modal-footer">
+                        <div  class="modal-footer" th:if="${founded == true}">
+                            <a th:href="@{/llistarUsuaris}" th:text="#{cancelar}" class="btn btn-secondary"></a>
+                            <input type="submit" name="enviar" value="Guardar" class="btn btn-primary"/>
+                            <a th:href="@{/eliminarUsuari/}+${usuari.idUsuari}" th:text="#{Eliminar}" class="btn btn-danger"></a>
+                        </div>
+                        <div  class="modal-footer" th:if="${founded == false}">
                             <a th:href="@{/llistarUsuaris}" th:text="#{cancelar}" class="btn btn-secondary"></a>
                             <input type="submit" name="enviar" value="Guardar" class="btn btn-primary"/>
                         </div>

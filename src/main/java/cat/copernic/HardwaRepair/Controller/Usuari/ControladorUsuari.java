@@ -41,6 +41,7 @@ public class ControladorUsuari {
             var usuaris = usuariService.llistarUsuari();
             System.out.println(usuaris);
             model.addAttribute("usuaris", usuaris);
+            model.addAttribute("founded", false);
         }catch (NullPointerException e){
             System.out.println("No hi ha usuaris");
             System.out.println("Error == " + e.getMessage());
@@ -68,6 +69,16 @@ public class ControladorUsuari {
         usuari = usuariService.cercarUsuari(usuari);
         System.out.println("Ususari a editar == " + usuari);
         model.addAttribute("usuari", usuari);
+        model.addAttribute("founded", true);
         return "formulariUsuari";
+    }
+    
+    @GetMapping("/eliminarUsuari/{idUsuari}")
+    public String eliminarUsuari(Usuari usuari){
+        //Eliminem el usuari
+        usuariService.eliminarUsuari(usuari);
+
+        //Redirigim a la vista de llistar usuaris
+        return "redirect:/llistarUsuaris";
     }
 }
