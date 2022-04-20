@@ -1,171 +1,134 @@
-<!-- <html xmlns:th="http://www.thymeleaf.org"
-      xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<!doctype html>
+<html lang="en">
     <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
+
         <title>Usuaris</title>
-        <meta charset="UTF-8"/>
+
+        <!-- Bootstrap -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"></link>
+        <script src="../webjars/bootstrap/5.1.3/js/bootstrap.min.js"></script>
+        <link href="../webjars/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet"></link>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     </head>
-    
+
     <body>
-        <!-- El formulario de la creación de un usuario sera una ventana emergente dentro del propio listado de usuarios
-        <section th:fragment="formulariUsuari">
-            <div id="formulariUsuari" class="modal fade">
-                <div class="modal-dialog modal-lg">
-                    <div class="modal-content">
-                        <!-- Header de la ventana en la que aparece el nombre y una X para cerrarla
-                        <div class="modal-header bg-info text-white">
-                            <h5 class="modal-title" th:text="#{accion.formulariUsuari}">Afegir Usuari</h5>
-                        </div> 
-                        <button class="close" data-dismiss="modal">
-                            <span>&times;</span>
-                        </button>
-                </div>
-                    <form th:action="@{/guardar}" th:object="${usuari}"
-                        method="POST" class="was-validated">
-                            <div class="modal-body">
-                                <!-- Nom 
-                                <div class="form-group">
-                                    <label for="nom" th:text="#{usuari.nom}">Nom:</label>
-                                    <input type="text" class="form-control" name="nom" required="true">
-                                </div>
-                                
-                                <!-- Cognoms 
-                                <div class="form-group">
-                                    <label for="cognoms" th:text="#{usuari.cognoms}">Cognoms:</label>
-                                    <input type="text" class="form-control" name="cognoms" required="true">
-                                </div>
-                                
-                                <!-- Telefon 
-                                <div class="form-group">
-                                    <label for="telefon" th:text="#{usuari.telefon}">Telèfon:</label>
-                                    <input type="text" class="form-control" name="telefon" required="true">
-                                </div>
-                                
-                                <!-- Adreça 
-                                <div class="form-group">
-                                    <label for="adreca" th:text="#{usuari.adreca}">Adreça:</label>
-                                    <input type="text" class="form-control" name="nom" required="true">
-                                </div>
-                                
-                                <!-- Codi Postal 
-                                <div class="form-group">
-                                    <label for="codipostal" th:text="#{usuari.codi.postal}">Codi Postal:</label>
-                                    <input type="text" class="form-control" name="codipostal" required="true">
-                                </div>
-                                
-                                <!-- Email 
-                                <div class="form-group">
-                                    <label for="email" th:text="#{usuari.email}">Email:</label>
-                                    <input type="text" class="form-control" name="email" required="true">
-                                </div>
-                                
-                                <!-- Contrasenya 
-                                <div class="form-group">
-                                    <label for="contrasenya" th:text="#{usuari.contrasenya}">Contrasenya:</label>
-                                    <input type="text" class="form-control" name="contrasenya" required="true">
-                                </div>
-                                
-                                <!-- Repetir Contrasenya 
-                                <div class="form-group">
-                                    <label for="contrasenya2" th:text="#{usuari.contrasenya2}">Repetir contrasenya:</label>
-                                    <input type="text" class="form-control" name="contrasenya2" required="true">
-                                </div>
-                            </div>
-                        <!-- Botón para guardar el nuevo usuario 
-                        <div class="modal-footer">
-                            <button class="bton bton-primary" type="submit" th:text="#{accion.guardar}">Guardar</button>
+        <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
+            <a class="navbar-brand col-sm-3 col-md-2 mr-0" th:href="@{/}">HardwaRepair</a>
+        </nav>
+
+        <div class="container-fluid">
+            <div class="row">
+                <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+                    <div class="sidebar-sticky">
+                        <ul class="nav flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">
+                                    Incidencies
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">
+                                    Productes
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" th:href="@{/llistarCategories}">
+                                    Categories
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" th:href="@{/llistarUsuaris}">
+                                    Usuaris
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+
+                <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+                    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+                        <h1 class="h2">Usuaris</h1>
+                    </div>
+                    <form th:action="@{/guardarUsuari}" method="post" th:object="${usuari}">
+                        <input type="hidden" name="idUsuari" th:field="*{idUsuari}"/>
+                        <div class="modal-body">
+                            <table border="0" class="">
+                                <thead>
+                                    <tr>
+                                        <td><label for="nom">Nom</label></td>
+                                        <td><label for="cognoms">Cognoms</label></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <input type="text" id="nom" name="nom" th:field="*{nom}" placeholder="Nom del Usuari"/>
+                                            <span th:if="${#fields.hasErrors('nom')}" th:errors="*{nom}"></span>
+                                        </td>
+                                        <td>
+                                            <input type="text" id="cognoms" name="cognoms" th:field="*{cognoms}" placeholder="Cognoms del Usuari"/>
+                                            <span th:if="${#fields.hasErrors('cognoms')}" th:errors="*{cognoms}"></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><label for="telefon">Telèfon</label></td>
+                                        <td><label for="adreca">Adreça</label></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <input type="number"  id="telefon" name="telefon" th:field="*{telefon}" placeholder="Telefon del Usuari"/>
+                                            <span th:if="${#fields.hasErrors('telefon')}" th:errors="*{telefon}"></span>
+                                        </td>
+                                        <td>
+                                            <input type="text" id="adreca" name="adreca" th:field="*{adreca}" placeholder="Adreça del Usuari"/>
+                                            <span th:if="${#fields.hasErrors('adreca')}" th:errors="*{adreca}"></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><label for="codiPostal">Codi Postal</label></td>
+                                        <td><label for="password">Contrasenya</label></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <input type="text" id="codiPostal" name="codiPostal" th:field="*{codiPostal}"
+                                                   placeholder="Codi Postal del Usuari"/>
+                                            <span th:if="${#fields.hasErrors('codiPostal')}" th:errors="*{codiPostal}"></span>
+                                        </td>
+                                        <td>
+                                            <!-- Type password no funciona -->
+                                            <input type="text" id="password" name="password" th:field="*{password}" placeholder="password"/>
+                                            <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><label for="dni">DNI</label></td>
+                                        <td><label for="username">Username</label></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <input type="text" id="dni" name="dni" th:field="*{dni}" placeholder="dni"/>
+                                            <span th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}"></span>
+                                        </td>
+                                        <td>
+                                            <input type="text" id="username" name="username" th:field="*{username}" placeholder="username"/>
+                                            <span th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></span>
+                                        </td>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                        <div  class="modal-footer">
+                            <a th:href="@{/llistarUsuaris}" th:text="#{cancelar}" class="btn btn-secondary"></a>
+                            <input type="submit" name="enviar" value="Guardar" class="btn btn-primary"/>
                         </div>
                     </form>
-            </div> 
-        </section>
+                </main>
+            </div>
+        </div>
     </body>
-</html> -->
-                        
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
-      xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <title>Crear Usuari</title>
-    <meta charset="UTF-8"/>
-</head>
-<body>
-<!--<header th:replace="layout/plantilla :: capcalera" />-->
-    <h2>Crear Usuari</h2>
-
-    <p>
-        <form th:action="@{/guardarUsuari}" method="post" th:object="${usuari}">
-            <input type="hidden" name="idUsuari" th:field="*{idUsuari}"/>
-            <table style="width:35%">
-                <tr>
-                    <td><label for="nom">Nom</label></td>
-                    <td><label for="cognoms">Cognoms</label></td>
-                </tr>
-                <tr>
-                    <td>
-                        <input type="text" id="nom" name="nom" th:field="*{nom}" placeholder="Nom del Usuari"/>
-                        <span th:if="${#fields.hasErrors('nom')}" th:errors="*{nom}"></span>
-                    </td>
-                    <td>
-                        <input type="text" id="cognoms" name="cognoms" th:field="*{cognoms}" placeholder="Cognoms del Usuari"/>
-                        <span th:if="${#fields.hasErrors('cognoms')}" th:errors="*{cognoms}"></span>
-                    </td>
-                </tr>
-                <tr>
-                    <td><label for="telefon">Telèfon</label></td>
-                    <td><label for="adreca">Adreça</label></td>
-                </tr>
-                <tr>
-                    <td>
-                        <input type="number"  id="telefon" name="telefon" th:field="*{telefon}" placeholder="Telefon del Usuari"/>
-                        <span th:if="${#fields.hasErrors('telefon')}" th:errors="*{telefon}"></span>
-                    </td>
-                    <td>
-                        <input type="text" id="adreca" name="adreca" th:field="*{adreca}" placeholder="Adreça del Usuari"/>
-                        <span th:if="${#fields.hasErrors('adreca')}" th:errors="*{adreca}"></span>
-                    </td>
-                </tr>
-                <tr>
-                    <td><label for="codiPostal">Codi Postal</label></td>
-                    <td><label for="password">Contrasenya</label></td>
-                </tr>
-                <tr>
-                    <td>
-                        <input type="text" id="codiPostal" name="codiPostal" th:field="*{codiPostal}"
-                               placeholder="Codi Postal del Usuari"/>
-                        <span th:if="${#fields.hasErrors('codiPostal')}" th:errors="*{codiPostal}"></span>
-                    </td>
-                    <td>
-                        <!-- Type password no funciona -->
-                        <input type="text" id="password" name="password" th:field="*{password}" placeholder="password"/>
-                        <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
-                    </td>
-                </tr>
-                <tr>
-                    <td><label for="dni">DNI</label></td>
-                    <td><label for="username">Username</label></td>
-                </tr>
-                <tr>
-                    <td>
-                        <input type="text" id="dni" name="dni" th:field="*{dni}" placeholder="dni"/>
-                        <span th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}"></span>
-                    </td>
-                    <td>
-                        <input type="text" id="username" name="username" th:field="*{username}" placeholder="username"/>
-                        <span th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></span>
-                    </td>
-                </tr>
-            </table>
-        <br>
-
-        <button><a th:href="@{/llistarUsuaris}" th:text="#{cancelar}"></a></button>
-        <input type="submit" name="enviar" value="Guardar"/>
-
-        <br><br><br>
-    </form>
-    </p>
-
-<!--<footer th:replace="layout/plantilla :: peu" />-->
-
-</body>
 </html>
-
