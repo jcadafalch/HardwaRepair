@@ -48,6 +48,7 @@ public class ProducteService implements ProducteServiceInterface{
 
     //Cercar el producte mitjançant l'id passat per paràmetre en la taula producte de la BBDD
     @Override
+    @Transactional(readOnly=true)
     public Producte cercarProducteById(Long id) {
         return this.producte.findById(id).orElse(null);
     }

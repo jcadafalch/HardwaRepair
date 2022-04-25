@@ -4,7 +4,7 @@
       xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Afegir producte</title>
 </head>
 <body>
 <h1>Afegir producte</h1>
@@ -12,14 +12,19 @@
 <div th:if="${productes!=null && !productes.empty}">
     <p>
 
-    <form action="@{/guardarLiniaReparacio}" method="POST" th:object="${liniareparacio}">
-        <input type="hidden" name="incidenciaId" th:field="*{incidenciaId}" th:value="${incidencia.id_incidencia}"/>
+    <form th:action="@{/guardarLiniaReparacio}" method="post" th:object="${liniareparacio}">
+    <input type="hidden" id="incidenciaId" name="incidenciaId" th:field="*{incidenciaId}" th:value="${incidencia.id_incidencia}"/>
         <br>
         <label for="producte">Selecciona el producte que vols afegir: </label><br>
         <select name="producte" id="producte" th:field="*{producteId}">
             <option th:each="producte : ${productes}" th:value="${producte.idProducte}"
                     th:text="${producte.marca} + ' ' + ${producte.nom}"></option>
         </select>
+        <br>
+        <td><label for="quantitat">Preu de compra</label></td>
+        <input type="number" min="1" id="quantitat" name="quantitat" th:field="*{quantitat}" placeholder="Quantitat"/>
+        <span th:if="${#fields.hasErrors('quantitat')}" th:errors="*{quantitat}"/>
+        <br>
         <input type="submit" name="enviar" value="Afegir producte"/>
         <button><a th:href="@{/llistatIncidencies}" th:text="#{cancelar}"></a></button>
     </form>

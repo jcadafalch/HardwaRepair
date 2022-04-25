@@ -14,7 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 /*Anotació que permet al sistema que reconegui aquesta classe com una classe de servei
  *i que permet injectar aquesta classe en el controlador
-*/
+ */
 @Service
 public class IncidenciaService implements IncidenciaServiceInterface{
 

@@ -6,6 +6,6 @@ import org.springframework.data.repository.CrudRepository;
  *
  * @author jcadafalch
  */
-public interface LiniaReparacioDAO extends CrudRepository<LiniaReparacio, Long> {
+public interface LiniaReparacioDAO extends CrudRepository<LiniaReparacio, String> {
 
 }

@@ -37,4 +37,11 @@ public class LiniaReparacioService implements LiniaReparacioServiceInterface{
     public void eliminarLiniaReparacio(LiniaReparacio liniaReparacio) {
         this.liniaReparacio.delete(liniaReparacio);
     }
+
+    //Cercar linia de reparació mitjançant ID passat per paràmetre en la taula LiniaReparacio de la BBDD
+    @Override
+    @Transactional(readOnly = true)
+    public LiniaReparacio cercarLiniaReparacioById(String id) {
+        return liniaReparacio.findById(id).orElse(null);
+    }
 }

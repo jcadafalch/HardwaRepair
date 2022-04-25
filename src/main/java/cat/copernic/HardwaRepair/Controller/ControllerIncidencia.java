@@ -69,9 +69,6 @@ public class ControllerIncidencia {
         return "llistatIncidencies";
     }}
 
-
-
-
     @GetMapping("/liniaReparacio/{id_incidencia}")
     public String liniaReparacio(Incidencia incidencia,Model model,LiniaReparacio liniareparacio){
         try {
@@ -83,6 +80,9 @@ public class ControllerIncidencia {
             System.out.println("Productes == " + producteService.llistarProductes());
 
             System.out.println("Llistat liniaReparacio == " + liniaReparacioService.llistarLiniaReparacio());
+
+            model.addAttribute("incidenciaId", incidencia.getId_incidencia());
+            System.out.println("Incidencia ID == " + incidencia.getId_incidencia());
 
             //Passem la incidencia a la vista
             model.addAttribute("incidencia", incidenciaService.cercarIncidencia(incidencia));
@@ -99,18 +99,27 @@ public class ControllerIncidencia {
     }
 
     @PostMapping("/guardarLiniaReparacio")
-    public String guardarLiniaReparacio(@Valid LiniaReparacio liniaReparacio, Errors errors){
+    public String guardarLiniaReparacio(@Valid LiniaReparacio liniaReparacio, Errors errors, Model model){
         if (errors.hasErrors()) {
             //Si hi ha errors, tornem a la vista de linia reparació
             log.info("S'ha produït un error'");
+            //Passem el llistat de productes a la vista
+            model.addAttribute("productes", producteService.llistarProductes());
+
+            model.addAttribute("liniareparacio", liniaReparacio);
             return "liniaReparacio";
         }
 
+        //System.out.println("LiniaReparacio == " + liniaReparacio);
+        liniaReparacio.setIdLiniaReparacio(liniaReparacio.getIncidenciaId() + "_" + liniaReparacio.getProducteId());
+
         System.out.println("LiniaReparacio == " + liniaReparacio);
+        System.out.println("LiniaReparacio idIncidencia == " + liniaReparacio.getIncidenciaId());
+
         //Guardem la linia reparació
         liniaReparacioService.afegirLiniaReparacio(liniaReparacio);
         //return "redirect:/liniaReparacio";
-        return "redirect:/llistarProductes";
+        return "redirect:/llistatIncidencies";
     }
 
 

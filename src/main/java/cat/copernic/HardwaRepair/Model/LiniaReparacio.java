@@ -6,6 +6,7 @@ import lombok.Data;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
@@ -18,10 +19,10 @@ import java.io.Serializable;
 @Table(name = "linia_reparacio")
 public class LiniaReparacio implements Serializable {
 
-    private static final long serialVersionUID=1L;
+    //private static final long serialVersionUID=1L;
 
     @Id
-    private long idLiniaReparacio;
+    private String idLiniaReparacio;
 
     @NotNull
     private long incidenciaId;

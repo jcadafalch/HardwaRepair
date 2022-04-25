@@ -18,4 +18,6 @@ public interface LiniaReparacioServiceInterface {
     //Mètode que implementarem per eliminar una linia de reparació
     public void eliminarLiniaReparacio(LiniaReparacio liniaReparacio);
 
+    //Mètode que implementarem per cercar una liniaReparacio per ID
+    public LiniaReparacio cercarLiniaReparacioById(String id);
 }
