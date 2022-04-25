@@ -30,13 +30,13 @@
                     <div class="sidebar-sticky">
                         <ul class="nav flex-column">
                             <li class="nav-item">
-                                <a class="nav-link" href="#">
+                                <a class="nav-link" th:href="@{/llistatIncidencies}">
                                     <span class="bi bi-tools"></span>
                                     Incidencies
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">
+                                <a class="nav-link" th:href="@{/llistarProductes}">
                                     <span class="bi bi-box"></span>
                                     Productes
                                 </a>
@@ -123,7 +123,8 @@
                             <div class="col-lg-5 kt-margin-b-10-tablet-and-mobile">
                                 <label style="font-weight: bold;">DNI:</label>
                                 <div class="input-icon">
-                                    <input class="form-control" required="true" type="text" id="dni" name="dni" th:field="*{dni}" placeholder="dni"/>
+                                    <input th:if="${founded == true}" class="form-control" type="text" id="dni" name="dni" th:field="*{dni}" placeholder="dni"/>
+                                    <input th:if="${founded == false}" pattern="[0-9]{8}[A-Z]{1}" class="form-control" type="text" id="dni" name="dni" th:field="*{dni}" placeholder="dni"/>
                                     <span th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}"></span>
                                 </div>
                             </div>
@@ -151,7 +152,7 @@
                         <div  class="modal-footer" th:if="${founded == true}">
                             <a th:href="@{/llistarUsuaris}" th:text="#{cancelar}" class="btn btn-secondary"></a>
                             <input type="submit" name="enviar" value="Guardar" class="btn btn-primary"/>
-                            <a th:href="@{/eliminarUsuari/}+${usuari.idUsuari}" th:text="#{Eliminar}" class="btn btn-danger"></a>
+                            <a th:if="${isAdministrator == true}" th:href="@{/eliminarUsuari/}+${usuari.idUsuari}" th:text="#{Eliminar}" class="btn btn-danger"></a>
                         </div>
                         <div  class="modal-footer" th:if="${founded == false}">
                             <a th:href="@{/llistarUsuaris}" th:text="#{cancelar}" class="btn btn-secondary"></a>

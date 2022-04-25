@@ -40,7 +40,7 @@
         <div>
             <td><a th:href="@{/llistatIncidencies}"><button class="selectModuleButton"><span class="bi bi-tools"></span>  Servei Tècnic</button></a></td>
             <!-- Si l'usuari té el rol de administrador se li mostrarà el botó de gestió d'usuaris -->
-            <td th:if="${isAdministrator == true}"><a th:href="@{/llistatUsuaris}"><button class="selectModuleButton"> <span class="bi bi-people"></span> Gestió Usuaris </button></a></td>
+            <td th:if="${isAdministrator == true}"><a th:href="@{/llistarUsuaris}"><button class="selectModuleButton"> <span class="bi bi-people"></span> Gestió Usuaris </button></a></td>
         </div>
     </div>
         <!-- <h1>Estem al select module</h1>

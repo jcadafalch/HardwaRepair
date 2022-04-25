@@ -3,10 +3,14 @@ package cat.copernic.HardwaRepair.Controller.categories;
 
 import cat.copernic.HardwaRepair.DAO.CategoriaDAO;
 import cat.copernic.HardwaRepair.Model.Categoria;
+import cat.copernic.HardwaRepair.Utils.IsAdministrator;
 import javax.validation.Valid;
 import cat.copernic.HardwaRepair.serveis.Categoria.CategoriaServiceInterface;
+import cat.copernic.HardwaRepair.serveis.Usuari.UsuariServiceInterface;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -27,6 +31,8 @@ public class ControladorCategoria {
     private CategoriaServiceInterface categoriaService;
     @Autowired
     private CategoriaDAO categoriaDAO;
+    @Autowired
+    private UsuariServiceInterface usuariService;
     
     @GetMapping("/llistarCategories")
     public String llistarCategories(Model model){{
@@ -46,7 +52,7 @@ public class ControladorCategoria {
     }
     
     @PostMapping("/guardarCategoria")
-    public String guardarCategoria(@Valid Categoria categoria, Errors errors, RedirectAttributes redirectAttrs){
+    public String guardarCategoria(@Valid Categoria categoria, Errors errors, RedirectAttributes redirectAttrs, @AuthenticationPrincipal User username, Model model){
         if (errors.hasErrors()) {
             log.info("S'ha produït un error'");
             return "formulariCategoria";
@@ -59,12 +65,15 @@ public class ControladorCategoria {
             return "redirect:/llistarCategories";
         }
         
+         //Passem a la vista si l'usuari és administrador
+        model.addAttribute("isAdministrator", IsAdministrator.isAdministrator(username.getUsername(), usuariService));
+        
         categoriaService.afegirCategoria(categoria);
         return "redirect:/llistarCategories";
     }
 
     @GetMapping("/editarCategoria/{idCategoria}")
-    public String editarCategoria(Categoria categoria, Model model){
+    public String editarCategoria(Categoria categoria, Model model, @AuthenticationPrincipal User username){
         System.out.println("Categoria a editar == " + categoria);
         log.info(String.valueOf(categoria.getIdCategoria()));
 
@@ -72,6 +81,8 @@ public class ControladorCategoria {
         System.out.println("Categoria a editar == " + categoria);
         model.addAttribute("categoria", categoria);
         model.addAttribute("founded", true);
+         //Passem a la vista si l'usuari és administrador
+        model.addAttribute("isAdministrator", IsAdministrator.isAdministrator(username.getUsername(), usuariService));
         return "formulariCategoria";
     }
     
