@@ -4,6 +4,9 @@
     <head>
         <title>Selecció de modul</title>
         <meta charset="UTF-8">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+        <!-- Bootstrap Font Icon CSS -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
         <style>
             .selectModuleButton {
                 padding: 15px 25px;
@@ -26,28 +29,32 @@
                 box-shadow: 0 5px #666;
                 transform: translateY(4px);
             }
+
         </style>
     </head>
     <body>
-        <h1>Selecciona el modul amb el que vols treballar</h1>
-
+    <div class="d-flex justify-content-center">
+        <h1  class="fs-2">Selecciona el modul amb el que vols treballar</h1><br>
+    </div>
+    <div class="d-flex justify-content-center">
         <div>
-            <td><a th:href="@{/llistarProductes}"><button class="selectModuleButton"> Servei Tècnic</button></a></td>
+            <td><a th:href="@{/llistatIncidencies}"><button class="selectModuleButton"><span class="bi bi-tools"></span>  Servei Tècnic</button></a></td>
             <!-- Si l'usuari té el rol de administrador se li mostrarà el botó de gestió d'usuaris -->
-            <td><a sec:authorize="hasRole('ROLE_admin')" th:href="@{/llistatUsuaris}"><button class="selectModuleButton" >Gestió Usuaris </button></a></td>
-        </div>  
-        
-          <!-- <h1>Estem al select module</h1>
+            <td th:if="${isAdministrator == true}"><a th:href="@{/llistarUsuaris}"><button class="selectModuleButton"> <span class="bi bi-people"></span> Gestió Usuaris </button></a></td>
+        </div>
+    </div>
+        <!-- <h1>Estem al select module</h1>
 
-        <div sec:authorize="isAuthenticated()"></div>
-        <div sec:authorize="isAnonymous()"></div>
+      <div sec:authorize="isAuthenticated()"></div>
+      <div sec:authorize="isAnonymous()"></div>
 
-        Logged user: <span sec:authentication="name"></span><br>
-        <p>
-            username<br>
-            <td th:text="${usuari.username}"></td>
-            isAdministador <br>
-            <td th:text="${usuari.isAdministrador}"></td>
-        </p>-->
+      Logged user: <span sec:authentication="name"></span><br>
+      <p>
+          username<br>
+          <td th:text="${usuari.username}"></td>
+          isAdministador <br>
+          <td th:text="${usuari.isAdministrador}"></td>
+      </p>-->
+
     </body>
 </html>

@@ -29,7 +29,7 @@ public class ConfiguracióAutenticacio extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests()
                 //URL i subURLS (**) on pot accedir...
-                .antMatchers("/SelectModule")
+                .antMatchers("/SelectModule", "/static/**")
                 //...l'usuari amb rol admin
                 .hasRole("admin")
                 //URL inici on poden accedir...

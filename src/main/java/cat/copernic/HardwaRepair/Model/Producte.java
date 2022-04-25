@@ -18,25 +18,25 @@ import lombok.Data;
 @Entity
 @Table(name = "producte")
 public class Producte implements Serializable{
-    
+
     private static final long serialVersionUID=1L;
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long idProducte;
-    
+
     @NotEmpty
     private String nom;
-    
+
     @NotNull
     private Double preuCompra;
-    
+
     @NotNull
     private Double preuVenda;
-    
+
     @NotEmpty
     private String marca;
 
     private long categoriaId;
-    
+
 }

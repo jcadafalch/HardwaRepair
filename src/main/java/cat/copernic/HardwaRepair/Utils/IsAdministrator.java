@@ -1,7 +1,7 @@
 package cat.copernic.HardwaRepair.Utils;
 
 import cat.copernic.HardwaRepair.Model.Usuari;
-import cat.copernic.HardwaRepair.serveis.UsuariServiceInterface;
+import cat.copernic.HardwaRepair.serveis.Usuari.UsuariServiceInterface;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import java.util.List;

@@ -1,0 +1,87 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>Crear Producte</title>
+        <meta charset="UTF-8"/>
+        <!-- Bootstrap -->
+        <script src="../webjars/bootstrap/5.1.3/js/bootstrap.min.js"></script>
+        <link href="../webjars/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
+
+        <link rel="stylesheet" type="text/css" media="all" href="/css/popup.css" th:href="@{/css/popup.css}"  />
+    </head>
+    <body>
+        <!--<header th:replace="layout/plantilla :: capcalera" />-->
+        <h2>Detalls Producte</h2>
+
+        <p>
+            <form th:action="@{/guardarProducteDetalls}" method="post" th:object="${producte}">
+                <input type="hidden" name="idProducte" th:field="*{idProducte}"/>
+                <table style="width:35%">
+                    <tr>
+                        <td><label for="nom">Nom</label></td>
+                        <td><label for="marca">Marca</label></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="text" id="nom" name="nom" th:field="*{nom}" placeholder="Nom del producte"/><br>
+                            <span th:if="${#fields.hasErrors('nom')}" th:errors="*{nom}"></span>
+                        </td>
+                        <td>
+                            <input type="text" id="marca" name="marca" th:field="*{marca}" placeholder="Marca del producte"/><br>
+                            <span th:if="${#fields.hasErrors('marca')}" th:errors="*{marca}"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="preuCompra">Preu de compra</label></td>
+                        <td><label for="preuVenda">Preu de venda</label></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="number" step="0.01" id="preuCompra" name="preuCompra" th:field="*{preuCompra}"
+                                   placeholder="Preu de compra"/><br>
+                            <span th:if="${#fields.hasErrors('preuCompra')}" th:errors="*{preuCompra}"></span>
+                        </td>
+                        <td>
+                            <input type="number" step="0.01" id="preuVenda" name="preuVenda" th:field="*{preuVenda}"
+                                   placeholder="Preu de venda"/><br>
+                            <span th:if="${#fields.hasErrors('preuVenda')}" th:errors="*{preuVenda}"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="categoria">Categoria</label></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <!--Llistat "categories" obtingut en el controlador: per cada categoria del llistat "categories" mostrem el nom
+                             de la categoria i guardem a la BBDD el "id" de la categoria-->
+                            <select name="categoria" id="categoria" th:field="*{categoriaId}" >
+                                <option th:each="categoria : ${categories}" th:value="${categoria.idCategoria}" th:text="${categoria.nom}"></option>
+                            </select>
+                        </td>
+                    </tr>
+                </table>
+                <br>
+
+                <button class="btn btn-warning"><a th:href="@{/llistarProductes}" style="color:white; text-decoration: none;" th:text="#{cancelar}"></a></button>
+                <input class="btn btn-success" type="submit" name="enviar" value="Guardar"/>
+                <button th:if="${isAdministrator == true}" class="btn btn-danger"><a th:href="@{/eliminarProducte/}+${producte.idProducte}" style="color:white; text-decoration: none;" th:text="Eliminar"></a></button>
+                <!--<div  th:if="${isAdministrator == true}">
+                    <p><a href="#popup">Abrir Popup</a> </p>
+
+                    <div id="popup" class="overlay">
+                        <h2>Titulo de la ventana</h2>
+                        <a id="cerrar" href="#">&times;</a>
+                        <div class="popupContent">
+                            <p>Contenido de la ventana</p>
+                        </div>
+                    </div>
+                </div>-->
+
+            </form>
+        </p>
+
+        <!--<footer th:replace="layout/plantilla :: peu" />-->
+
+    </body>
+</html>
