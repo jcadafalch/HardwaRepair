@@ -9,6 +9,7 @@ package cat.copernic.HardwaRepair.Controller;
 import cat.copernic.HardwaRepair.DAO.EquipDAO;
 import cat.copernic.HardwaRepair.Model.Equip;
 import cat.copernic.HardwaRepair.serveis.Equip.EquipServiceInterface;
+import cat.copernic.HardwaRepair.serveis.Tipus_EquipServiceInterface;
 import javax.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,11 +31,16 @@ public class ControllerEquip {
     private EquipServiceInterface equipService;
     
     @Autowired
+    private Tipus_EquipServiceInterface tipusEquipService;
+    
+    @Autowired
     private EquipDAO equipDAO; 
 
     @GetMapping("/creaEquip")
     public String crearFormulariEquip(Equip equip, Model model) {
         try{
+            //Passem el llistat de tipus d'equips a la vista
+            model.addAttribute("tipus_equips", tipusEquipService.llistarTipus_Equip());
             //Passem el llistat de categories a la vista
             model.addAttribute("categories", equipService.llistarEquips());
         }catch (NullPointerException e){

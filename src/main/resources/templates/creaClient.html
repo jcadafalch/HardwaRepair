@@ -1,202 +1,205 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
-      xmlns="http://www.w3.org/1999/xhtml">
+<!doctype html>
+<html lang="en">
     <head>
-        <title>Crea Client</title>
-        <meta charset="UTF-8"/>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"></link>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
+
+        <title th:text="#{Client.crearClient}"></title> <!-- AQUÍ VA EL TITULO DE LA PÁGINA
+
+        <!-- Bootstrap -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
+        <script src="../webjars/bootstrap/5.1.3/js/bootstrap.min.js"></script>
+        <link href="../webjars/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet"></link>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-
-
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"></meta>
-        <link rel="shortcut icon" href="#" />      
-        <link rel="stylesheet" href="bootstrap4/css/bootstrap.min.css"/>	         
-
-        <link rel="stylesheet" href="jqueryUI/jquery-ui-1.12.1/jquery-ui.min.css"/>  
-
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"/>
     </head>
-        <body>
-   <section th:fragment="creaClient">
 
-        <h1>Crea Client</h1>
+    <body>
+        <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
+            <a class="navbar-brand col-sm-3 col-md-2 mr-0" th:href="@{/}">HardwaRepair</a>
+        </nav>
 
-<!--        <div id="creaClient" class="modal fade">
-            <div  class="modal-dialog modal-lg">
-
-                <div  class="modal-content">
-
-                    <div class="modal-header bg-info text-white">
-
-                        <h5 class="modal-title" th:text="#{Client.crearClient}">Crear Client</h5>
-                        <button class="close" data-dismiss="modal">
-
-                            <span>&times;</span>
-
-                        </button>
-
-                    </div>-->
+        <div class="container-fluid">
+            <div class="row">
+                <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+                    <div class="sidebar-sticky">
+                        <ul class="nav flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">
+                                    <span class="bi bi-tools"></span>
+                                    Incidencies
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">
+                                    <span class="bi bi-box"></span>
+                                    Productes
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" th:href="@{/llistarCategories}">
+                                    <span class="bi bi-files"></span>
+                                    Categories
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" th:href="@{/llistarUsuaris}">
+                                    <span class="bi bi-person-circle"></span>
+                                    Usuaris
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+                <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+                    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+                        <h1 class="h2" th:text="#{Client.crearClient}"> </h1> <!-- AQUÍ VA EL TITULO DEL FORMULARIO -->
+                    </div>
 
                     <form th:action="@{/guardarClientCrear}" method="post" th:object="${client}">
-                        <div  class="modal-body">
 
-                            <div class="form-group">
-
-                                <label for="dni" th:text="#{Client.dni}">DNI: </label>
-
-                                <input type="text" id="dni" name="dni" th:field="*{dni}" placeholder="DNI"/>
-                                <span th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}"></span>
+                        <div class="row kt-margin-b-20">
+                            <div class="col-lg-5 kt-margin-b-10-tablet-and-mobile">
+                                <label style="font-weight: bold;" for="dni" th:text="#{Client.dni}">DNI: </label>                               
+                                <div class="input-icon">
 
 
+                                    <input class="form-control" type="text" id="dni" name="dni" th:field="*{dni}" placeholder="DNI"/>
+                                    <span th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}"></span>
+
+
+                                </div>
                             </div>
+                            <div class="col-lg-5 kt-margin-b-10-tablet-and-mobile">
+                                <label style="font-weight: bold;" for="nom" th:text="#{Client.nom}">Nom:</label>
+                                <div class="input-icon">
 
-                            <div class="form-group">
+                                    <input class="form-control" type="text" id="nom" name="nom" th:field="*{nom}" placeholder="Nom"/>
+                                    <span th:if="${#fields.hasErrors('nom')}" th:errors="*{nom}"></span>
 
-                                <label for="nom" th:text="#{Client.nom}">Nom:</label>
-
-                                <input type="text" id="nom" name="nom" th:field="*{nom}" placeholder="Nom"/>
-                                <span th:if="${#fields.hasErrors('nom')}" th:errors="*{nom}"></span>
-
-
+                                </div>
                             </div>
-
-                            <div class="form-group">
-                               <label for="cognoms" th:text="#{Client.cognoms}">Cognoms:</label>
-  <!--                               <input type="text" class="form-control" name="Marca" id="marca" />-->
-
-
-                                <input type="text" id="cognoms" name="cognoms" th:field="*{cognoms}" placeholder="Cognoms"/>
-                                <span th:if="${#fields.hasErrors('cognoms')}" th:errors="*{cognoms}"></span>
-                            </div>
-
-                            <div class="form-group">
-
-
-                               <label for="adreca" th:text="#{Client.adreca}">Adreça: </label>
-  <!--                               <input type="text" class="form-control" name="Model" id="model"/>-->
-
-
-                                <input type="text" id="adreca" name="adreca" th:field="*{adreca}" placeholder="Adreça"/>
-                                <span th:if="${#fields.hasErrors('adreca')}" th:errors="*{adreca}"></span>
-
-                            </div>
-
-                            <div class="form-group">
-
-
-                                <label for="telefon" th:text="#{Client.telefon}">Telefon:</label>
- <!--                               <input type="text" class="form-control" name="Descripcio" id="descripcio" />-->
-
-                                <input type="tel" id="telefon" name="telefon" th:field="*{telefon}" placeholder="Telefón"/>
-                                <span th:if="${#fields.hasErrors('telefon')}" th:errors="*{telefon}"></span>
-
-                            </div>
-
-                            <div class="form-group">
-
-                                <label for="codi_postal" th:text="#{Client.codiPostal}">Codi Postal:</label>
- <!--                               <input type="number" class="form-control" name="Tipus_Equip_Id" id="tipus_equip_id"/>-->
-
-                                <input type="number" id="codi_postal" name="codi_postal" th:field="*{codi_postal}" placeholder="Codi Postal"/>
-                                <span th:if="${#fields.hasErrors('codi_postal')}" th:errors="*{codi_postal}"></span>
-                            </div>
-
                         </div>
+
+
+
+                        <div class="row kt-margin-b-20">
+                            <div class="col-lg-5 kt-margin-b-10-tablet-and-mobile">
+                                <label style="font-weight: bold;" for="cognoms" th:text="#{Client.cognoms}">Cognoms:</label>    
+                                <div class="input-icon">
+
+
+                                    <input class="form-control"  type="text" id="cognoms" name="cognoms" th:field="*{cognoms}" placeholder="Cognoms"/>
+                                    <span th:if="${#fields.hasErrors('cognoms')}" th:errors="*{cognoms}"></span>
+
+                                </div>
+                            </div>
+                            <div class="col-lg-5 kt-margin-b-10-tablet-and-mobile">
+                                <label style="font-weight: bold;" for="adreca" th:text="#{Client.adreca}">Adreça: </label>
+                                <div class="input-icon">
+
+
+                                    <input class="form-control" type="text" id="adreca" name="adreca" th:field="*{adreca}" placeholder="Adreça"/>
+                                    <span th:if="${#fields.hasErrors('adreca')}" th:errors="*{adreca}"></span>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
+                        <div class="row kt-margin-b-20">
+                            <div class="col-lg-5 kt-margin-b-10-tablet-and-mobile">
+                                <label style="font-weight: bold;" for="telefon" th:text="#{Client.telefon}">Telefon:</label>   
+                                <div class="input-icon">
+
+                                    <input class="form-control" type="tel" id="telefon" name="telefon" th:field="*{telefon}" placeholder="Telefón"/>
+                                    <span th:if="${#fields.hasErrors('telefon')}" th:errors="*{telefon}"></span>
+
+                                </div>
+                            </div>
+                            <div class="col-lg-5 kt-margin-b-10-tablet-and-mobile">
+                                <label style="font-weight: bold;" for="codi_postal" th:text="#{Client.codiPostal}">Codi Postal:</label>
+                                <div class="input-icon">
+
+                                    <input class="form-control" type="number" id="codi_postal" name="codi_postal" th:field="*{codi_postal}" placeholder="Codi Postal"/>
+                                    <span th:if="${#fields.hasErrors('codi_postal')}" th:errors="*{codi_postal}"></span>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <!--                                <label for="dni" th:text="#{Client.dni}">DNI: </label>
+                        
+                                                        <input type="text" id="dni" name="dni" th:field="*{dni}" placeholder="DNI"/>
+                                                        <span th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}"></span>-->
+
+
+
+
+                        <!--                        <label for="nom" th:text="#{Client.nom}">Nom:</label>
+                        
+                                                <input type="text" id="nom" name="nom" th:field="*{nom}" placeholder="Nom"/>
+                                                <span th:if="${#fields.hasErrors('nom')}" th:errors="*{nom}"></span>-->
+
+
+
+                        <!--                        <label for="cognoms" th:text="#{Client.cognoms}">Cognoms:</label>
+                                                                               <input type="text" class="form-control" name="Marca" id="marca" />
+                        
+                        
+                                                <input type="text" id="cognoms" name="cognoms" th:field="*{cognoms}" placeholder="Cognoms"/>
+                                                <span th:if="${#fields.hasErrors('cognoms')}" th:errors="*{cognoms}"></span>-->
+
+
+
+                        <!--                        <label for="adreca" th:text="#{Client.adreca}">Adreça: </label>
+                                                                               <input type="text" class="form-control" name="Model" id="model"/>
+                        
+                        
+                                                <input type="text" id="adreca" name="adreca" th:field="*{adreca}" placeholder="Adreça"/>
+                                                <span th:if="${#fields.hasErrors('adreca')}" th:errors="*{adreca}"></span>-->
+
+
+
+
+
+
+                        <!--                        <label for="telefon" th:text="#{Client.telefon}">Telefon:</label>
+                                                                               <input type="text" class="form-control" name="Descripcio" id="descripcio" />
+                        
+                                                <input type="tel" id="telefon" name="telefon" th:field="*{telefon}" placeholder="Telefón"/>
+                                                <span th:if="${#fields.hasErrors('telefon')}" th:errors="*{telefon}"></span>-->
+
+
+
+
+
+                        <!--                        <label for="codi_postal" th:text="#{Client.codiPostal}">Codi Postal:</label>
+                                                                               <input type="number" class="form-control" name="Tipus_Equip_Id" id="tipus_equip_id"/>
+                        
+                                                <input type="number" id="codi_postal" name="codi_postal" th:field="*{codi_postal}" placeholder="Codi Postal"/>
+                                                <span th:if="${#fields.hasErrors('codi_postal')}" th:errors="*{codi_postal}"></span>-->
+
+
+
 
                         <div  class="modal-footer">
-                            <button><a th:href="@{/crearIncidencia}" th:text="#{accion.cancelar}"></a></button>
+                            <a th:href="@{/crearIncidencia}" th:text="#{accion.cancelar}" class="btn btn-secondary"></a>
                             <input type="submit" name="enviar" value="Guardar" class="btn btn-primary"/>
-
                         </div>
-
                     </form>
-
-                <!--</div>-->
-
-            <!--</div>-->
-
-        <!--</div>-->
-
-    </section>
-
-   </body> 
-
-
-
-<!--    <body>
-        <header style="height: 70px">
-            <h2 class="text-center text-light">Ventanas<span class="badge badge-dark">Modales</span></h2> 
-        </header> 
-        <div style="height: 50px;"></div>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="btn-group-vertical">
-
-                    </div>
-
-                </div>                                        
-            </div>                  
+                </main>
+            </div>
         </div>
-
-
-        Para enviar parámetros         
-
-        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal" data-whatever="@nombreDeUsuario">Abrir Modal para @nombreDeUsuario</button>
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">New message</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <h3>Seguro quieres eliminar la Incidencia</h3>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-danger">Send message</button>
-                    </div>
-                </div>
-            </div>
-        </div>      -->
-
-
-        <!-- Modal - personalizado -->
-        <!--<div  id="modal_custom" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                Contenido en el body
-                <button id="btn_hide" class="btn btn-info">Ocultar</button>  
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-              </div>
-            </div>
-          </div>
-        </div>        -->
-
-<!--        <script src="jquery/jquery-3.3.1.min.js"></script>	 	
-        <script src="popper/popper.min.js"></script>	 	 	
-        <script src="bootstrap4/js/bootstrap.min.js"></script>   	
-        <script src="jqueryUI/jquery-ui-1.12.1/jquery-ui.min.js"></script>  
-
-        <script src="codigo.js"></script> 	  	
-    </body>    -->
-
-
-
+    </body>
 </html>
