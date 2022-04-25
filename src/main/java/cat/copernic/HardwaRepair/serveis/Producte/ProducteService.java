@@ -12,18 +12,18 @@ import org.springframework.transaction.annotation.Transactional;
  * @author jcadafalch
  */
 @Service
-public class ProducteService implements ProducteServiceInterface{
-    
+public class ProducteService implements ProducteServiceInterface {
+
     @Autowired
     private ProducteDAO producte;
 
     // Llistar productes de la taula producte de la BBDD
     @Override
-    @Transactional (readOnly = true)
+    @Transactional(readOnly = true)
     public List<Producte> llistarProductes() {
         return (List<Producte>) producte.findAll();
     }
-    
+
     // Afegir el producte passat per paràmetre a la taula producte de la BBDD
     @Override
     @Transactional
@@ -37,18 +37,19 @@ public class ProducteService implements ProducteServiceInterface{
     public void eliminarProducte(Producte producte) {
         this.producte.delete(producte);
     }
-    
+
     // Cercar el producte passat per paràmetre en la taula producte de la BBDD
     @Override
-    @Transactional (readOnly = true)
+    @Transactional(readOnly = true)
     public Producte cercarProducte(Producte producte) {
-        //Si el producte no existeix retornarà null ( orElse(null) )
+        // Si el producte no existeix retornarà null ( orElse(null) )
         return this.producte.findById(producte.getIdProducte()).orElse(null);
     }
 
-    //Cercar el producte mitjançant l'id passat per paràmetre en la taula producte de la BBDD
+    // Cercar el producte mitjançant l'id passat per paràmetre en la taula producte
+    // de la BBDD
     @Override
-    @Transactional(readOnly=true)
+    @Transactional(readOnly = true)
     public Producte cercarProducteById(Long id) {
         return this.producte.findById(id).orElse(null);
     }

@@ -34,7 +34,13 @@ import lombok.Data;
             @NotEmpty
             private String nom;
 
-
+            public Categoria(){
+                
+            }
+            
+            public Categoria(String nom){
+                this.nom = nom;
+            }
         }
 
 

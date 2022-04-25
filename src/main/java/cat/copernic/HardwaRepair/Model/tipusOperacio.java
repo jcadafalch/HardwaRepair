@@ -30,4 +30,3 @@ public class tipusOperacio implements Serializable{
     private String nom;
 
 }
-

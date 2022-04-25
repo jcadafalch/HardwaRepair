@@ -34,8 +34,6 @@ public class Usuari implements Serializable {
 
     private String password;
 
-    @NotEmpty
-    @Size(min = 9, max = 9)
     private String dni;
 
     private String nom;
