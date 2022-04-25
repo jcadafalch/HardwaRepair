@@ -171,5 +171,9 @@ public class ControllerIncidencia {
         //Redirigim a la vista de llistar productes
         return "redirect:/llistatIncidencies";
     }
+    
+    
+    
+    
 
 }

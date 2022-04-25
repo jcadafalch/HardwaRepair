@@ -70,7 +70,7 @@ public class EquipService implements EquipServiceInterface {
          */
         this.equip.delete(equip);
 
-    }
+    } 
 
     /*Cercar el equip passat per paràmetre en la taula equip de la BBDD hardwarepair*/
     @Override

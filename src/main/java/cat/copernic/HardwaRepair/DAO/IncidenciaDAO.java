@@ -10,7 +10,7 @@ import org.springframework.data.repository.CrudRepository;
  *
  * @author marc
  */
-public interface IncidenciaDAO extends CrudRepository<Incidencia,String>{
+public interface IncidenciaDAO extends CrudRepository<Incidencia, Long>{
     /*Mètode que retornarà el id de l'incidencia que passem per paràmetre. 
     */
 }

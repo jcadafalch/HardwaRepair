@@ -9,8 +9,9 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"></link>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
+        <script src="jqueryUI/jquery-ui-1.12.1/jquery-ui.min.js"></script> 
         <script src="../webjars/bootstrap/5.1.3/js/bootstrap.min.js"></script>
-        <link href="../webjars/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
+        <!--<link href="../webjars/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">-->
     </head>
     <style>
         th, td {
@@ -36,7 +37,7 @@
 
                                     <label for="id_incidencia" th:text="#{Incidencia.id}">ID Incidencia :</label>
 
-                                    <input type="text" id="id_incidencia" name="id_incidencia" th:field="*{id_incidencia}" placeholder="ID Incidència"/>
+                                    <input type="number" id="id_incidencia" name="id_incidencia" th:field="*{id_incidencia}" placeholder="ID Incidència"/>
                                     <span th:if="${#fields.hasErrors('id_incidencia')}" th:errors="*{id_incidencia}"></span>
 
                                 </div>
@@ -181,7 +182,7 @@
 
                                     <label for="cliente_id" th:text="#{Incidencia.idClient}">ID Client</label>
 
-                                    <input type="text" id="cliente_id" name="cliente_id" th:field="*{cliente_id}" placeholder="ID Client"/>
+                                    <input type="text"  id="cliente_id" name="cliente_id" th:field="*{cliente_id}" placeholder="ID Client" required="true"/>
                                     <span th:if="${#fields.hasErrors('cliente_id')}" th:errors="*{cliente_id}"></span>
 
 
@@ -218,13 +219,13 @@
 
                         <tr>
                             <td>
-                                
+
                                 <div class="form-check form-switch">
                                     <input name="solicitud_pressupost" class="form-check-input" type="checkbox" value="solicitud_pressupost" th:field="*{solicitud_pressupost}" />
                                     <!--<input type="checkbox" class="form-check-input" value="soluGarantia" id="soluGarantia"/>-->
                                     <label for="soluGarantia" th:text="#{Incidencia.soliGarantia}">Sol·licitud de Garantia :</label>
                                 </div>
-                                
+
                                 <br/> <br/>
 
                                 <div class="form-check form-switch">

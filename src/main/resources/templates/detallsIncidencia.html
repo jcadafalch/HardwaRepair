@@ -4,12 +4,29 @@
     <head>
         <meta charset="utf-8"/>
         <title>Detalls Incidencia</title>
+
+        <meta charset="UTF-8"/>
+
+
+
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"></link>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+        <script src="jqueryUI/jquery-ui-1.12.1/jquery-ui.min.js"></script> 
         <script src="../webjars/bootstrap/5.1.3/js/bootstrap.min.js"></script>
-        <link href="../webjars/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"></meta>
+        <link rel="shortcut icon" href="#" />      
+        <link rel="stylesheet" href="bootstrap4/css/bootstrap.min.css"/>	         
+
+        <link rel="stylesheet" href="jqueryUI/jquery-ui-1.12.1/jquery-ui.min.css"/> 
+
+
+
+
     </head>
     <style>
         th, td {
@@ -35,7 +52,7 @@
 
                                     <label for="id_incidencia" th:text="#{Incidencia.id}">ID Incidencia :</label>
 
-                                    <input type="text" id="id_incidencia" name="id_incidencia" th:field="*{id_incidencia}" placeholder="ID Incidència"/>
+                                    <input type="number" id="id_incidencia" name="id_incidencia" th:field="*{id_incidencia}" placeholder="ID Incidència" readonly/>
                                     <span th:if="${#fields.hasErrors('id_incidencia')}" th:errors="*{id_incidencia}"></span>
 
                                 </div>
@@ -124,7 +141,8 @@
                                     <!--<input type="text" class="form-control" name="idEquip" id="idEquip" list="equips"/>-->
 
                                     <!--<a th:href="@{/creaEquip}" th:text="#{accion.creaEquip}">Crea Equip</a>-->
-                                    <a th:href="@{/creaEquip}" th:text="#{accion.creaEquip}" class="btn btn-primary" type="button"></a>
+                                    <a th:href="@{/creaEquip}" th:text="#{accion.creaEquip}" data-target="#creaEquip" class="btn btn-primary" type="button"></a>
+                                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#creaEquip" th:text="#{accion.eliminar}"  >Eliminar</button>
 
                                 </div>
 
@@ -185,7 +203,7 @@
 
 
                                     <!--<a th:href="@{/creaClient}" th:text="#{accion.creaClient}">Crea Client</a>-->
-                                    <a type="button" th:href="@{/creaClient}" class="btn btn-primary" th:text="#{accion.creaClient}"></a>
+                                    <a type="button" th:href="@{/creaClient}" data-target="#creaClient" class="btn btn-primary" th:text="#{accion.creaClient}"></a>
 
 
                                     <!--<a th:href="@{/crearEquip}"><button class="btn btn-secondary" type="submit" th:text="#{accion.crearClient}">Crea Client</button></a>-->
@@ -219,13 +237,13 @@
                         <tr>
 
                             <td>
-                                
+
                                 <div class="form-check form-switch">
                                     <input name="solicitud_pressupost" class="form-check-input" type="checkbox" value="solicitud_pressupost" th:field="*{solicitud_pressupost}" />
                                     <!--<input type="checkbox" class="form-check-input" value="soluGarantia" id="soluGarantia"/>-->
                                     <label for="soluGarantia" th:text="#{Incidencia.soliGarantia}">Sol·licitud de Garantia :</label>
                                 </div>
-                                
+
                                 <br/> <br/>
 
                                 <div class="form-check form-switch">
@@ -331,10 +349,66 @@
                 </div>
                 <div  class="modal-footer">
                     <a type="button" th:href="@{/llistatIncidencies}" th:text="#{accion.cancelar}" class="btn btn-secondary"></a>
+
                     <input type="submit" name="enviar" value="Guardar" class="btn btn-primary"/>
-                    <a type="button" th:href="@{/eliminarIncidencia/}+${incidencia.id_incidencia}" th:text="#{accion.eliminar}" class="btn btn-danger"></a>
+
+                    
+
+<!--                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal" data-whatever="@nombreDeUsuario">Abrir Modal para @nombreDeUsuario</button>
+                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <h3>Seguro quieres eliminar la Incidencia</h3>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-danger">Send message</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>  -->
+                    
+                                   
+                    
+                    
+                    
+                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#eliminar" th:text="#{accion.eliminar}"  >Eliminar</button>
+                    <div class="modal fade" id="eliminar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header bg-info text-white">
+
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <h4>Segur que vols eliminar la incidència?</h4>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <a type="button" th:href="@{/eliminarIncidencia/}+${incidencia.id_incidencia}" th:text="#{accion.eliminar}" class="btn btn-danger"></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>     
+                    <!--<a type="button" th:href="@{/eliminarIncidencia/}+${incidencia.id_incidencia}" th:text="#{accion.eliminar}" class="btn btn-danger"></a>-->
                 </div>
             </form>
         </section>
+        
+       <script src="jquery/jquery-3.3.1.min.js"></script>	 	
+        <script src="popper/popper.min.js"></script>	 	 	
+        <script src="bootstrap4/js/bootstrap.min.js"></script>   	
+        <script src="jqueryUI/jquery-ui-1.12.1/jquery-ui.min.js"></script>  
+
+        <script src="codigo.js"></script>
     </body>
 </html>
