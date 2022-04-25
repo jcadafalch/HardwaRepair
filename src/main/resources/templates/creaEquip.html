@@ -1,25 +1,30 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <title>Crea Equip</title>
         <meta charset="UTF-8"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"></link>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     </head>
     <body>
 
-
-        <section th:fragment="crearEquip">
-
+        <section th:fragment="creaEquip">
+            
             <h1>Crea Equip</h1>
-
-            <div id="crearEquip" class="modal fade">
+            
+            <div id="creaEquip" class="modal fade">
+                
                 <div  class="modal-dialog modal-lg">
 
                     <div  class="modal-content">
 
                         <div class="modal-header bg-info text-white">
 
-                            <h5 class="modal-title" th:text="#{accion.crearEquip}">Crea Equip</h5>
+                            <h5 class="modal-title" th:text="#{accion.creaEquip}">Crea Equip</h5>
                             <button class="close" data-dismiss="modal">
 
                                 <span>&times;</span>
@@ -27,35 +32,48 @@
                             </button>
 
                         </div>
-
-                        <form th:action="@{/crearEquip}" method="POST" th:object="${Equip}" class="was-validated">
+                        
+                        <form th:action="@{/guardarEquipCrear}" method="post" th:object="${equip}">
                             <div  class="modal-body">
 
                                 <div class="form-group">
 
-                                    <label for="numSerie" th:text="#{Equip.numSerie}">Numero de Serie:</label>
-                                    <input type="text" class="form-control" name="NumSerie" id="numSerie"/>
+                                    <label for="num_serie" th:text="#{Equip.numSerie}">Numero de Serie:</label>
+                                    
+                                    <input type="text" id="num_serie" name="num_serie" th:field="*{num_serie}" placeholder="Num. Serie"/>
+                                    <span th:if="${#fields.hasErrors('num_serie')}" th:errors="*{num_serie}"></span>
+                                    
 
                                 </div>
 
                                 <div class="form-group">
 
-                                    <label for="idClient" th:text="#{Equip.idClient}">DNI:</label>
-                                    <input type="text" class="form-control" name="IdClient" id="idClient"/>
+                                    <label for="client_id" th:text="#{Equip.idClient}">DNI:</label>
+                                  
+                                    <input type="text" id="client_id" name="client_id" th:field="*{client_id}" placeholder="Client ID"/>
+                                    <span th:if="${#fields.hasErrors('client_id')}" th:errors="*{client_id}"></span>
+                                    
 
                                 </div>
 
                                 <div class="form-group">
                                     <label for="marca" th:text="#{Equip.marca}">Marca:</label>
-                                    <input type="text" class="form-control" name="Marca" id="marca"/>
+                                    <!--<input type="text" class="form-control" name="Marca" id="marca" />-->
 
+                                    
+                                    <input type="text" id="marca" name="marca" th:field="*{marca}" placeholder="Marca"/>
+                                    <span th:if="${#fields.hasErrors('marca')}" th:errors="*{marca}"></span>
                                 </div>
 
                                 <div class="form-group">
 
 
                                     <label for="model" th:text="#{Equip.model}">Model:</label>
-                                    <input type="text" class="form-control" name="Model" id="model"/>
+                                    <!--<input type="text" class="form-control" name="Model" id="model"/>-->
+                                    
+                                    
+                                    <input type="text" id="model" name="model" th:field="*{model}" placeholder="Model"/>
+                                    <span th:if="${#fields.hasErrors('model')}" th:errors="*{model}"></span>
 
                                 </div>
 
@@ -63,34 +81,40 @@
 
 
                                     <label for="descripcio" th:text="#{Equip.descripcio}">Descripcio:</label>
-                                    <input type="text" class="form-control" name="Descripcio" id="descripcio"/>
+                                    <!--<input type="text" class="form-control" name="Descripcio" id="descripcio" />-->
+                                    
+                                    <input type="text" id="descripcio" name="descripcio" th:field="*{descripcio}" placeholder="Descripcio"/>
+                                    <span th:if="${#fields.hasErrors('descripcio')}" th:errors="*{descripcio}"></span>
 
                                 </div>
 
                                 <div class="form-group">
-
-
-                                    <label for="tipusEquip" th:text="#{Equip.tipusEquip}">Tipus Equip:</label>
-                                    <input type="number" class="form-control" name="TipusEquip" id="tipusEquip"/>
-
+                                    
+                                    <label for="tipus_equip_id" th:text="#{Equip.tipusEquip}">Tipus Equip:</label>
+                                    <!--<input type="number" class="form-control" name="Tipus_Equip_Id" id="tipus_equip_id"/>-->
+                                    
+                                    <input type="number" id="tipus_equip_id" name="tipus_equip_id" th:field="*{tipus_equip_id}" placeholder="ID Tipus Equip"/>
+                                    <span th:if="${#fields.hasErrors('tipus_equip_id')}" th:errors="*{tipus_equip_id}"></span>
                                 </div>
 
                             </div>
 
                             <div  class="modal-footer">
-                                <button class="btn btn-primary" type="submit" th:text="#{accion.guardar}">Guardar</button>
+                                <button><a th:href="@{/crearIncidencia}" th:text="#{accion.cancelar}"></a></button>
+                                <input type="submit" name="enviar" value="Guardar" class="btn btn-primary" />
+
                             </div>
 
                         </form>
 
                     </div>
-                    
+
                 </div>
-                
+
             </div>
 
         </section>
-        
+
     </body>
-    
+
 </html>

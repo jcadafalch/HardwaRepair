@@ -56,11 +56,10 @@ public class EquipService implements EquipServiceInterface {
     public void afegirEquip(Equip equip) {
 
         /*Cridem al mètode save() de CrudRepository perquè afegeixi el equip passat com a paràmetre,
-         *a la taula equip de la BBDD hardwarepair.
-         */
+         *a la taula equip de la BBDD hardwarepair.*/
         this.equip.save(equip);
     }
-
+ 
     /*Eliminar el equip passat per paràmetre de la taula equip de la BBDD hardwarepair*/
     @Override
     @Transactional //Igual que en el mètode afegirEquip, modifiquem la informació de la BBDD
@@ -71,11 +70,11 @@ public class EquipService implements EquipServiceInterface {
          */
         this.equip.delete(equip);
 
-    }
+    } 
 
     /*Cercar el equip passat per paràmetre en la taula equip de la BBDD hardwarepair*/
     @Override
-    @Transactional(readOnly = true) //Igual que en el mètode llistarEquipsos, no modifiquem la informació de la BBDD
+    @Transactional(readOnly = true) //Igual que en el mètode llistarEquips, no modifiquem la informació de la BBDD
     public Equip cercarEquip(Equip equip) {
 
         /*Cridem al mètode findByUsername() de CrudRepository perquè ens retorni el equip passat com a paràmetre.
@@ -84,7 +83,7 @@ public class EquipService implements EquipServiceInterface {
          *
          *Si el equip no existei retornarà null (orElse(null)).
          */
-        return this.equip.findById(equip.getNumSerie()).orElse(null);
+        return this.equip.findById(equip.getNum_serie()).orElse(null);
 
     }
 
