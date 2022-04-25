@@ -189,11 +189,8 @@ public class ControllerIncidencia {
             //Passem el llistat de productes a la vista
             model.addAttribute("productes", producteService.llistarProductes());
 
+            //Passem la linia de reparacio a la vista
             model.addAttribute("liniareparacio", liniareparacio);
-
-            System.out.println("Productes == " + producteService.llistarProductes());
-
-            System.out.println("Llistat liniaReparacio == " + liniaReparacioService.llistarLiniaReparacio());
 
             //Passem a la vista el nom de l'usuari en cas que no estigui autenticat ho indiquem
             if(username == null){
@@ -203,16 +200,14 @@ public class ControllerIncidencia {
             }
 
             //Passem la incidencia a la vista
+            System.out.println(incidencia.getId_incidencia());
             model.addAttribute("incidencia", incidenciaService.cercarIncidencia(incidencia));
-            System.out.println("Incidencia == " + incidenciaService.cercarIncidencia(incidencia));
-            //System.out.println("Llistat incidencies == " + incidenciaService.llistarIncidencies());
 
         }catch (NullPointerException e){
             //Si no hi ha productes, mostrem un missatge d'error
             System.out.println("No hi ha productes");
             System.out.println("Error == " + e.getMessage());
         }
-
         return "liniaReparacio";
     }
 
@@ -223,11 +218,8 @@ public class ControllerIncidencia {
             log.info("S'ha produït un error'");
             return "liniaReparacio";
         }
-
-        System.out.println("LiniaReparacio == " + liniaReparacio);
         //Guardem la linia reparació
         liniaReparacioService.afegirLiniaReparacio(liniaReparacio);
-        //return "redirect:/liniaReparacio";
         return "redirect:/llistarProductes";
     }
 
