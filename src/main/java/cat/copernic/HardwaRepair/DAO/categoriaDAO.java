@@ -10,8 +10,10 @@ import org.springframework.data.repository.CrudRepository;
 
 /**
  *
- * @author lktol
+ * @author Lucas Tolón Pacheco
  */
 public interface CategoriaDAO extends CrudRepository<Categoria, Long>{
+    
+    Categoria findByNom(String nom);
     
 }

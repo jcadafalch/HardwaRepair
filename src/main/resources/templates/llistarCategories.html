@@ -60,6 +60,10 @@
                 <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
                     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
                         <h1 class="h2">Categories</h1>
+                        <div th:classappend="'alert-' + (${clase != null} ? ${clase} : info)" th:if="${mensaje != null}"
+                            th:text="${mensaje}"
+                            class="alert">
+                       </div>
                         <div class="btn-toolbar mb-2 mb-md-0">
                             <div class="btn-group mr-2">
                                 <a th:href="@{/formulariCategoria}">
@@ -75,6 +79,7 @@
                                 <tr>
                                     <th>Id Categoria</th>
                                     <th>Nom</th>
+                                    <th>Accions </th>
                                 </tr>
                             </thead>
                             <tbody>

@@ -9,4 +9,5 @@ import org.springframework.data.repository.CrudRepository;
  */
 public interface UsuariCrudDAO extends CrudRepository<Usuari,Long>{
     
+    Usuari findByDni(String dni);
 }

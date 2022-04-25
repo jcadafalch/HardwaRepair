@@ -2,6 +2,7 @@ package cat.copernic.HardwaRepair.serveis;
 
 import cat.copernic.HardwaRepair.DAO.UsuariCrudDAO;
 import cat.copernic.HardwaRepair.Model.Usuari;
+import cat.copernic.HardwaRepair.Eines.EncriptadorContrasenyes;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,6 +26,7 @@ public class UsuariServiceCRUD implements UsuariServiceInterface{
     @Override
     @Transactional
     public void afegirUsuari(Usuari usuari) {
+        usuari.setPassword(EncriptadorContrasenyes.encriptarContrasenya(usuari.getPassword()));
         this.usuari.save(usuari); 
     }
 
@@ -41,3 +43,4 @@ public class UsuariServiceCRUD implements UsuariServiceInterface{
     }
     
 }
+

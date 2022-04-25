@@ -58,8 +58,11 @@
                 </nav>
 
                 <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-                    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-                        <h1 class="h2">Usuaris</h1>
+                    <div th:if="${founded == true}" class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+                        <h1 class="h2">Editar Usuari</h1>
+                    </div>
+                    <div th:if="${founded == false}" class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+                        <h1 class="h2">Crear Usuari</h1>
                     </div>
                     <form th:action="@{/guardarUsuari}" method="post" th:object="${usuari}">
                         <input type="hidden" name="idUsuari" th:field="*{idUsuari}"/>
@@ -84,7 +87,7 @@
                             <div class="col-lg-5 kt-margin-b-10-tablet-and-mobile">
                                 <label style="font-weight: bold;">Telèfon:</label>
                                 <div class="input-icon">
-                                    <input class ="form-control" type="number"  id="telefon" name="telefon" th:field="*{telefon}" placeholder="Telefon del Usuari"/>
+                                    <input class ="form-control" required="true" type="number"  id="telefon" name="telefon" th:field="*{telefon}" placeholder="Telefon del Usuari"/>
                                     <span th:if="${#fields.hasErrors('telefon')}" th:errors="*{telefon}"></span>
                                 </div>
                             </div>
@@ -101,7 +104,7 @@
                             <div class="col-lg-5 kt-margin-b-10-tablet-and-mobile">
                                 <label style="font-weight: bold;">Codi Postal:</label>
                                 <div class="input-icon">
-                                    <input class="form-control" type="text" id="codiPostal" name="codiPostal" th:field="*{codiPostal}"
+                                    <input class="form-control" required="true" type="text" id="codiPostal" name="codiPostal" th:field="*{codiPostal}"
                                                    placeholder="Codi Postal del Usuari"/>
                                     <span th:if="${#fields.hasErrors('codiPostal')}" th:errors="*{codiPostal}"></span>
                                 </div>
@@ -109,7 +112,8 @@
                             <div class="col-lg-5 kt-margin-b-10-tablet-and-mobile">
                                 <label style="font-weight: bold;">Contrasenya:</label>
                                 <div class="input-icon">
-                                    <input class="form-control" type="text" id="password" name="password" th:field="*{password}" placeholder="password"/>
+                                    <input th:if="${founded == true}" class="form-control" type="password" name="password" placeholder="contrasenya"/>
+                                    <input th:if="${founded == false}" required="true" class="form-control" type="password" name="password" placeholder="contrasenya"/>
                                     <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
                                 </div>
                             </div>
@@ -119,14 +123,14 @@
                             <div class="col-lg-5 kt-margin-b-10-tablet-and-mobile">
                                 <label style="font-weight: bold;">DNI:</label>
                                 <div class="input-icon">
-                                    <input class="form-control" type="text" id="dni" name="dni" th:field="*{dni}" placeholder="dni"/>
+                                    <input class="form-control" required="true" type="text" id="dni" name="dni" th:field="*{dni}" placeholder="dni"/>
                                     <span th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}"></span>
                                 </div>
                             </div>
                             <div class="col-lg-5 kt-margin-b-10-tablet-and-mobile">
                                 <label style="font-weight: bold;">Username:</label>
                                 <div class="input-icon">
-                                    <input class="form-control" type="text" id="username" name="username" th:field="*{username}" placeholder="username"/>
+                                    <input class="form-control" required="true" type="text" id="username" name="username" th:field="*{username}" placeholder="username"/>
                                     <span th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></span>
                                 </div>
                             </div>

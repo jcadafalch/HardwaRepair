@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
  *
@@ -45,10 +46,17 @@ public class ControladorCategoria {
     }
     
     @PostMapping("/guardarCategoria")
-    public String guardarCategoria(@Valid Categoria categoria, Errors errors){
+    public String guardarCategoria(@Valid Categoria categoria, Errors errors, RedirectAttributes redirectAttrs){
         if (errors.hasErrors()) {
             log.info("S'ha produït un error'");
             return "formulariCategoria";
+        }
+        
+        if(categoriaDAO.findByNom(categoria.getNom()) != null){
+            redirectAttrs
+            .addFlashAttribute("mensaje", "No pots crear dues categories amb el mateix nom")
+            .addFlashAttribute("clase", "error");
+            return "redirect:/llistarCategories";
         }
         
         categoriaService.afegirCategoria(categoria);

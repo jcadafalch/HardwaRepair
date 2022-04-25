@@ -1,15 +1,27 @@
 package cat.copernic.HardwaRepair.Controller.Usuari;
 
+import cat.copernic.HardwaRepair.DAO.UsuariCrudDAO;
 import cat.copernic.HardwaRepair.Model.Usuari;
 import cat.copernic.HardwaRepair.serveis.UsuariServiceInterface;
+
+import cat.copernic.HardwaRepair.Utils.IsAdministrator;
+import cat.copernic.HardwaRepair.Eines.EncriptadorContrasenyes;
 import javax.validation.Valid;
+
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+
+
 
 /**
  *
@@ -20,6 +32,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class ControladorUsuari {
     @Autowired
     private UsuariServiceInterface usuariService;
+    @Autowired
+    private UsuariCrudDAO usuariDAO;
 
     @GetMapping("/llistarUsuaris")
     public String llistarUsuaris(Model model) {
@@ -51,10 +65,28 @@ public class ControladorUsuari {
     }
     
     @PostMapping("/guardarUsuari")
-    public String guardarUsuari(@Valid Usuari usuari, Errors errors){
+    public String guardarUsuari(@Valid Usuari usuari, @RequestParam(value = "password")String cont, Errors errors, RedirectAttributes redirectAttrs){
+        //Guardamos en una variable la contraseña anterior que tenia el usuario
+        String pass = usuari.getPassword();
+        
+        if(cont == null){ // En caso de que la contraseña no se haya editado
+            usuari.setPassword(pass);// Guardaremos de nuevo la antigua
+        } else {
+            if(cont != null){// De haberse editado, la nueva la encriptaremos y guardaremos
+                usuari.setPassword(EncriptadorContrasenyes.encriptarContrasenya(cont));
+            }
+        }
+        
         if (errors.hasErrors()) {
             log.info("S'ha produït un error'");
             return "formulariUsuari";
+        }
+        
+        if(usuariDAO.findByDni(usuari.getDni()) != null){
+            redirectAttrs
+            .addFlashAttribute("mensaje", "No pots crear dos usuaris amb el mateix DNI")
+            .addFlashAttribute("clase", "error");
+            return "redirect:/llistarUsuaris";
         }
         
         usuariService.afegirUsuari(usuari);
@@ -62,14 +94,14 @@ public class ControladorUsuari {
     }
 
     @GetMapping("/editarUsuari/{idUsuari}")
-    public String editarUsuari(Usuari usuari, Model model){
-        System.out.println("Usuari a editar == " + usuari);
-        //log.info(String.valueOf(producte.getIdProducte()));
-
+    public String editarUsuari(Usuari usuari, Model model, @AuthenticationPrincipal User username){
         usuari = usuariService.cercarUsuari(usuari);
         System.out.println("Ususari a editar == " + usuari);
         model.addAttribute("usuari", usuari);
         model.addAttribute("founded", true);
+        //Passem a la vista si l'usuari és administrador
+        //model.addAttribute("isAdministrator", IsAdministrator.isAdministrator(username.getUsername(), usuariService));
+
         return "formulariUsuari";
     }
     
