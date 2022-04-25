@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <head th:replace="layout/plantilla :: head">
+        <title>Categories</title>
+    </head>
+    <body>
+        
+        <section th:replace="layout/categoriaButton :: categoriaButton"></section>
+        <section th:replace="layout/formulariCategoria :: formulariCategoria"></section>
+
+        <section th:fragment="listadoCategorias" id="categoria">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>[[#{categoria.titulo}]]</h4>
+                            </div>
+                            <!-- Sentencia IF para consultar si la tabla está vacía -->
+                            <div th:if="${categorias != null and !categorias.empty">
+                                <table class="table table-stryped">
+                                    <!-- Cabecera de la tabla, nombres de cada columna -->
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th>#</th>
+                                            <th th:text="#{tabla.nombre}">Nom</th>
+                                            <th> </th>
+                                        </tr>
+                                    </thead>
+                                    <!-- Cuerpo de la tabla, donde aparecerán 
+                                    las diferentes categorias (conectado al controlador)-->
+                                    <tbody>
+                                        <!-- Esta columna se repetirá tantas veces 
+                                        como objetos del tipo categoria tengamos -->
+                                        <!-- Crearemos una variable contador para saber 
+                                        el número de registros totales que tenemos -->
+                                        <tr th:each="categoria, contador : ${categories}">
+                                            <td> [[${contador.count}]]</td>
+                                            <td> [[${categoria.nom}]]</td>
+                                            <!-- Añadimos un botón extra que nos abrirá un ventana emergente
+                                            mostrando los datos de la categoria-->
+                                            <td>
+                                                <a href="#" class="btn btn-primary btn-block"
+                                                    data-toggle="modal" data-target="#formulariCategoria">
+                                                    <i class="fas fa-plus"></i>[[#{categoria.add}]]
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- Si la tabla se encuentra vacía, se mostrará un mensaje indicandolo-->
+                            <div class="text-center p-2" th:if="${categoria == null or categoria.empty}">
+                                <span th:text="#{tabla.empty}"> La taula està buida </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </body>
+</html>

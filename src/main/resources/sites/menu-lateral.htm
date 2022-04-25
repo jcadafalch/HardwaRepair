@@ -17,14 +17,14 @@ header {
     width:100%;
 }
 
-input#abrir-cerrar {
+input#obrir-tancar {
     visibility:hidden;
     position: absolute;
     top: -9999px;
 }
 
 
-label[for="abrir-cerrar"] {
+label[for="obrir-tancar"] {
     cursor:pointer;
     padding: 1rem;
     background-color:#1EA5EC;
@@ -34,7 +34,7 @@ label[for="abrir-cerrar"] {
 
 }
 
-.cerrar {
+.tancar {
     display:none;
 }
 
@@ -46,21 +46,21 @@ label[for="abrir-cerrar"] {
     margin-left:0;
 }
 
-input#abrir-cerrar:checked ~ #sidebar {
+input#obrir-tancar:checked ~ #sidebar {
     width:300px;
 }
 
-input#abrir-cerrar:checked + label[for="abrir-cerrar"], input#abrir-cerrar:checked ~ #contenido {
+input#obrir-tancar:checked + label[for="obrir-tancar"], input#obrir-tancar:checked ~ #contenido {
     margin-left:300px;
     transition: margin-left .4s;
 }
 
 
-input#abrir-cerrar:checked + label[for="abrir-cerrar"] .cerrar {
+input#obrir-tancar:checked + label[for="obrir-tancar"] .tancar {
     display:inline;
 }
 
-input#abrir-cerrar:checked + label[for="abrir-cerrar"] .abrir {
+input#obrir-tancar:checked + label[for="obrir-tancar"] .obrir {
     display:none;
 }
 
@@ -78,7 +78,7 @@ input#abrir-cerrar:checked + label[for="abrir-cerrar"] .abrir {
     box-sizing:border-box;
 }
 
-.sidebar .boton-cerrar {
+.sidebar .boton-tancar {
     position: absolute;
     top: 0.5rem;
     right: 1rem;
@@ -130,7 +130,7 @@ h1 {
     padding: 1rem;
 }
 
-.abrir-cerrar {
+.obrir-tancar {
     color: #1EA5EC;
     font-size:1rem;   
 }
@@ -141,8 +141,8 @@ h1 {
 
 </head>
 <body>
-    <input type="checkbox" id="abrir-cerrar" name="abrir-cerrar" value="">
-    <label for="abrir-cerrar">&#9776; <span class="abrir">Abrir</span><span class="cerrar">Cerrar</span></label>
+    <input type="checkbox" id="obrir-tancar" name="obrir-tancar" value="">
+    <label for="obrir-tancar">&#9776; <span class="obrir">Obrir</span><span class="tancar">Tancar</span></label>
     <div id="sidebar" class="sidebar">
         <ul class="menu">
             <li><a href="#">INCIDÈNCIES</a></li>

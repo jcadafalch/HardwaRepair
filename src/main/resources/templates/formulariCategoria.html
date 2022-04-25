@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
+
+        <title>Categoria</title>
+
+        <!-- Bootstrap -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"></link>
+        <script src="../webjars/bootstrap/5.1.3/js/bootstrap.min.js"></script>
+        <link href="../webjars/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet"></link>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    </head>
+
+    <body>
+        <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
+            <a class="navbar-brand col-sm-3 col-md-2 mr-0" th:href="@{/}">HardwaRepair</a>
+        </nav>
+
+        <div class="container-fluid">
+            <div class="row">
+                <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+                    <div class="sidebar-sticky">
+                        <ul class="nav flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">
+                                    <span class="bi bi-tools"></span>
+                                    Incidencies
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">
+                                    <span class="bi bi-box"></span>
+                                    Productes
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" th:href="@{/llistarCategories}">
+                                    <span class="bi bi-files"></span>
+                                    Categories
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" th:href="@{/llistarUsuaris}">
+                                    <span class="bi bi-person-circle"></span>
+                                    Usuaris
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+
+                <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+                    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+                        <h1 th:if="${founded == true}" class="h2">Editar Categoria</h1>
+                        <h1 th:id="${founded == false}" class="h2">Crear Categoria</h1>
+                        
+                    </div>
+                    <form th:action="@{/guardarCategoria}" method="post" th:object="${categoria}">
+                        <input type="hidden" name="idCategoria" th:field="*{idCategoria}"/>
+                        <div class="row kt-margin-b-20">
+                            <div class="col-lg-5 kt-margin-b-10-tablet-and-mobile">
+                                <label style="font-weight: bold;">Nom:</label>
+                                <div class="input-icon">
+                                    <input class="form-control" type="text" id="nom" name="nom" th:field="*{nom}" placeholder="Nom de la categoria"/>
+                                    <span th:if="${#fields.hasErrors('nom')}" th:errors="*{nom}"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div  class="modal-footer" th:if="${founded == true}">
+                            <a th:href="@{/llistarCategories}" th:text="#{cancelar}" class="btn btn-secondary"></a>
+                            <input type="submit" name="enviar" value="Guardar" class="btn btn-primary"/>
+                            <a th:href="@{/eliminarCategoria/}+${categoria.idCategoria}" th:text="#{Eliminar}" class="btn btn-danger"></a>
+                        </div>
+                        <div  class="modal-footer" th:if="${founded == false}">
+                            <a th:href="@{/llistarCategories}" th:text="#{cancelar}" class="btn btn-secondary"></a>
+                            <input type="submit" name="enviar" value="Guardar" class="btn btn-primary"/>
+                        </div>
+                    </form>
+                </main>
+            </div>
+        </div>
+    </body>
+</html>
+
+
