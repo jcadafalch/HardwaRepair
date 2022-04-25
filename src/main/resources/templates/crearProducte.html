@@ -15,23 +15,30 @@
 
     </head>
     <body>
-    <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
-        <a class="navbar-brand col-sm-3 col-md-2 mr-0" th:href="@{/}">HardwaRepair</a>
-    </nav>
+    <nav class="navbar navbar-dark sticky-top bg-dark  ">
 
+        <div class="mb-2 mb-md-0">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-person-circle" viewBox="0 0 16 16">
+                <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+            </svg>
+            <label class="text-white bg-dark" th:text="${username}"></label>
+        </div>
+
+    </nav>
     <div class="container-fluid">
         <div class="row">
             <nav class="col-md-2 d-none d-md-block bg-light sidebar">
                 <div class="sidebar-sticky">
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link" href="@{/llistatIncidencies}">
+                            <a class="nav-link" th:href="@{/llistatIncidencies}">
                                 <span class="bi bi-tools"></span>
                                 Incidencies
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="@{/llistarProductes}">
+                            <a class="nav-link" th:href="@{/llistarProductes}">
                                 <span class="bi bi-box"></span>
                                 Productes
                             </a>
@@ -43,18 +50,14 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" th:href="@{/llistarUsuaris}">
-                                <span class="bi bi-person-circle"></span>
-                                Usuaris
+                            <a class="nav-link" th:href="@{/logout}">
+                                <span class="bi bi-box-arrow-right"></span>
+                                Tancar Sessió
                             </a>
                         </li>
                     </ul>
                 </div>
             </nav>
-
-
-
-
 
             <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">

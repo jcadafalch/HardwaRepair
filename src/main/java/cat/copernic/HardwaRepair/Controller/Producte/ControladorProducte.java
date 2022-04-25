@@ -1,10 +1,8 @@
 package cat.copernic.HardwaRepair.Controller.Producte;
 
-import cat.copernic.HardwaRepair.Model.LiniaReparacio;
 import cat.copernic.HardwaRepair.Model.Producte;
 import cat.copernic.HardwaRepair.Utils.IsAdministrator;
 import cat.copernic.HardwaRepair.serveis.Categoria.CategoriaServiceInterface;
-import cat.copernic.HardwaRepair.serveis.LiniaReparacio.LiniaReparacioServiceInterface;
 import cat.copernic.HardwaRepair.serveis.Producte.ProducteServiceInterface;
 import javax.validation.Valid;
 
@@ -37,13 +35,21 @@ public class ControladorProducte {
 
 
     @GetMapping("/llistarProductes")
-    public String llistarProductes(Model model){{
+    public String llistarProductes(Model model, @AuthenticationPrincipal User username){{
         try{
             //Passem el llistat de categories a la vista
             model.addAttribute("categories", categoriaService.llistarCategoria());
 
             //Passem el llistat de productes a la vista
             model.addAttribute("productes", producteService.llistarProductes());
+
+            //Passem a la vista el nom de l'usuari en cas que no estigui autenticat ho indiquem
+            if(username == null){
+                model.addAttribute("username", " Usuari no autenticat");
+            }else{
+                model.addAttribute("username", username.getUsername());
+            }
+
         }catch (NullPointerException e){
             //Si no hi ha categories o productes, mostrem un missatge d'error
             System.out.println("No hi ha categories");
@@ -53,12 +59,19 @@ public class ControladorProducte {
     }}
     
     @GetMapping("/crearProducte")
-    public String crearFormulariProducte(Producte producte, Model model){
+    public String crearFormulariProducte(Producte producte, Model model, @AuthenticationPrincipal User username){
 
         try{
             //Passem el llistat de categories a la vista
             model.addAttribute("categories", categoriaService.llistarCategoria());
             System.out.println("Categories == " + categoriaService.llistarCategoria());
+
+            //Passem a la vista el nom de l'usuari en cas que no estigui autenticat ho indiquem
+            if(username == null){
+                model.addAttribute("username", " Usuari no autenticat");
+            }else{
+                model.addAttribute("username", username.getUsername());
+            }
         }catch (NullPointerException e){
             //Si no hi ha categories, mostrem un missatge d'error
             System.out.println("No hi ha categories");
@@ -89,6 +102,12 @@ public class ControladorProducte {
 
         //Passem el llistat de categories a la vista
         model.addAttribute("categories", categoriaService.llistarCategoria());
+        //Passem a la vista el nom de l'usuari en cas que no estigui autenticat ho indiquem
+        if(username == null){
+            model.addAttribute("username", " Usuari no autenticat");
+        }else{
+            model.addAttribute("username", username.getUsername());
+        }
 
         //Passem a la vista si l'usuari és administrador
         model.addAttribute("isAdministrator", IsAdministrator.isAdministrator(username.getUsername(), usuariService));
