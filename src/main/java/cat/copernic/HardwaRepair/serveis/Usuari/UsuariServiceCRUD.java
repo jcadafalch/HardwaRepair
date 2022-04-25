@@ -1,6 +1,5 @@
 package cat.copernic.HardwaRepair.serveis.Usuari;
 
-//import cat.copernic.HardwaRepair.DAO.UsuariCrudDAO;
 import cat.copernic.HardwaRepair.DAO.UsuariDAO;
 import cat.copernic.HardwaRepair.Model.Usuari;
 import java.util.List;

@@ -3,8 +3,8 @@ package cat.copernic.HardwaRepair.Controller.categories;
 
 import cat.copernic.HardwaRepair.DAO.CategoriaDAO;
 import cat.copernic.HardwaRepair.Model.Categoria;
-import cat.copernic.HardwaRepair.serveis.CategoriaServiceInterface;
 import javax.validation.Valid;
+import cat.copernic.HardwaRepair.serveis.Categoria.CategoriaServiceInterface;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

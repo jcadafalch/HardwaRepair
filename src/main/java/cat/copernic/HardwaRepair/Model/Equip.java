@@ -12,24 +12,16 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
-<<<<<<<< HEAD:src/main/java/cat/copernic/HardwaRepair/Model/Equip.java
 import javax.validation.constraints.NotNull;
-========
->>>>>>>> lucas:src/main/java/cat/copernic/HardwaRepair/Model/categoria.java
 import lombok.Data;
 
 /**
  *
-<<<<<<<< HEAD:src/main/java/cat/copernic/HardwaRepair/Model/Equip.java
  * @author marc
-========
- * @author lktol
->>>>>>>> lucas:src/main/java/cat/copernic/HardwaRepair/Model/categoria.java
  */
 
 @Data
 @Entity
-<<<<<<<< HEAD:src/main/java/cat/copernic/HardwaRepair/Model/Equip.java
 @Table(name = "equip")
 public class Equip implements Serializable{
     
@@ -53,22 +45,6 @@ public class Equip implements Serializable{
     
     @NotNull
     private int tipus_equip_id;
-    
-========
-@Table(name="categoria")
-public class Categoria implements Serializable{
-
-    private static final long serialVersionUID=1L;
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long idCategoria;
-
-    @NotEmpty
-    private String nom;
-
-
->>>>>>>> lucas:src/main/java/cat/copernic/HardwaRepair/Model/categoria.java
 }
 
 

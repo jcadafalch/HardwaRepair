@@ -7,7 +7,7 @@ package cat.copernic.HardwaRepair.Controller;
 
 import cat.copernic.HardwaRepair.DAO.ClientDAO;
 import cat.copernic.HardwaRepair.Model.Client;
-import cat.copernic.HardwaRepair.serveis.ClientServiceInterface;
+import cat.copernic.HardwaRepair.serveis.Client.ClientServiceInterface;
 import javax.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

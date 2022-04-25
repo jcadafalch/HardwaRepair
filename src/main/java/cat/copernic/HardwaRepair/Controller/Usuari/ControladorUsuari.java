@@ -2,12 +2,9 @@ package cat.copernic.HardwaRepair.Controller.Usuari;
 
 import cat.copernic.HardwaRepair.DAO.UsuariCrudDAO;
 import cat.copernic.HardwaRepair.Model.Usuari;
-import cat.copernic.HardwaRepair.serveis.UsuariServiceInterface;
-
-import cat.copernic.HardwaRepair.Utils.IsAdministrator;
 import cat.copernic.HardwaRepair.Eines.EncriptadorContrasenyes;
 import javax.validation.Valid;
-
+import cat.copernic.HardwaRepair.serveis.Usuari.UsuariServiceInterface;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;

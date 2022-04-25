@@ -5,8 +5,10 @@ import java.util.List;
 
 /**
  *
- * @author jcadafalch
+ * @author Lucas Tolón Pacheco
  */
+
+//Interface on definirem els mètodes CRUD personalitzats per la nostra aplicació
 public interface CategoriaServiceInterface {
 
 
@@ -21,3 +23,4 @@ public interface CategoriaServiceInterface {
     public Categoria cercarCategoriaByID(Long id); //Mètode que implementarem per cercar un categoria per ID
 
 }
+

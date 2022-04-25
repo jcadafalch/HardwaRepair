@@ -8,7 +8,7 @@ package cat.copernic.HardwaRepair.Controller;
 
 import cat.copernic.HardwaRepair.DAO.EquipDAO;
 import cat.copernic.HardwaRepair.Model.Equip;
-import cat.copernic.HardwaRepair.serveis.EquipServiceInterface;
+import cat.copernic.HardwaRepair.serveis.Equip.EquipServiceInterface;
 import javax.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

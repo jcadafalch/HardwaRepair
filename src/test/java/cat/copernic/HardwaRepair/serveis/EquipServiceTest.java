@@ -6,6 +6,8 @@ package cat.copernic.HardwaRepair.serveis;
 
 import cat.copernic.HardwaRepair.Model.Equip;
 import java.util.List;
+
+import cat.copernic.HardwaRepair.serveis.Equip.EquipService;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;

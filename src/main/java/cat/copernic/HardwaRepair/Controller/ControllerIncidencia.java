@@ -8,7 +8,7 @@ package cat.copernic.HardwaRepair.Controller;
 import cat.copernic.HardwaRepair.DAO.IncidenciaDAO;
 import cat.copernic.HardwaRepair.Model.Incidencia;
 import cat.copernic.HardwaRepair.serveis.EstatServiceInterface;
-import cat.copernic.HardwaRepair.serveis.IncidenciaServiceInterface;
+import cat.copernic.HardwaRepair.serveis.Incidencia.IncidenciaServiceInterface;
 import cat.copernic.HardwaRepair.serveis.Tipus_EquipServiceInterface;
 import javax.validation.Valid;
 import lombok.extern.slf4j.Slf4j;

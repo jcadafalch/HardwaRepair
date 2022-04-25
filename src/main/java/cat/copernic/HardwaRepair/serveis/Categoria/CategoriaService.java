@@ -7,9 +7,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+
 /**
  *
- * @author jcadafalch
+ * @author Lucas Tolón Pacheco
+ */
+
+/*Anotació que permet al sistema que reconegui aquesta classe com una classe de servei
+ *i que permet injectar aquesta classe en el controlador
  */
 @Service
 public class CategoriaService implements CategoriaServiceInterface{

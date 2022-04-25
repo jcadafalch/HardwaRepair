@@ -1,9 +1,11 @@
-package cat.copernic.HardwaRepair.serveis;
+package cat.copernic.HardwaRepair.serveis.Incidencia;
 
 import cat.copernic.HardwaRepair.DAO.IncidenciaDAO;
 import cat.copernic.HardwaRepair.Model.Incidencia;
 import cat.copernic.HardwaRepair.Model.tipusOperacio;
 import java.util.List;
+
+import cat.copernic.HardwaRepair.serveis.Incidencia.IncidenciaServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
