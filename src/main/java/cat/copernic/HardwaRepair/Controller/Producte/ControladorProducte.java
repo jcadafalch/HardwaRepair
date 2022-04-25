@@ -102,6 +102,7 @@ public class ControladorProducte {
 
         //Passem el llistat de categories a la vista
         model.addAttribute("categories", categoriaService.llistarCategoria());
+
         //Passem a la vista el nom de l'usuari en cas que no estigui autenticat ho indiquem
         if(username == null){
             model.addAttribute("username", " Usuari no autenticat");

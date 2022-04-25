@@ -7,12 +7,17 @@ package cat.copernic.HardwaRepair.Controller;
 
 import cat.copernic.HardwaRepair.DAO.IncidenciaDAO;
 import cat.copernic.HardwaRepair.Model.Incidencia;
+import cat.copernic.HardwaRepair.Model.LiniaReparacio;
 import cat.copernic.HardwaRepair.serveis.EstatServiceInterface;
 import cat.copernic.HardwaRepair.serveis.Incidencia.IncidenciaServiceInterface;
+import cat.copernic.HardwaRepair.serveis.LiniaReparacio.LiniaReparacioServiceInterface;
+import cat.copernic.HardwaRepair.serveis.Producte.ProducteServiceInterface;
 import cat.copernic.HardwaRepair.serveis.Tipus_EquipServiceInterface;
 import javax.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -42,6 +47,12 @@ public class ControllerIncidencia {
 
     @Autowired
     private IncidenciaDAO incidenciaDao;
+
+    @Autowired
+    private LiniaReparacioServiceInterface liniaReparacioService;
+
+    @Autowired
+    private ProducteServiceInterface producteService;
 
     @GetMapping("/crearIncidencia")
     public String crearIncidencia(Incidencia incidencia, Model model) {
@@ -171,9 +182,58 @@ public class ControllerIncidencia {
         //Redirigim a la vista de llistar productes
         return "redirect:/llistatIncidencies";
     }
-    
-    
-    
-    
+
+    @GetMapping("/liniaReparacio/{id_incidencia}")
+    public String liniaReparacio(Incidencia incidencia,Model model,LiniaReparacio liniareparacio, @AuthenticationPrincipal User username){
+        try {
+            //Passem el llistat de productes a la vista
+            model.addAttribute("productes", producteService.llistarProductes());
+
+            model.addAttribute("liniareparacio", liniareparacio);
+
+            System.out.println("Productes == " + producteService.llistarProductes());
+
+            System.out.println("Llistat liniaReparacio == " + liniaReparacioService.llistarLiniaReparacio());
+
+            //Passem a la vista el nom de l'usuari en cas que no estigui autenticat ho indiquem
+            if(username == null){
+                model.addAttribute("username", " Usuari no autenticat");
+            }else{
+                model.addAttribute("username", username.getUsername());
+            }
+
+            //Passem la incidencia a la vista
+            model.addAttribute("incidencia", incidenciaService.cercarIncidencia(incidencia));
+            System.out.println("Incidencia == " + incidenciaService.cercarIncidencia(incidencia));
+            //System.out.println("Llistat incidencies == " + incidenciaService.llistarIncidencies());
+
+        }catch (NullPointerException e){
+            //Si no hi ha productes, mostrem un missatge d'error
+            System.out.println("No hi ha productes");
+            System.out.println("Error == " + e.getMessage());
+        }
+
+        return "liniaReparacio";
+    }
+
+    @PostMapping("/guardarLiniaReparacio")
+    public String guardarLiniaReparacio(@Valid LiniaReparacio liniaReparacio, Errors errors){
+        if (errors.hasErrors()) {
+            //Si hi ha errors, tornem a la vista de linia reparació
+            log.info("S'ha produït un error'");
+            return "liniaReparacio";
+        }
+
+        System.out.println("LiniaReparacio == " + liniaReparacio);
+        //Guardem la linia reparació
+        liniaReparacioService.afegirLiniaReparacio(liniaReparacio);
+        //return "redirect:/liniaReparacio";
+        return "redirect:/llistarProductes";
+    }
+
+
+
+
+
 
 }
