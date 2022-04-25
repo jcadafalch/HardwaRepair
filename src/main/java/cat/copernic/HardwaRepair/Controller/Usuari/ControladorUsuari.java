@@ -32,10 +32,16 @@ public class ControladorUsuari {
     private UsuariCrudDAO usuariDAO;
 
     @GetMapping("/llistarUsuaris")
-    public String llistarUsuaris(Model model) {
+    public String llistarUsuaris(Model model, @AuthenticationPrincipal User username) {
         {
             try {
                 model.addAttribute("usuaris", usuariService.llistarUsuari());
+                //Passem a la vista el nom de l'usuari en cas que no estigui autenticat ho indiquem
+                if (username == null) {
+                    model.addAttribute("username", " Usuari no autenticat");
+                } else {
+                    model.addAttribute("username", username.getUsername());
+                }
             } catch (NullPointerException e) {
                 System.out.println("No hi ha usuaris");
                 System.out.println("Error == " + e.getMessage());
@@ -52,7 +58,13 @@ public class ControladorUsuari {
             System.out.println(usuaris);
             model.addAttribute("usuaris", usuaris);
             model.addAttribute("founded", false);
-            
+            //Passem a la vista el nom de l'usuari en cas que no estigui autenticat ho indiquem
+            if (username == null) {
+                model.addAttribute("username", " Usuari no autenticat");
+            } else {
+                model.addAttribute("username", username.getUsername());
+            }
+
         } catch (NullPointerException e) {
             System.out.println("No hi ha usuaris");
             System.out.println("Error == " + e.getMessage());
@@ -66,9 +78,9 @@ public class ControladorUsuari {
         //Guardamos en una variable la contraseña anterior que tenia el usuario
         String pass = usuariDAO.findById(usuari.getIdUsuari()).get().getPassword();
         String antdni = usuariDAO.findById(usuari.getIdUsuari()).get().getDni();
-        
+
         //Passem a la vista si l'usuari és administrador
-            model.addAttribute("isAdministrator", IsAdministrator.isAdministrator(username.getUsername(), usuariService));
+        model.addAttribute("isAdministrator", IsAdministrator.isAdministrator(username.getUsername(), usuariService));
 
         if (cont == null) { // En caso de que la contraseña no se haya editado
             usuari.setPassword(pass);// Guardaremos de nuevo la antigua
@@ -104,6 +116,12 @@ public class ControladorUsuari {
         model.addAttribute("founded", true);
         //Passem a la vista si l'usuari és administrador
         model.addAttribute("isAdministrator", IsAdministrator.isAdministrator(username.getUsername(), usuariService));
+        //Passem a la vista el nom de l'usuari en cas que no estigui autenticat ho indiquem
+        if (username == null) {
+            model.addAttribute("username", " Usuari no autenticat");
+        } else {
+            model.addAttribute("username", username.getUsername());
+        }
 
         return "formulariUsuari";
     }
