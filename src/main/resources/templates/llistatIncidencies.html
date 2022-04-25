@@ -83,10 +83,11 @@
                                                                 </caption>-->
 
                                 <!--If que mostra la taula segons si no es null-->
-                                <div th:if="${incidencies!=null && !incidencies.empty}">
+                                
+                                <div  class="table-responsive" th:if="${incidencies!=null && !incidencies.empty}">
                                     <!--Realitzem una taula on mostrarem les categories trobades a la bbdd mitjançant un for each d'Incidències-->
-                                    <table border="1" class="table table-stryped">
-                                        <thead class="thead-dark">
+                                    <table class="table table-striped table-sm">
+                                        <thead>
                                             <tr>
                                                 <th>Id Incidència</th>
                                                 <th>Data</th>
@@ -117,7 +118,7 @@
 
 
                                                 <td>
-                                                    <div class="badge bg-primary text-wrap" style="width: 6rem;">
+                                                    <div div class="badge bg-primary text-wrap" style="width: 6rem;">
                                                         <a th:href="@{/editarIncidencia/}+${incidencia.id_incidencia}" class="btn btn-primary">Detalls</a>
                                                     </div>
                                                 </td>

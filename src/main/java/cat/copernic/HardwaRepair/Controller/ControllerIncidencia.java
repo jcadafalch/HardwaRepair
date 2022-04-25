@@ -155,7 +155,7 @@ public class ControllerIncidencia {
 
             //Si hi ha errors, tornem a la vista de detalls de l'incidencia
             log.info("S'ha produït un error'");
-            return "";
+            
         }
 
         //Actualitzem el producte
