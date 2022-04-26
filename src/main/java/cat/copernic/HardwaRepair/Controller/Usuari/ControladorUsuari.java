@@ -75,13 +75,16 @@ public class ControladorUsuari {
 
     @PostMapping("/guardarUsuari")
     public String guardarUsuari(@Valid Usuari usuari, @RequestParam(value = "password") String cont, @RequestParam(value = "dni") String dni, Errors errors, RedirectAttributes redirectAttrs, @AuthenticationPrincipal User username, Model model) {
-        //Guardamos en una variable la contraseña anterior que tenia el usuario
+        //Comprobaremos si el usuario que le hemos pasado existe ya en la base de datos o no, con el fin de saber si debe hacer un update o crear el registro
         if (usuariDAO.existsById(usuari.getIdUsuari())) {
+            //Si existe guardamos en variables los valores anteriores del DNI y la contraseña
             String pass = usuariDAO.findById(usuari.getIdUsuari()).get().getPassword();
             String antdni = usuariDAO.findById(usuari.getIdUsuari()).get().getDni();
 
+            //Si el antiguo dni no es igual al nuevo, comprobaremos que no haya ningún usuario ya con ese DNI
             if (!antdni.equals(dni)) {
                 if (usuariDAO.findByDni(usuari.getDni()) != null) {
+                    //Si lo hay mandamos un mensaje de error
                     redirectAttrs
                             .addFlashAttribute("mensaje", "No pots crear dos usuaris amb el mateix DNI")
                             .addFlashAttribute("clase", "error");
@@ -97,6 +100,13 @@ public class ControladorUsuari {
                 }
             }
 
+        }
+
+        if (usuariDAO.findByDni(usuari.getDni()) != null) {
+            redirectAttrs
+                    .addFlashAttribute("mensaje", "No pots crear dos usuaris amb el mateix DNI")
+                    .addFlashAttribute("clase", "error");
+            return "redirect:/llistarUsuaris";
         }
 
         //Passem a la vista si l'usuari és administrador
