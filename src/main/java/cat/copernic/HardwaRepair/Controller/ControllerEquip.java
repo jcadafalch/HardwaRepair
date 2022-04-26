@@ -34,7 +34,30 @@ public class ControllerEquip {
     private Tipus_EquipServiceInterface tipusEquipService;
     
     @Autowired
-    private EquipDAO equipDAO; 
+    private EquipDAO equipDAO;
+    
+    
+    
+    
+    @GetMapping("/llistarEquips")
+    public String llistarEquips(Model model) {
+        {
+            try {
+
+                //Passem el llistat d'Equips.
+                model.addAttribute("equips", equipService.llistarEquips());
+
+            } catch (NullPointerException e) {
+                System.out.println("No hi ha Incidencies");
+                System.out.println("Error == " + e.getMessage());
+            }
+            return "llistatEquips";
+        }
+    }
+    
+    
+    
+    
 
     @GetMapping("/creaEquip")
     public String crearFormulariEquip(Equip equip, Model model) {
@@ -44,8 +67,8 @@ public class ControllerEquip {
             //Passem el llistat de categories a la vista
             model.addAttribute("categories", equipService.llistarEquips());
         }catch (NullPointerException e){
-            //Si no hi ha categories, mostrem un missatge d'error
-            System.out.println("No hi ha categories");
+            //Si no hi ha equips, mostrem un missatge d'error
+            System.out.println("No hi ha equips");
             System.out.println("Error == " + e.getMessage());
         }
         
@@ -61,7 +84,7 @@ public class ControllerEquip {
             log.info("S'ha produït un error'");
             return "crearIncidencia";
         }
-        //Guardem el producte
+        //Guardem el equip
         equipService.afegirEquip(equip);
         return "redirect:/llistatIncidencies";
     }
@@ -72,12 +95,12 @@ public class ControllerEquip {
     public String editarEquip(Equip equip, Model model){
         equip = equipService.cercarEquip(equip);
 
-        //Passem el producte a la vista
+        //Passem el equip a la vista
         model.addAttribute("equip", equip);
 
         //Passem el llistat de categories a la vista
         
-        return "";
+        return "redirect:/llistatIncidencies";
     }
     
     
@@ -91,9 +114,9 @@ public class ControllerEquip {
             return "detallsProducte";
         }
         
-        //Actualitzem el producte
+        //Actualitzem el equip
         equipService.afegirEquip(equip);
-        return "redirect:/";
+        return "redirect:/llistatIncidencies";
     }
     
     
@@ -104,8 +127,8 @@ public class ControllerEquip {
         //Eliminem el producte
         equipService.eliminarEquip(equip);
 
-        //Redirigim a la vista de llistar productes
-        return "redirect:/";
+        //Redirigim a la vista de llistat Incidencies 
+        return "redirect:/llistatIncidencies";
     }
     
     

@@ -46,7 +46,10 @@ public class EstatService implements EstatServiceInterface{
         return this.estat.findById(estat.getId_estat()).orElse(null);
 
     }
-
+    
+    
+    
+    //Cercador mitjançant l'id de l'estat
     @Override
     public Estat cercarEstatByID(Long id) {
         return this.estat.findById(id).orElse(null);

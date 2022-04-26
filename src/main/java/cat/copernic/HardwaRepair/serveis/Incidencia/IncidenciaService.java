@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
- * @author fta
+ * @author marc
  */
 
 /*Anotació que permet al sistema que reconegui aquesta classe com una classe de servei
@@ -84,7 +84,7 @@ public class IncidenciaService implements IncidenciaServiceInterface {
          *El paràmetre que li passem a aquest mètode, ha de ser la clau primària de l'entitat, en el nostre 
          *cas el incidencia.
          *
-         *Si el incidencia no existei retornarà null (orElse(null)).
+         *Si la incidencia no existei retornarà null (orElse(null)).
          */
         return this.incidencia.findById(incidencia.getId_incidencia()).orElse(null);
     }

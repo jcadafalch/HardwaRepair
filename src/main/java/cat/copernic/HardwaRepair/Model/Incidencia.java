@@ -26,6 +26,7 @@ import org.springframework.format.annotation.DateTimeFormat.ISO;
  * @author marc
  */
 
+//Model de la Incidencia on es mostra tots els camps
 
 
 @Data

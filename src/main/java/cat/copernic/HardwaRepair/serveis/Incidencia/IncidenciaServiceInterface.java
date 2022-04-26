@@ -6,7 +6,7 @@ import java.util.List;
 
 /**
  *
- * @author fta
+ * @author marc
  */
 
 //Interface on definirem els mètodes CRUD personalitzats per la nostra aplicació

@@ -17,5 +17,6 @@ public interface EquipDAO extends CrudRepository<Equip,String>{
     *El nom d'aquest mètode ha de ser findByUsername, ja que és el que reconeix Spring Boot
     *com a mètode de seguretat per recuperar l'usuari.
     */
-    
+    //Metode que ens permet buscar un equip per la marca
+    Equip findByMarca(String marca);
 }

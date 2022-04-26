@@ -70,20 +70,9 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="row">
-
                         <div class="col-md-9">
-
-
                             <div class="card">
-
-                                <!--                                <caption>
-                                                                    <a th:href="@{/crearIncidencia}" type="button" > <button  class="btn btn-primary"th:text="#{accion.creaIncidencia}" ></button> </a> 
-                                                                </caption>-->
-
-                                <!--If que mostra la taula segons si no es null-->
-                                
                                 <div  class="table-responsive" th:if="${incidencies!=null && !incidencies.empty}">
                                     <!--Realitzem una taula on mostrarem les categories trobades a la bbdd mitjançant un for each d'Incidències-->
                                     <table class="table table-striped table-sm">
@@ -97,34 +86,19 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-
                                             <tr th:each="incidencia : ${incidencies}">
                                                 <td th:text="${incidencia.id_incidencia}"></td>
                                                 <td th:text="${incidencia.data_creacio}"></td>
                                                 <td th:text="${incidencia.reparador}"></td>
-
+                                                
+                                                <!--For eachs que segons el valor dels camps mostrara el nom del tipus o equip que es-->
                                                 <td th:each="tipus_equip : ${tipus_equips}" th:if="${tipus_equip.id_tipus_equip == incidencia.tipus_equip}" th:text="${tipus_equip.nom}"></td>
-
-                                                <!--<td th:text="${incidencia.tipus_equip}"></td>-->
-                                                <!--<td th:text="${incidencia.tipus_operacio_id}"></td>-->
-
-
-                                                <!--                                            <select name="tipus_operacio_id" id="tipus_operacio_id" th:field="*{tipus_operacio_id}" >
-                                                                                                <option th:each="tipus_operacio : ${tipus_operacions}" th:value="${tipus_operacio.id_tipus_operacio}" th:text="${tipus_operacio.nom}"></option>
-                                                                                            </select>-->
-
-
                                                 <td th:each="tipus_operacio : ${tipus_operacions}" th:if="${tipus_operacio.id_tipus_operacio == incidencia.tipus_operacio_id}" th:text="${tipus_operacio.nom}"></td>
-
-
                                                 <td>
                                                     <div div class="badge bg-primary text-wrap" style="width: 6rem;">
                                                         <a th:href="@{/editarIncidencia/}+${incidencia.id_incidencia}" class="btn btn-primary">Detalls</a>
                                                     </div>
                                                 </td>
-
-                                                <!--Boto que ens permet accedir als detalls de les incidències.-->
-                                                <!--<td><a th:href="@{/editarIncidencia/}+${incidencia.id_incidencia}" class="btn btn-primary">Detalls</a></td>-->
                                             </tr> 
                                         </tbody>
 

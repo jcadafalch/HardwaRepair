@@ -47,6 +47,8 @@ public class Tipus_EquipService implements Tipus_EquipServiceInterface{
 
     }
 
+    
+//    Cercador del tipus d'equip per l'id 
     @Override
     public Tipus_Equip cercarTipus_EquipByID(Long id) {
         return this.tipus_equip.findById(id).orElse(null);

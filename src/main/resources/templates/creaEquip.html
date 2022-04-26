@@ -7,7 +7,7 @@
         <meta name="author" content="">
         <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
 
-        <title th:text="#{accion.creaEquip}"></title> <!-- AQUÍ VA EL TITULO DE LA PÁGINA
+        <title th:text="#{accion.creaEquip}"></title> 
 
         <!-- Bootstrap -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
@@ -23,7 +23,7 @@
         <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
             <a class="navbar-brand col-sm-3 col-md-2 mr-0" th:href="@{/}">HardwaRepair</a>
         </nav>
-
+        <!--Navegacio-->
         <div class="container-fluid">
             <div class="row">
                 <nav class="col-md-2 d-none d-md-block bg-light sidebar">
@@ -56,16 +56,18 @@
                         </ul>
                     </div>
                 </nav>
+
+                <!--Seccio Principal-->
                 <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
                     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-                        <h1 class="h2" th:text="#{accion.creaEquip}"> </h1> <!-- AQUÍ VA EL TITULO DEL FORMULARIO -->
+                        <h1 class="h2" th:text="#{accion.creaEquip}"> </h1> 
                     </div>
 
 
-
+                    <!--Formulari de Creacio de l'Equip-->
                     <form th:action="@{/guardarEquipCrear}" method="post" th:object="${equip}">
 
-
+                        <!--Numero de Serie-->
                         <div class="row kt-margin-b-20">
                             <div class="col-lg-5 kt-margin-b-10-tablet-and-mobile">
                                 <label style="font-weight: bold;" for="num_serie" th:text="#{Equip.numSerie}">Numero de Serie:</label>                               
@@ -79,6 +81,8 @@
 
                                 </div>
                             </div>
+
+                            <!--DNI-->
                             <div class="col-lg-5 kt-margin-b-10-tablet-and-mobile">
                                 <label style="font-weight: bold;" for="client_id" th:text="#{Equip.idClient}">DNI:</label>
                                 <a type="button" th:href="@{/creaClient}" class="btn btn-primary" th:text="#{accion.creaClient}"></a>
@@ -99,7 +103,7 @@
 
 
 
-
+                        <!--Marca-->
                         <div class="row kt-margin-b-20">
                             <div class="col-lg-5 kt-margin-b-10-tablet-and-mobile">
                                 <label style="font-weight: bold;" for="marca" th:text="#{Equip.marca}">Marca:</label>                              
@@ -112,6 +116,9 @@
 
                                 </div>
                             </div>
+
+
+                            <!--Model-->
                             <div class="col-lg-5 kt-margin-b-10-tablet-and-mobile">
                                 <label style="font-weight: bold;" for="model" th:text="#{Equip.model}">Model:</label>
                                 <div class="input-icon">
@@ -126,7 +133,7 @@
                         </div>
 
 
-
+                        <!--Descripcio--> 
                         <div class="row kt-margin-b-20">
                             <div class="col-lg-5 kt-margin-b-10-tablet-and-mobile">
                                 <label style="font-weight: bold;" for="descripcio" th:text="#{Equip.descripcio}">Descripcio:</label>                             
@@ -140,11 +147,17 @@
                                 </div>
 
                             </div>
+
+
+
+
+
+                            <!--Tipus d'Equip-->
                             <div class="col-lg-5 kt-margin-b-10-tablet-and-mobile">
                                 <label style="font-weight: bold;" for="tipus_equip_id" th:text="#{Equip.tipusEquip}">Tipus Equip:</label>
                                 <div class="input-icon">
 
-
+                                    <!--Select consultor a la BBDD mitjançant la taula tipus d'equip.-->
                                     <select class="form-control" name="tipus_equip_id" id="tipus_equip_id" th:field="*{tipus_equip_id}" >
                                         <option th:each="tipus_equip : ${tipus_equips}" th:value="${tipus_equip.id_tipus_equip}" th:text="${tipus_equip.nom}"></option>
                                         <!--<option th:each="tipus_equip : ${tipus_equips}" th:value="${tipus_equip.id_tipus_equip}" th:text="${tipus_equip.nom}"></option>-->
@@ -155,77 +168,9 @@
                                 </div>
                             </div>
                         </div>
-
-
-
-
-
-
-
-
-
-
-
-                        <!--                                    <label for="num_serie" th:text="#{Equip.numSerie}">Numero de Serie:</label>
-                                                            
-                                                            <input type="text" id="num_serie" name="num_serie" th:field="*{num_serie}" placeholder="Num. Serie"/>
-                                                            <span th:if="${#fields.hasErrors('num_serie')}" th:errors="*{num_serie}"></span>-->
-
-
-
-
-
-
-
-                        <!--                                    <label for="client_id" th:text="#{Equip.idClient}">DNI:</label>
-                                                          
-                                                            <input type="text" id="client_id" name="client_id" th:field="*{client_id}" placeholder="Client ID"/>
-                                                            <span th:if="${#fields.hasErrors('client_id')}" th:errors="*{client_id}"></span>-->
-
-
-
-                        <!--                        <label for="marca" th:text="#{Equip.marca}">Marca:</label>
-                                                <input type="text" class="form-control" name="Marca" id="marca" />
                         
                         
-                                                <input type="text" id="marca" name="marca" th:field="*{marca}" placeholder="Marca"/>
-                                                <span th:if="${#fields.hasErrors('marca')}" th:errors="*{marca}"></span>-->
-
-
-
-
-
-
-                        <!--                        <label for="model" th:text="#{Equip.model}">Model:</label>
-                                                <input type="text" class="form-control" name="Model" id="model"/>
-                        
-                        
-                                                <input type="text" id="model" name="model" th:field="*{model}" placeholder="Model"/>
-                                                <span th:if="${#fields.hasErrors('model')}" th:errors="*{model}"></span>-->
-
-
-
-
-
-                        <!--                        <label for="descripcio" th:text="#{Equip.descripcio}">Descripcio:</label>
-                                                <input type="text" class="form-control" name="Descripcio" id="descripcio" />
-                        
-                                                <input type="text" id="descripcio" name="descripcio" th:field="*{descripcio}" placeholder="Descripcio"/>
-                                                <span th:if="${#fields.hasErrors('descripcio')}" th:errors="*{descripcio}"></span>-->
-
-
-
-
-
-
-
-                        <!--                        <label for="tipus_equip_id" th:text="#{Equip.tipusEquip}">Tipus Equip:</label>
-                                                <input type="number" class="form-control" name="Tipus_Equip_Id" id="tipus_equip_id"/>
-                        
-                                                <input type="number" id="tipus_equip_id" name="tipus_equip_id" th:field="*{tipus_equip_id}" placeholder="ID Tipus Equip"/>
-                                                <span th:if="${#fields.hasErrors('tipus_equip_id')}" th:errors="*{tipus_equip_id}"></span>-->
-
-
+                            <!--Footer on integrem botons de cancel·la i guardar-->
                         <div  class="modal-footer">
                             <a th:href="@{/crearIncidencia}" th:text="#{accion.cancelar}" class="btn btn-secondary"></a>
                             <input type="submit" name="enviar" value="Guardar" class="btn btn-primary" />

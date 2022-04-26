@@ -6,7 +6,7 @@ import java.util.List;
 
 /**
  *
- * @author fta
+ * @author marc
  */
 
 //Interface on definirem els mètodes CRUD personalitzats per la nostra aplicació
@@ -19,4 +19,6 @@ public interface EquipServiceInterface {
     public void eliminarEquip(Equip equip); //Mètode que implementarem per eliminar un equip
     
     public Equip cercarEquip(Equip equip); //Mètode que implementarem per cercar un equip
+   
+    public Equip cercarEquipByMarca(String marca); //Mètode que implementarem per cercar un equip per la marca
 }

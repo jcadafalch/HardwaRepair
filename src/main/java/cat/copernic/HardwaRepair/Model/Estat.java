@@ -17,6 +17,10 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name="estat")
+
+//Model que indica l'estat de la incidencia.
+
+
 public class Estat implements Serializable{
 
     private static final long serialVersionUID=1L;

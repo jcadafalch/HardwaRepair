@@ -7,7 +7,7 @@
         <meta name="author" content="">
         <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
 
-        <title th:text="#{Client.crearClient}"></title> <!-- AQUÍ VA EL TITULO DE LA PÁGINA
+        <title th:text="#{Client.crearClient}"></title> 
 
         <!-- Bootstrap -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
@@ -23,7 +23,7 @@
         <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
             <a class="navbar-brand col-sm-3 col-md-2 mr-0" th:href="@{/}">HardwaRepair</a>
         </nav>
-
+        <!--Navegacio-->
         <div class="container-fluid">
             <div class="row">
                 <nav class="col-md-2 d-none d-md-block bg-light sidebar">
@@ -56,13 +56,23 @@
                         </ul>
                     </div>
                 </nav>
+                
+                
+                
+                <!--Cos principal del formulari-->
                 <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
                     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-                        <h1 class="h2" th:text="#{Client.crearClient}"> </h1> <!-- AQUÍ VA EL TITULO DEL FORMULARIO -->
+                        <h1 class="h2" th:text="#{Client.crearClient}"> </h1> 
                     </div>
-
+                    
+                    
+                    
+                    
+                    <!--Formulari-->
                     <form th:action="@{/guardarClientCrear}" method="post" th:object="${client}">
-
+                        
+                        
+                        <!--DNI-->
                         <div class="row kt-margin-b-20">
                             <div class="col-lg-5 kt-margin-b-10-tablet-and-mobile">
                                 <label style="font-weight: bold;" for="dni" th:text="#{Client.dni}">DNI: </label>                               
@@ -75,6 +85,9 @@
 
                                 </div>
                             </div>
+                            
+                            
+                            <!--Nom-->
                             <div class="col-lg-5 kt-margin-b-10-tablet-and-mobile">
                                 <label style="font-weight: bold;" for="nom" th:text="#{Client.nom}">Nom:</label>
                                 <div class="input-icon">
@@ -87,7 +100,9 @@
                         </div>
 
 
-
+                        
+                        
+                        <!--Cognoms--> 
                         <div class="row kt-margin-b-20">
                             <div class="col-lg-5 kt-margin-b-10-tablet-and-mobile">
                                 <label style="font-weight: bold;" for="cognoms" th:text="#{Client.cognoms}">Cognoms:</label>    
@@ -99,6 +114,10 @@
 
                                 </div>
                             </div>
+                            
+                            
+                            
+                            <!--Adreça-->
                             <div class="col-lg-5 kt-margin-b-10-tablet-and-mobile">
                                 <label style="font-weight: bold;" for="adreca" th:text="#{Client.adreca}">Adreça: </label>
                                 <div class="input-icon">
@@ -114,7 +133,7 @@
 
 
 
-
+                        <!--Telefon-->
                         <div class="row kt-margin-b-20">
                             <div class="col-lg-5 kt-margin-b-10-tablet-and-mobile">
                                 <label style="font-weight: bold;" for="telefon" th:text="#{Client.telefon}">Telefon:</label>   
@@ -125,6 +144,8 @@
 
                                 </div>
                             </div>
+                            
+                            <!--Codi Postal-->
                             <div class="col-lg-5 kt-margin-b-10-tablet-and-mobile">
                                 <label style="font-weight: bold;" for="codi_postal" th:text="#{Client.codiPostal}">Codi Postal:</label>
                                 <div class="input-icon">
@@ -135,64 +156,9 @@
                                 </div>
                             </div>
                         </div>
-
-
-
-                        <!--                                <label for="dni" th:text="#{Client.dni}">DNI: </label>
-                        
-                                                        <input type="text" id="dni" name="dni" th:field="*{dni}" placeholder="DNI"/>
-                                                        <span th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}"></span>-->
-
-
-
-
-                        <!--                        <label for="nom" th:text="#{Client.nom}">Nom:</label>
-                        
-                                                <input type="text" id="nom" name="nom" th:field="*{nom}" placeholder="Nom"/>
-                                                <span th:if="${#fields.hasErrors('nom')}" th:errors="*{nom}"></span>-->
-
-
-
-                        <!--                        <label for="cognoms" th:text="#{Client.cognoms}">Cognoms:</label>
-                                                                               <input type="text" class="form-control" name="Marca" id="marca" />
                         
                         
-                                                <input type="text" id="cognoms" name="cognoms" th:field="*{cognoms}" placeholder="Cognoms"/>
-                                                <span th:if="${#fields.hasErrors('cognoms')}" th:errors="*{cognoms}"></span>-->
-
-
-
-                        <!--                        <label for="adreca" th:text="#{Client.adreca}">Adreça: </label>
-                                                                               <input type="text" class="form-control" name="Model" id="model"/>
-                        
-                        
-                                                <input type="text" id="adreca" name="adreca" th:field="*{adreca}" placeholder="Adreça"/>
-                                                <span th:if="${#fields.hasErrors('adreca')}" th:errors="*{adreca}"></span>-->
-
-
-
-
-
-
-                        <!--                        <label for="telefon" th:text="#{Client.telefon}">Telefon:</label>
-                                                                               <input type="text" class="form-control" name="Descripcio" id="descripcio" />
-                        
-                                                <input type="tel" id="telefon" name="telefon" th:field="*{telefon}" placeholder="Telefón"/>
-                                                <span th:if="${#fields.hasErrors('telefon')}" th:errors="*{telefon}"></span>-->
-
-
-
-
-
-                        <!--                        <label for="codi_postal" th:text="#{Client.codiPostal}">Codi Postal:</label>
-                                                                               <input type="number" class="form-control" name="Tipus_Equip_Id" id="tipus_equip_id"/>
-                        
-                                                <input type="number" id="codi_postal" name="codi_postal" th:field="*{codi_postal}" placeholder="Codi Postal"/>
-                                                <span th:if="${#fields.hasErrors('codi_postal')}" th:errors="*{codi_postal}"></span>-->
-
-
-
-
+                        <!--Footer amb boto de guardar i cancel·la.-->
                         <div  class="modal-footer">
                             <a th:href="@{/crearIncidencia}" th:text="#{accion.cancelar}" class="btn btn-secondary"></a>
                             <input type="submit" name="enviar" value="Guardar" class="btn btn-primary"/>

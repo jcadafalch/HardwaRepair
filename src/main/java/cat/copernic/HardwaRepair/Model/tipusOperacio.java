@@ -15,6 +15,9 @@ import lombok.Data;
  * @author marc
  */
 
+
+//Model que indica el tipus d'operacio de la incidencia.
+
 @Data
 @Entity
 @Table(name="tipus_operacio")

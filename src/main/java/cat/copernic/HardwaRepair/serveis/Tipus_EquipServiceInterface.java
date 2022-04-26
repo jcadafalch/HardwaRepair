@@ -5,7 +5,7 @@ import java.util.List;
 
 /**
  *
- * @author jcadafalch
+ * @author marc
  */
 public interface Tipus_EquipServiceInterface {
 

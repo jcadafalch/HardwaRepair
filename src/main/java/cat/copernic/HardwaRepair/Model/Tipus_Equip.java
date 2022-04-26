@@ -14,6 +14,11 @@ import lombok.Data;
  *
  * @author marc
  */
+
+
+//Model que indica el tipus d'equip de la incidencia.
+
+
 @Data
 @Entity
 @Table(name="tipusEquip")

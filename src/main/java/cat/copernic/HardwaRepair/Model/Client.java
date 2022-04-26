@@ -18,6 +18,10 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name="cliente")
+
+
+//Model del client de la Incidencia.
+
 public class Client implements Serializable{
     
     private static final long serialVersionUID=1L;

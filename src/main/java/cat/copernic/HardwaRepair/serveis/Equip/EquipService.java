@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
- * @author fta
+ * @author marc
  */
 
 /*Anotació que permet al sistema que reconegui aquesta classe com una classe de servei
@@ -85,6 +85,19 @@ public class EquipService implements EquipServiceInterface {
          */
         return this.equip.findById(equip.getNum_serie()).orElse(null);
 
+    
+    
     }
+    
+    
+    // Cercar el equip mitjançant la marca passat per paràmetre en la taula equip
+    // de la BBDD
+
+    @Override
+    @Transactional(readOnly = true)
+    public Equip cercarEquipByMarca(String marca) {
+        return this.equip.findByMarca(marca);
+    }
+
 
 }
