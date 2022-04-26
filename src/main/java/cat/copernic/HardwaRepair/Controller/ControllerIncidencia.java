@@ -55,7 +55,7 @@ public class ControllerIncidencia {
     private ProducteServiceInterface producteService;
 
     @GetMapping("/crearIncidencia")
-    public String crearIncidencia(Incidencia incidencia, Model model) {
+    public String crearIncidencia(Incidencia incidencia, Model model, @AuthenticationPrincipal User username) {
         try {
 
             //Passem el llistat de estat d'equips a la vista
@@ -69,6 +69,12 @@ public class ControllerIncidencia {
 
             //Passem el llistat de incidencies a la vista
             model.addAttribute("Incidencies", incidenciaService.llistarIncidencies());
+            //Passem a la vista el nom de l'usuari en cas que no estigui autenticat ho indiquem
+            if (username == null) {
+                model.addAttribute("username", " Usuari no autenticat");
+            } else {
+                model.addAttribute("username", username.getUsername());
+            }
         } catch (NullPointerException e) {
             //Si no hi ha categories, mostrem un missatge d'error
             System.out.println("No hi ha Incidencies");
@@ -79,9 +85,14 @@ public class ControllerIncidencia {
     }
 
     @GetMapping("/detallsIncidencia")
-    public String detallsIncidencia(Model model) {
+    public String detallsIncidencia(Model model, @AuthenticationPrincipal User username) {
         log.info("Executant el controlador de Incidencia");
-
+        //Passem a la vista el nom de l'usuari en cas que no estigui autenticat ho indiquem
+        if (username == null) {
+            model.addAttribute("username", " Usuari no autenticat");
+        } else {
+            model.addAttribute("username", username.getUsername());
+        }
         //definim la variable de l'incidencia
         var incidencies = incidenciaDao.findAll();
 
@@ -106,7 +117,7 @@ public class ControllerIncidencia {
 //    
 //  
     @GetMapping("/llistatIncidencies")
-    public String llistarIncidencies(Model model) {
+    public String llistarIncidencies(Model model, @AuthenticationPrincipal User username) {
         {
             try {
 
@@ -118,6 +129,13 @@ public class ControllerIncidencia {
 
                 //Passem el llistat de incidencies a la vista
                 model.addAttribute("incidencies", incidenciaService.llistarIncidencies());
+
+                //Passem a la vista el nom de l'usuari en cas que no estigui autenticat ho indiquem
+                if (username == null) {
+                    model.addAttribute("username", " Usuari no autenticat");
+                } else {
+                    model.addAttribute("username", username.getUsername());
+                }
 
             } catch (NullPointerException e) {
                 System.out.println("No hi ha Incidencies");
@@ -140,7 +158,7 @@ public class ControllerIncidencia {
     }
 
     @GetMapping("/editarIncidencia/{id_incidencia}")
-    public String editarIncidencia(Incidencia incidencia, Model model) {
+    public String editarIncidencia(Incidencia incidencia, Model model, @AuthenticationPrincipal User username) {
         incidencia = incidenciaService.cercarIncidencia(incidencia);
 
         //Passem el llistat de estat d'equips a la vista
@@ -155,6 +173,13 @@ public class ControllerIncidencia {
         //Passem la incidencia a la vista
         model.addAttribute("incidencia", incidencia);
 
+        //Passem a la vista el nom de l'usuari en cas que no estigui autenticat ho indiquem
+        if (username == null) {
+            model.addAttribute("username", " Usuari no autenticat");
+        } else {
+            model.addAttribute("username", username.getUsername());
+        }
+
         //Retornem el formulari de detalls
         return "/detallsIncidencia";
     }
@@ -166,7 +191,7 @@ public class ControllerIncidencia {
 
             //Si hi ha errors, tornem a la vista de detalls de l'incidencia
             log.info("S'ha produït un error'");
-            
+
         }
 
         //Actualitzem el producte
@@ -184,7 +209,7 @@ public class ControllerIncidencia {
     }
 
     @GetMapping("/liniaReparacio/{id_incidencia}")
-    public String liniaReparacio(Incidencia incidencia,Model model,LiniaReparacio liniareparacio, @AuthenticationPrincipal User username){
+    public String liniaReparacio(Incidencia incidencia, Model model, LiniaReparacio liniareparacio, @AuthenticationPrincipal User username) {
         try {
             //Passem el llistat de productes a la vista
             model.addAttribute("productes", producteService.llistarProductes());
@@ -193,9 +218,9 @@ public class ControllerIncidencia {
             model.addAttribute("liniareparacio", liniareparacio);
 
             //Passem a la vista el nom de l'usuari en cas que no estigui autenticat ho indiquem
-            if(username == null){
+            if (username == null) {
                 model.addAttribute("username", " Usuari no autenticat");
-            }else{
+            } else {
                 model.addAttribute("username", username.getUsername());
             }
 
@@ -203,7 +228,7 @@ public class ControllerIncidencia {
             System.out.println(incidencia.getId_incidencia());
             model.addAttribute("incidencia", incidenciaService.cercarIncidencia(incidencia));
 
-        }catch (NullPointerException e){
+        } catch (NullPointerException e) {
             //Si no hi ha productes, mostrem un missatge d'error
             System.out.println("No hi ha productes");
             System.out.println("Error == " + e.getMessage());
@@ -212,7 +237,7 @@ public class ControllerIncidencia {
     }
 
     @PostMapping("/guardarLiniaReparacio")
-    public String guardarLiniaReparacio(@Valid LiniaReparacio liniaReparacio, Errors errors){
+    public String guardarLiniaReparacio(@Valid LiniaReparacio liniaReparacio, Errors errors) {
         if (errors.hasErrors()) {
             //Si hi ha errors, tornem a la vista de linia reparació
             log.info("S'ha produït un error'");
@@ -222,10 +247,5 @@ public class ControllerIncidencia {
         liniaReparacioService.afegirLiniaReparacio(liniaReparacio);
         return "redirect:/llistarProductes";
     }
-
-
-
-
-
 
 }
