@@ -79,7 +79,7 @@
                             <div class="col-lg-5 kt-margin-b-10-tablet-and-mobile">
                                 <label style="font-weight: bold;">Nom:</label>
                                 <div class="input-icon">
-                                    <input class="form-control" type="text" id="nom" name="nom" th:field="*{nom}" placeholder="Nom de la categoria"/>
+                                    <input required="true" class="form-control" type="text" id="nom" name="nom" th:field="*{nom}" placeholder="Nom de la categoria"/>
                                     <span th:if="${#fields.hasErrors('nom')}" th:errors="*{nom}"></span>
                                 </div>
                             </div>
