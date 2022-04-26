@@ -24,17 +24,24 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 @Slf4j
 public class ControladorInici {
+
     @Autowired
     private UsuariServiceInterface usuariService;
 
     @GetMapping("/inici")
     public String iniciGet(Model model, @AuthenticationPrincipal User username) {
         System.out.println("Executant el controlador Spring MVC");
-        System.out.println("L'usuari autenticat és: "+username);
-        System.out.println("L'usuari autenticat és + getUsername: "+username.getUsername());
+        System.out.println("L'usuari autenticat és: " + username);
+        System.out.println("L'usuari autenticat és + getUsername: " + username.getUsername());
 
         //Passem a la vista si l'usuari és administrador
         model.addAttribute("isAdministrator", IsAdministrator.isAdministrator(username.getUsername(), usuariService));
+        //Passem a la vista el nom de l'usuari en cas que no estigui autenticat ho indiquem
+        if (username == null) {
+            model.addAttribute("username", " Usuari no autenticat");
+        } else {
+            model.addAttribute("username", username.getUsername());
+        }
 
         return "selectModule";
     }
