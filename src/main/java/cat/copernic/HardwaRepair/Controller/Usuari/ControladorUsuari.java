@@ -100,13 +100,13 @@ public class ControladorUsuari {
                 }
             }
 
-        }
-
-        if (usuariDAO.findByDni(usuari.getDni()) != null) {
-            redirectAttrs
-                    .addFlashAttribute("mensaje", "No pots crear dos usuaris amb el mateix DNI")
-                    .addFlashAttribute("clase", "error");
-            return "redirect:/llistarUsuaris";
+        } else {
+            if (usuariDAO.findByDni(usuari.getDni()) != null) {
+                redirectAttrs
+                        .addFlashAttribute("mensaje", "No pots crear dos usuaris amb el mateix DNI")
+                        .addFlashAttribute("clase", "error");
+                return "redirect:/llistarUsuaris";
+            }
         }
 
         //Passem a la vista si l'usuari és administrador
