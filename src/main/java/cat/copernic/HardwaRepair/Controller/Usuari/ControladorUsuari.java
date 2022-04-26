@@ -76,32 +76,35 @@ public class ControladorUsuari {
     @PostMapping("/guardarUsuari")
     public String guardarUsuari(@Valid Usuari usuari, @RequestParam(value = "password") String cont, @RequestParam(value = "dni") String dni, Errors errors, RedirectAttributes redirectAttrs, @AuthenticationPrincipal User username, Model model) {
         //Guardamos en una variable la contraseña anterior que tenia el usuario
-        String pass = usuariDAO.findById(usuari.getIdUsuari()).get().getPassword();
-        String antdni = usuariDAO.findById(usuari.getIdUsuari()).get().getDni();
+        if (usuariDAO.existsById(usuari.getIdUsuari())) {
+            String pass = usuariDAO.findById(usuari.getIdUsuari()).get().getPassword();
+            String antdni = usuariDAO.findById(usuari.getIdUsuari()).get().getDni();
+
+            if (!antdni.equals(dni)) {
+                if (usuariDAO.findByDni(usuari.getDni()) != null) {
+                    redirectAttrs
+                            .addFlashAttribute("mensaje", "No pots crear dos usuaris amb el mateix DNI")
+                            .addFlashAttribute("clase", "error");
+                    return "redirect:/llistarUsuaris";
+                }
+            }
+
+            if (cont == null) { // En caso de que la contraseña no se haya editado
+                usuari.setPassword(pass);// Guardaremos de nuevo la antigua
+            } else {
+                if (cont != null) {// De haberse editado, la nueva la encriptaremos y guardaremos
+                    usuari.setPassword(EncriptadorContrasenyes.encriptarContrasenya(cont));
+                }
+            }
+
+        }
 
         //Passem a la vista si l'usuari és administrador
         model.addAttribute("isAdministrator", IsAdministrator.isAdministrator(username.getUsername(), usuariService));
 
-        if (cont == null) { // En caso de que la contraseña no se haya editado
-            usuari.setPassword(pass);// Guardaremos de nuevo la antigua
-        } else {
-            if (cont != null) {// De haberse editado, la nueva la encriptaremos y guardaremos
-                usuari.setPassword(EncriptadorContrasenyes.encriptarContrasenya(cont));
-            }
-        }
-
         if (errors.hasErrors()) {
             log.info("S'ha produït un error'");
             return "formulariUsuari";
-        }
-
-        if (!antdni.equals(dni)) {
-            if (usuariDAO.findByDni(usuari.getDni()) != null) {
-                redirectAttrs
-                        .addFlashAttribute("mensaje", "No pots crear dos usuaris amb el mateix DNI")
-                        .addFlashAttribute("clase", "error");
-                return "redirect:/llistarUsuaris";
-            }
         }
 
         usuariService.afegirUsuari(usuari);

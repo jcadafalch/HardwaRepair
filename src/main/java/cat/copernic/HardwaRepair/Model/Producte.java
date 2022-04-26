@@ -8,7 +8,11 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  *
@@ -38,5 +42,15 @@ public class Producte implements Serializable{
     private String marca;
 
     private long categoriaId;
+
+    public Producte() {
+    }
+    public Producte(String nom, Double preuCompra, Double preuVenda, String marca, long categoriaId) {
+        this.nom = nom;
+        this.preuCompra = preuCompra;
+        this.preuVenda = preuVenda;
+        this.marca = marca;
+        this.categoriaId = categoriaId;
+    }
 
 }
