@@ -50,17 +50,17 @@ public class categoriaTest {
     @Test
     @Order(3)
     public void testReadCategoria() {
-        Categoria readedCat = cdao.findByNom("Categoria de prueba");
-        assertThat(readedCat.getNom()).isEqualTo("Categoria de prueba");
+        Categoria readedCat = cdao.findByNom("Categoria");
+        assertThat(readedCat.getNom()).isEqualTo("Categoria");
     }
 
     @Test
     @Order(4)
     public void testDropCategoria() {
-        Categoria categoria = cdao.findByNom("Categoria de prueba");
+        Categoria categoria = cdao.findByNom("Categoria");
         cdao.delete(categoria);
         
-        Categoria dropped = cdao.findByNom("Categoria de prueba");
+        Categoria dropped = cdao.findByNom("Categoria");
         assertThat(dropped).isNull();
     }
 }
