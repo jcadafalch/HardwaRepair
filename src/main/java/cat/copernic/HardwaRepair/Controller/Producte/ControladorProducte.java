@@ -42,8 +42,6 @@ public class ControladorProducte {
 
             //Passem el llistat de productes a la vista
             model.addAttribute("productes", producteService.llistarProductes());
-            
-            model.addAttribute("isAdministrator", IsAdministrator.isAdministrator(username.getUsername(), usuariService));
 
             //Passem a la vista el nom de l'usuari en cas que no estigui autenticat ho indiquem
             if(username == null){
@@ -67,7 +65,7 @@ public class ControladorProducte {
             //Passem el llistat de categories a la vista
             model.addAttribute("categories", categoriaService.llistarCategoria());
             System.out.println("Categories == " + categoriaService.llistarCategoria());
-            model.addAttribute("isAdministrator", IsAdministrator.isAdministrator(username.getUsername(), usuariService));
+
             //Passem a la vista el nom de l'usuari en cas que no estigui autenticat ho indiquem
             if(username == null){
                 model.addAttribute("username", " Usuari no autenticat");
@@ -104,7 +102,7 @@ public class ControladorProducte {
 
         //Passem el llistat de categories a la vista
         model.addAttribute("categories", categoriaService.llistarCategoria());
-        
+
         //Passem a la vista el nom de l'usuari en cas que no estigui autenticat ho indiquem
         if(username == null){
             model.addAttribute("username", " Usuari no autenticat");

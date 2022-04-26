@@ -1,145 +1,139 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
-      xmlns="http://www.w3.org/1999/xhtml">
+    xmlns="http://www.w3.org/1999/xhtml">
 
-    <head>
-        <title>Detalls Producte</title>
-        <meta charset="UTF-8" />
-        <!-- Bootstrap -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
-        <script src="../webjars/bootstrap/5.1.3/js/bootstrap.min.js"></script>
-        <link href="../webjars/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet" />
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
-    </head>
+<head>
+    <title>Detalls Producte</title>
+    <meta charset="UTF-8" />
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <script src="../webjars/bootstrap/5.1.3/js/bootstrap.min.js"></script>
+    <link href="../webjars/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+</head>
 
-    <body>
-        <nav class="navbar navbar-dark sticky-top bg-dark  ">
+<body>
+    <nav class="navbar navbar-dark sticky-top bg-dark  ">
 
-            <div class="mb-2 mb-md-0">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-person-circle"
-                     viewBox="0 0 16 16">
-                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
-                    <path fill-rule="evenodd"
-                          d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
-                </svg>
-                <label class="text-white bg-dark" th:text="${username}"></label>
-            </div>
-
-        </nav>
-        <div class="container-fluid">
-            <div class="row">
-                <nav class="col-md-2 d-none d-md-block bg-light sidebar">
-                    <div class="sidebar-sticky">
-                        <ul class="nav flex-column">
-                            <li class="nav-item">
-                                <a class="nav-link" th:href="@{/llistatIncidencies}">
-                                    <span class="bi bi-tools"></span>
-                                    Incidencies
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" th:href="@{/llistarProductes}">
-                                    <span class="bi bi-box"></span>
-                                    Productes
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" th:href="@{/llistarCategories}">
-                                    <span class="bi bi-files"></span>
-                                    Categories
-                                </a>
-                            </li>
-                            <li th:if="${isAdministrator == true}" class="nav-item">
-                                <a class="nav-link" th:href="@{/inici}">
-                                    <span class="bi bi-tools"></span>
-                                    Selecció de Modul
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" th:href="@{/logout}">
-                                    <span class="bi bi-box-arrow-right"></span>
-                                    Tancar Sessió
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </nav>
-
-                <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-                    <div
-                        class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-                        <h1 class="h2">Detalls Producte</h1>
-                    </div>
-                    <form th:action="@{/guardarProducteDetalls}" method="post" th:object="${producte}">
-                        <input type="hidden" name="idProducte" th:field="*{idProducte}" />
-
-                        <div class="row kt-margin-b-20">
-                            <div class="col-lg-5 kt-margin-b-10-tablet-and-mobile">
-                                <label style="font-weight: bold;" for="nom">Nom:</label>
-                                <div class="input-icon">
-                                    <input class="form-control" type="text" id="nom" name="nom" th:field="*{nom}"
-                                           placeholder="Nom del producte" /><br>
-                                        <span th:if="${#fields.hasErrors('nom')}" th:errors="*{nom}"></span>
-                                </div>
-                            </div>
-                            <div class="col-lg-5 kt-margin-b-10-tablet-and-mobile">
-                                <label style="font-weight: bold;" for="marca">Marca:</label>
-                                <div class="input-icon">
-                                    <input class="form-control" type="text" id="marca" name="marca" th:field="*{marca}"
-                                           placeholder="Marca del producte" /><br>
-                                        <span th:if="${#fields.hasErrors('marca')}" th:errors="*{marca}"></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row kt-margin-b-20">
-                            <div class="col-lg-5 kt-margin-b-10-tablet-and-mobile">
-                                <label style="font-weight: bold;" for="preuCompra">Preu de compra</label>
-                                <div class="input-icon">
-                                    <input class="form-control" type="number" step="0.01" id="preuCompra" name="preuCompra"
-                                           th:field="*{preuCompra}" placeholder="Preu de compra" /><br>
-                                        <span th:if="${#fields.hasErrors('preuCompra')}" th:errors="*{preuCompra}"></span>
-                                </div>
-                            </div>
-                            <div class="col-lg-5 kt-margin-b-10-tablet-and-mobile">
-                                <label style="font-weight: bold;" for="preuVenda">Preu de venda</label>
-                                <div class="input-icon">
-                                    <input class="form-control" type="number" step="0.01" id="preuVenda" name="preuVenda"
-                                           th:field="*{preuVenda}" placeholder="Preu de venda" /><br>
-                                        <span th:if="${#fields.hasErrors('preuVenda')}" th:errors="*{preuVenda}"></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row kt-margin-b-20">
-                            <div class="col-lg-5 kt-margin-b-10-tablet-and-mobile">
-                                <label style="font-weight: bold;" for="categoria">Categoria</label>
-                                <div class="input-icon">
-                                    <!--Llistat "categories" obtingut en el controlador: per cada categoria del llistat "categories" mostrem el nom
-                                     de la categoria i guardem a la BBDD el "id" de la categoria-->
-                                    <select name="categoria" id="categoria" th:field="*{categoriaId}">
-                                        <option th:each="categoria : ${categories}" th:value="${categoria.idCategoria}"
-                                                th:text="${categoria.nom}"></option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-
-                        <br>
-
-                            <div class="modal-footer">
-                                <button class="btn btn-secondary"><a th:href="@{/llistarProductes}"
-                                                                     style="color:white; text-decoration: none;" th:text="#{cancelar}"></a></button>
-                                <input class="btn btn-primary" type="submit" name="enviar" value="Guardar" />
-                                <button th:if="${isAdministrator == true}" class="btn btn-danger"><a
-                                        th:href="@{/eliminarProducte/}+${producte.idProducte}"
-                                        style="color:white; text-decoration: none;" th:text="Eliminar"></a></button>
-                            </div>
-                    </form>
-                </main>
-            </div>
+        <div class="mb-2 mb-md-0">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-person-circle"
+                viewBox="0 0 16 16">
+                <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+                <path fill-rule="evenodd"
+                    d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
+            </svg>
+            <label class="text-white bg-dark" th:text="${username}"></label>
         </div>
 
-    </body>
+    </nav>
+    <div class="container-fluid">
+        <div class="row">
+            <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+                <div class="sidebar-sticky">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/llistatIncidencies}">
+                                <span class="bi bi-tools"></span>
+                                Incidencies
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/llistarProductes}">
+                                <span class="bi bi-box"></span>
+                                Productes
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/llistarCategories}">
+                                <span class="bi bi-files"></span>
+                                Categories
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/logout}">
+                                <span class="bi bi-box-arrow-right"></span>
+                                Tancar Sessió
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+                <div
+                    class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+                    <h1 class="h2">Detalls Producte</h1>
+                </div>
+                <form th:action="@{/guardarProducteDetalls}" method="post" th:object="${producte}">
+                    <input type="hidden" name="idProducte" th:field="*{idProducte}" />
+
+                    <div class="row kt-margin-b-20">
+                        <div class="col-lg-5 kt-margin-b-10-tablet-and-mobile">
+                            <label style="font-weight: bold;" for="nom">Nom:</label>
+                            <div class="input-icon">
+                                <input class="form-control" type="text" id="nom" name="nom" th:field="*{nom}"
+                                    placeholder="Nom del producte" /><br>
+                                <span th:if="${#fields.hasErrors('nom')}" th:errors="*{nom}"></span>
+                            </div>
+                        </div>
+                        <div class="col-lg-5 kt-margin-b-10-tablet-and-mobile">
+                            <label style="font-weight: bold;" for="marca">Marca:</label>
+                            <div class="input-icon">
+                                <input class="form-control" type="text" id="marca" name="marca" th:field="*{marca}"
+                                    placeholder="Marca del producte" /><br>
+                                <span th:if="${#fields.hasErrors('marca')}" th:errors="*{marca}"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row kt-margin-b-20">
+                        <div class="col-lg-5 kt-margin-b-10-tablet-and-mobile">
+                            <label style="font-weight: bold;" for="preuCompra">Preu de compra</label>
+                            <div class="input-icon">
+                                <input class="form-control" type="number" step="0.01" id="preuCompra" name="preuCompra"
+                                    th:field="*{preuCompra}" placeholder="Preu de compra" /><br>
+                                <span th:if="${#fields.hasErrors('preuCompra')}" th:errors="*{preuCompra}"></span>
+                            </div>
+                        </div>
+                        <div class="col-lg-5 kt-margin-b-10-tablet-and-mobile">
+                            <label style="font-weight: bold;" for="preuVenda">Preu de venda</label>
+                            <div class="input-icon">
+                                <input class="form-control" type="number" step="0.01" id="preuVenda" name="preuVenda"
+                                    th:field="*{preuVenda}" placeholder="Preu de venda" /><br>
+                                <span th:if="${#fields.hasErrors('preuVenda')}" th:errors="*{preuVenda}"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row kt-margin-b-20">
+                        <div class="col-lg-5 kt-margin-b-10-tablet-and-mobile">
+                            <label style="font-weight: bold;" for="categoria">Categoria</label>
+                            <div class="input-icon">
+                                <!--Llistat "categories" obtingut en el controlador: per cada categoria del llistat "categories" mostrem el nom
+                                 de la categoria i guardem a la BBDD el "id" de la categoria-->
+                                <select name="categoria" id="categoria" th:field="*{categoriaId}">
+                                    <option th:each="categoria : ${categories}" th:value="${categoria.idCategoria}"
+                                        th:text="${categoria.nom}"></option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <br>
+
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary"><a th:href="@{/llistarProductes}"
+                                style="color:white; text-decoration: none;" th:text="#{cancelar}"></a></button>
+                        <input class="btn btn-primary" type="submit" name="enviar" value="Guardar" />
+                        <button th:if="${isAdministrator == true}" class="btn btn-danger"><a
+                                th:href="@{/eliminarProducte/}+${producte.idProducte}"
+                                style="color:white; text-decoration: none;" th:text="Eliminar"></a></button>
+                    </div>
+                </form>
+            </main>
+        </div>
+    </div>
+
+</body>
 
 </html>
